@@ -1,0 +1,49 @@
+.scroller {
+  height: 1.2em;
+  line-height: 1.2em;
+  position: relative;
+  overflow: hidden;
+  width: 5em;
+}
+.scroller > span {
+  position: absolute;
+  top: 0;
+  animation: slide 5s infinite;
+  font-weight: bold;
+}
+@keyframes slide {
+  0% {
+    transform: translateY(0);
+  }
+  33% {
+    transform: translateY(-1.2em);
+  }
+  66% {
+    transform: translateY(-2.4em);
+  }
+  100% {
+    transform: translateY(-3.6em);
+  }
+}
+
+.freeButton {
+  background: linear-gradient(
+    135deg,
+    rgb(102, 153, 255) 0%,
+    rgb(255, 51, 102) 100%
+  );
+
+  border: 0;
+  border-radius: 32px;
+}
+
+.iframeContainer {
+  width: 805.883px;
+  max-width: min(100%, 805.883px);
+  aspect-ratio: 805.883 / 408;
+}
+
+.paragragh {
+  width: 700px;
+  max-width: min(100%, 700px);
+}
