@@ -40,7 +40,6 @@
 .iframeContainer {
   width: 805.883px;
   max-width: min(100%, 805.883px);
-  aspect-ratio: 805.883 / 408;
 }
 
 .paragragh {

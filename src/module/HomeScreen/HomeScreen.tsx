@@ -165,6 +165,16 @@ const HomeScreen = () => {
         </h6>
       </div>
 
+      <div className={`d-flex justify-content-center p-4`}>
+        <iframe
+          width={800}
+          src="https://www.youtube.com/embed/8jN0dyEDWJg"
+          title="embed"
+          allowFullScreen
+          style={{ aspectRatio: 2 / 1 }}
+        ></iframe>
+      </div>
+
       <h2 className="text-center fw-bold mb-4 mt-4">How it works</h2>
 
       <div className={`justify-content-center d-flex ${styles.stepContainer}`}>
