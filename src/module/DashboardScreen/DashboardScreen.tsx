@@ -27,6 +27,18 @@ const DashboardScreen = () => {
 
   console.log(isEdit);
 
+  const handleChangeData = React.useCallback(
+    (indexAnswer: number, indexQuestion: number, text: string) => {
+      array[indexQuestion].answers[indexAnswer] = text;
+      console.log(array, "122");
+    },
+    [array]
+  );
+
+  const handle = React.useCallback((e: any) => {
+    console.log(e);
+  }, []);
+
   return (
     <>
       <Row xxl={2} xl={2} lg={2} md={2} sm={2} xs={1} style={{ width: "100%" }}>
@@ -151,42 +163,64 @@ const DashboardScreen = () => {
                       className="px-4 rounded-2 fw-bold"
                       onClick={() => setEdit(!isEdit)}
                     >
-                      EDIT
+                      {`${isEdit ? "SAVE" : "EDIT"}`}
                     </Button>
                     <Button className="px-4 rounded-2 fw-bold">EXPORT</Button>
                   </div>
+                  {isEdit ? (
+                    <ReactSortable list={array} setList={setArray}>
+                      {array?.map((value: any, _index: number) => {
+                        return (
+                          <Form
+                            className={`p-4 bg-white m-4 ${styles.shadowAnswerBox} rounded-2`}
+                          >
+                            <Form.Control
+                              as={"textarea"}
+                              id="inputPassword5"
+                              className="fw-bold mb-2"
+                              placeholder={value?.question}
+                              style={{ fontSize: 18 }}
+                            />
 
-                  {/* {data?.map((value: any) => {
-                    return (
-                      <div
-                        className={`p-4 bg-white m-4 ${styles.shadowAnswerBox} rounded-2`}
-                        draggable={true}
-                      >
-                        <h5 className="mb-4 fw-bold">{value?.question}</h5>
-                        {value?.answers?.map((answer: any, index: number) => (
-                          <h6
-                            className={`${
-                              index === value.correctAnswerIndices[0]
-                                ? "fw-bold"
-                                : "fw-medium"
-                            } m-2`}
-                            style={{
-                              color:
-                                index === value?.correctAnswerIndices[0]
-                                  ? "rgb(22,163,74)"
-                                  : "black",
-                            }}
-                          >{`-      ${answer}`}</h6>
-                        ))}
-                      </div>
-                    );
-                  })} */}
-                  <ReactSortable list={array} setList={setArray}>
-                    {array?.map((value: any) => {
+                            {value?.answers?.map(
+                              (answer: any, index: number) => {
+                                return (
+                                  <div className="d-flex align-items-center">
+                                    <Form.Check
+                                      checked={
+                                        index === value.correctAnswerIndices[0]
+                                      }
+                                      inline
+                                      name="group1"
+                                      type={"radio"}
+                                      id={`inline-${"radio"}-${index}`}
+                                    />
+                                    <Form.Control
+                                      as={"textarea"}
+                                      id="inputPassword5"
+                                      className={`${
+                                        index === value.correctAnswerIndices[0]
+                                          ? "fw-bold"
+                                          : "fw-medium"
+                                      } text-black mt-2`}
+                                      style={{ marginRight: 0 }}
+                                      placeholder={answer}
+                                      value={answer}
+                                      onChange={handle}
+                                    />
+                                  </div>
+                                );
+                              }
+                            )}
+                          </Form>
+                        );
+                      })}
+                    </ReactSortable>
+                  ) : (
+                    array?.map((value: any) => {
                       return (
                         <div
                           className={`p-4 bg-white m-4 ${styles.shadowAnswerBox} rounded-2`}
-                          draggable={true}
                         >
                           <h5 className="mb-4 fw-bold">{value?.question}</h5>
                           {value?.answers?.map((answer: any, index: number) => (
@@ -201,13 +235,15 @@ const DashboardScreen = () => {
                                   index === value?.correctAnswerIndices[0]
                                     ? "rgb(22,163,74)"
                                     : "black",
+
+                                fontSize: 16,
                               }}
                             >{`-      ${answer}`}</h6>
                           ))}
                         </div>
                       );
-                    })}
-                  </ReactSortable>
+                    })
+                  )}
                 </Col>
               </Row>
             </div>
