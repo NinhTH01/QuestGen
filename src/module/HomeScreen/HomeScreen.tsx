@@ -9,7 +9,7 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import Header from "../../components/organisms/Header";
+import Header from "../../components/organisms/Header/Header";
 import React from "react";
 import styles from "./HomeScreen.module.css";
 

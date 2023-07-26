@@ -1,7 +1,10 @@
 import { Navbar, Nav, Button, Dropdown, Image } from "react-bootstrap";
 import styles from "./Header.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Header: React.FC<HeaderProps> = () => {
+  const navigate = useNavigate();
+
   return (
     <Navbar expand="lg" className="bg-white px-4 py-2">
       <Navbar.Brand
@@ -140,6 +143,7 @@ const Header: React.FC<HeaderProps> = () => {
               fontWeight: 1,
             }}
             className={`px-4 fw-bold ${styles.shadow}`}
+            onClick={() => navigate("/dashboard")}
           >
             Start for free
           </Button>
