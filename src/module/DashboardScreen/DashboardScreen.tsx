@@ -25,19 +25,24 @@ const DashboardScreen = () => {
 
   const [array, setArray] = React.useState<any>(data);
 
-  console.log(isEdit);
-
-  const handleChangeData = React.useCallback(
-    (indexAnswer: number, indexQuestion: number, text: string) => {
-      array[indexQuestion].answers[indexAnswer] = text;
-      console.log(array, "122");
+  const handle = React.useCallback(
+    (indexAnswer: number, indexQuestion: number) => (e: any) => {
+      array[indexQuestion].answers[indexAnswer] = e.target.value;
+      setArray([...array]);
     },
     [array]
   );
 
-  const handle = React.useCallback((e: any) => {
-    console.log(e);
-  }, []);
+  const handleChecked = React.useCallback(
+    (indexAnswer: number, indexQuestion: number) => async () => {
+      array[indexQuestion].correctAnswerIndices = [indexAnswer];
+
+      setArray([...array]);
+    },
+    [array]
+  );
+
+  console.log(array);
 
   return (
     <>
@@ -185,11 +190,15 @@ const DashboardScreen = () => {
                             {value?.answers?.map(
                               (answer: any, index: number) => {
                                 return (
-                                  <div className="d-flex align-items-center">
+                                  <div
+                                    className="d-flex align-items-center"
+                                    key={index}
+                                  >
                                     <Form.Check
                                       checked={
                                         index === value.correctAnswerIndices[0]
                                       }
+                                      onClick={handleChecked(index, _index)}
                                       inline
                                       name="group1"
                                       type={"radio"}
@@ -205,8 +214,7 @@ const DashboardScreen = () => {
                                       } text-black mt-2`}
                                       style={{ marginRight: 0 }}
                                       placeholder={answer}
-                                      value={answer}
-                                      onChange={handle}
+                                      onChange={handle(index, _index)}
                                     />
                                   </div>
                                 );
@@ -217,14 +225,16 @@ const DashboardScreen = () => {
                       })}
                     </ReactSortable>
                   ) : (
-                    array?.map((value: any) => {
+                    array?.map((value: any, index: number) => {
                       return (
                         <div
                           className={`p-4 bg-white m-4 ${styles.shadowAnswerBox} rounded-2`}
+                          key={index}
                         >
                           <h5 className="mb-4 fw-bold">{value?.question}</h5>
                           {value?.answers?.map((answer: any, index: number) => (
                             <h6
+                              key={index}
                               className={`${
                                 index === value.correctAnswerIndices[0]
                                   ? "fw-bold"
