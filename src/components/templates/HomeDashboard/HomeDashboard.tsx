@@ -31,13 +31,21 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
         FAQs etc
       </h5>
       <Row xxl={2} xl={2} lg={2} md={2} sm={2} xs={1} style={{ width: "100%" }}>
-        <Col className="bg-light" style={{ padding: 40 }}>
-          <h6>Questions? Write to: ramsri@questgen.ai</h6>
-          <h6>
-            Suggested text length: 50 - 3000 words. Supports English and other
-            major languages
+        <Col className="bg-light" style={{ padding: 60 }}>
+          <div className="mb-4">
+            <h6 style={{ fontWeight: 400 }}>
+              Questions? Write to: ramsri@questgen.ai
+            </h6>
+          </div>
+          <div className="mb-4">
+            <h6 style={{ fontWeight: 400 }}>
+              Suggested text length: 50 - 3000 words. Supports English and other
+              major languages
+            </h6>
+          </div>
+          <h6 style={{ fontWeight: 600, color: "green", fontSize: 14 }}>
+            Character Count: {characterCount}
           </h6>
-          <h6>Character Count: {characterCount}</h6>
 
           <div className="d-flex justify-content-center mb-4">
             <Form.Control
@@ -97,7 +105,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
               </Form.Select>
             </Col>
           </Row>
-          <Button style={{ width: "100%" }} className="mt-4">
+          <Button style={{ width: "100%" }} className="mt-4 fw-bold">
             Try for free
           </Button>
         </Col>

@@ -28,10 +28,21 @@ const SimiliarDashboard: React.FC<SimiliarDashboardProps> = ({
         Generate similar questions to expand your question bank.
       </h5>
       <Row xxl={2} xl={2} lg={2} md={2} sm={2} xs={1} style={{ width: "100%" }}>
-        <Col className="bg-light" style={{ padding: 28 }}>
-          <h6>Questions? Write to: ramsri@questgen.ai</h6>
-          <h6>Suggested text length: less than 120 words. Supports English.</h6>
-          <h6>Word Count: </h6>
+        <Col className="bg-light" style={{ padding: 60 }}>
+          <div className="mb-4">
+            <h6 style={{ fontWeight: 400 }}>
+              Questions? Write to: ramsri@questgen.ai
+            </h6>
+          </div>
+          <div className="my-4">
+            <h6 style={{ fontWeight: 400 }}>
+              Suggested text length: less than 120 words. Supports English.
+            </h6>
+          </div>
+
+          <h6 style={{ fontWeight: 600, color: "green", fontSize: 14 }}>
+            Word Count:{characterCount}
+          </h6>
 
           <div className="d-flex justify-content-center mb-4">
             <Form.Control
@@ -45,8 +56,8 @@ const SimiliarDashboard: React.FC<SimiliarDashboardProps> = ({
             />
           </div>
 
-          <Button style={{ width: "100%" }} className="mt-4">
-            Try for free {characterCount}
+          <Button style={{ width: "100%" }} className="mt-4 fw-bold">
+            Try for free
           </Button>
         </Col>
         <Col className=" bg-light">

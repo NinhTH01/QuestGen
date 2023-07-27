@@ -125,18 +125,27 @@ const DashboardScreen = () => {
   ]);
 
   return (
-    <>
-      <Row xxl={2} xl={2} lg={2} md={2} sm={2} xs={1} style={{ width: "100%" }}>
+    <div style={{ width: "100%" }} className="bg-light">
+      <Row
+        xxl={2}
+        xl={2}
+        lg={2}
+        md={2}
+        sm={2}
+        xs={1}
+        style={{ width: "100%" }}
+        className="bg-light"
+      >
         <Col>
           {width > 800 && (
-            <div className="p-2 " style={{ position: "fixed", top: 0 }}>
+            <div className="p-2" style={{ position: "fixed", top: 0 }}>
               <Sidebar route={route} setRoute={setRoute} />
             </div>
           )}
         </Col>
         <Col
           style={{
-            width: width > 800 ? "calc(100% - 200px)" : "100%",
+            width: width > 800 ? "calc(100% - 208px)" : width,
             marginLeft: width > 800 ? 220 : 0,
             height: "99vh",
           }}
@@ -162,7 +171,7 @@ const DashboardScreen = () => {
           </div>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 export default DashboardScreen;
