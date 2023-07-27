@@ -23,7 +23,8 @@ const Footer: React.FC<FooterProps> = () => {
             paddingTop: width > 1000 ? 50 : 0,
             paddingBottom: width > 1000 ? 100 : 0,
             width: 1200,
-            padding: 16,
+            paddingLeft: 16,
+            paddingRight: 16,
           }}
         >
           <div className="p-4">

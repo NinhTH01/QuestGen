@@ -249,7 +249,8 @@ const HomeScreen = () => {
             paddingTop: width > 1000 ? 50 : 0,
             paddingBottom: width > 1000 ? 100 : 0,
             width: 1000,
-            padding: 16,
+            paddingLeft: 16,
+            paddingRight: 16,
           }}
         >
           <div className="p-2">
@@ -363,7 +364,8 @@ const HomeScreen = () => {
             paddingTop: width > 1000 ? 50 : 0,
             paddingBottom: width > 1000 ? 100 : 0,
             width: 1000,
-            padding: 16,
+            paddingLeft: 16,
+            paddingRight: 16,
           }}
         >
           <div className="p-2">
