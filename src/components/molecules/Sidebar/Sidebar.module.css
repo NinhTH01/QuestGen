@@ -26,3 +26,18 @@
   min-width: 0;
   width: 100%;
 }
+
+.nav_tabs .nav-link.active,
+.nav_tabs .nav-item.show .nav-link {
+  color: #ffffff;
+
+  background-color: #2399fb;
+
+  border-color: #dee2e6 #dee2e6 #fff;
+
+  font-size: larger;
+}
+
+.nav:hover {
+  background-color: rgb(49 46 129);
+}
