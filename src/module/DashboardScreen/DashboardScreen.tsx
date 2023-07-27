@@ -6,6 +6,7 @@ import { bloomData, data, similiarData } from "../../sample/data/sampleGen";
 import HomeDashboard from "../../components/templates/HomeDashboard/HomeDashboard";
 import BloomDashboard from "../../components/templates/BloomDashboard/BloomDashboard";
 import SimiliarDashboard from "../../components/templates/SimiliarDashboard/SimiliarDashboard";
+import AccountDashboard from "../../components/templates/AccountDashboard/AccountDashboard";
 
 const DashboardScreen = () => {
   const [width, setWidth] = React.useState<number>(0);
@@ -112,6 +113,8 @@ const DashboardScreen = () => {
           handleQuestion={handleChangeQuestion}
         />
       );
+    } else if (route === 3) {
+      return <AccountDashboard />;
     }
   }, [
     array,
@@ -145,7 +148,7 @@ const DashboardScreen = () => {
         </Col>
         <Col
           style={{
-            width: width > 800 ? "calc(100% - 208px)" : width,
+            width: width > 800 ? "calc(100% - 208px)" : "100%",
             marginLeft: width > 800 ? 220 : 0,
             height: "99vh",
           }}
