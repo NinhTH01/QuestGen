@@ -7,22 +7,11 @@ import HomeDashboard from "../../components/templates/HomeDashboard/HomeDashboar
 import BloomDashboard from "../../components/templates/BloomDashboard/BloomDashboard";
 import SimiliarDashboard from "../../components/templates/SimiliarDashboard/SimiliarDashboard";
 import AccountDashboard from "../../components/templates/AccountDashboard/AccountDashboard";
+import { useSelector } from "react-redux";
+import { currentWidth } from "../../global/selectors";
 
 const DashboardScreen = () => {
-  const [width, setWidth] = React.useState<number>(0);
-
-  const updateDimensions = () => {
-    const width = window.innerWidth;
-    setWidth(width);
-  };
-
-  React.useEffect(() => {
-    updateDimensions();
-
-    window.addEventListener("resize", updateDimensions);
-
-    return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
+  const width = useSelector(currentWidth);
 
   const [route, setRoute] = React.useState<number>(0);
 
