@@ -17,19 +17,19 @@ const Header: React.FC<HeaderProps> = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         <Nav className="me-auto flex-grow-1 justify-content-end">
-          <Nav.Link href="#home" className="fw-medium mx-2">
+          <Nav.Link href="/" className="fw-medium mx-2">
             Home
           </Nav.Link>
-          <Nav.Link href="#link" className="fw-medium mx-2">
+          <Nav.Link href="/pricing" className="fw-medium mx-2">
             Pricing
           </Nav.Link>
-          <Nav.Link href="#link" className="fw-medium mx-2">
+          <Nav.Link href="/team" className="fw-medium mx-2">
             Team
           </Nav.Link>
-          <Nav.Link href="#link" className="fw-medium mx-2">
+          <Nav.Link href="/blog" className="fw-medium mx-2">
             Blog
           </Nav.Link>
-          <Nav.Link href="#link" className="fw-medium mx-2">
+          <Nav.Link href="/contact" className="fw-medium mx-2">
             Contact
           </Nav.Link>
           <Dropdown align="end">

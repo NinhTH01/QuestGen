@@ -5,6 +5,10 @@ import HomeScreen from "./module/HomeScreen/HomeScreen";
 import DashboardScreen from "./module/DashboardScreen/DashboardScreen";
 import React from "react";
 import globalState, { globalSlice } from "./global";
+import PricingScreen from "./module/PricingScreen/PricingScreen";
+import TeamScreen from "./module/TeamScreen/TeamScreen";
+import BlogScreen from "./module/BlogScreen/BlogScreen";
+import ContactScreen from "./module/ContactScreen/ContactScreen";
 
 const App = () => {
   const updateDimensions = () => {
@@ -25,6 +29,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/dashboard" element={<DashboardScreen />} />
+        <Route path="/pricing" element={<PricingScreen />} />
+        <Route path="/team" element={<TeamScreen />} />
+        <Route path="/contact" element={<ContactScreen />} />
+        <Route path="/blog" element={<BlogScreen />} />
       </Routes>
     </Router>
   );

@@ -5,8 +5,10 @@ import styles from "./HomeScreen.module.css";
 import Footer from "../../components/organisms/Footer/Footer";
 import { useSelector } from "react-redux";
 import { currentWidth } from "../../global/selectors";
+import { useNavigate } from "react-router-dom";
 
 const HomeScreen = () => {
+  const navigate = useNavigate();
   const width = useSelector(currentWidth);
 
   return (
@@ -70,6 +72,7 @@ const HomeScreen = () => {
           <div className="justify-content-center d-flex">
             <Button
               className={`${styles.freeButton} px-4 py-2 fw-medium mt-2 mb-4`}
+              onClick={() => navigate("/dashboard")}
             >
               <strong>{`Start for free ->`}</strong>
             </Button>
