@@ -10,6 +10,7 @@ import TeamScreen from "./module/TeamScreen/TeamScreen";
 import BlogScreen from "./module/BlogScreen/BlogScreen";
 import ContactScreen from "./module/ContactScreen/ContactScreen";
 import FaqsScreen from "./module/FaqsScreen/FaqsScreen";
+import MCQScreen from "./module/MCQScreen/MCQScreen";
 
 const App = () => {
   const updateDimensions = () => {
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/contact" element={<ContactScreen />} />
         <Route path="/blog" element={<BlogScreen />} />
         <Route path="/faqs" element={<FaqsScreen />} />
+        <Route path="/ai-mcq-generator" element={<MCQScreen />} />
       </Routes>
     </Router>
   );

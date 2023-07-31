@@ -59,7 +59,7 @@ const Header: React.FC<HeaderProps> = () => {
                   </div>
                 </div>
               </Dropdown.Item>
-              <Dropdown.Item href="#/action-2" className="p-4">
+              <Dropdown.Item href="/ai-mcq-generator" className="p-4">
                 <div className="d-flex align-items-center">
                   <Image
                     src="https://api.typedream.com/v0/document/public/2EkwGbqGbyz2EuvHm7kqXX3rnU6_icons8-quiz-67.png"
