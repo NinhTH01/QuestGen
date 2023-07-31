@@ -53,7 +53,7 @@ const ContactScreen = () => {
                   width: 150,
                   background: "rgb(246 249 251)",
                   border: "1px solid rgb(211 228 249)",
-                  color: "rgb(82 156",
+                  color: "rgb(82 156 202)",
                 }}
                 className="fw-bold"
               >

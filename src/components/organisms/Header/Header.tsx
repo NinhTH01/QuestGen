@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = () => {
               Products
             </Dropdown.Toggle>
             <Dropdown.Menu className="p-4">
-              <Dropdown.Item href="#/action-1" className="p-4">
+              <Dropdown.Item href="/faqs" className="p-4">
                 <div className="d-flex align-items-center">
                   <Image
                     src="https://api.typedream.com/v0/document/public/2Ekr638mioigE0eEutJPulJTCQQ_icons8-faq-64.png"

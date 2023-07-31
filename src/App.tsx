@@ -9,6 +9,7 @@ import PricingScreen from "./module/PricingScreen/PricingScreen";
 import TeamScreen from "./module/TeamScreen/TeamScreen";
 import BlogScreen from "./module/BlogScreen/BlogScreen";
 import ContactScreen from "./module/ContactScreen/ContactScreen";
+import FaqsScreen from "./module/FaqsScreen/FaqsScreen";
 
 const App = () => {
   const updateDimensions = () => {
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/team" element={<TeamScreen />} />
         <Route path="/contact" element={<ContactScreen />} />
         <Route path="/blog" element={<BlogScreen />} />
+        <Route path="/faqs" element={<FaqsScreen />} />
       </Routes>
     </Router>
   );
