@@ -1,6 +1,5 @@
 import { Button, Image, Row } from "react-bootstrap";
 import Header from "../../components/organisms/Header/Header";
-import React from "react";
 import styles from "./HomeScreen.module.css";
 import Footer from "../../components/organisms/Footer/Footer";
 import { useSelector } from "react-redux";

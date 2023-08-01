@@ -11,6 +11,9 @@ import BlogScreen from "./module/BlogScreen/BlogScreen";
 import ContactScreen from "./module/ContactScreen/ContactScreen";
 import FaqsScreen from "./module/FaqsScreen/FaqsScreen";
 import MCQScreen from "./module/MCQScreen/MCQScreen";
+import TrueFalseScreen from "./module/TrueFalseScreen/TrueFalseScreen";
+import AiFaqScreen from "./module/AiFaqScreen/AiFaqScreen";
+import HighOrderScreen from "./module/HighOrderScreen/HighOrderScreen";
 
 const App = () => {
   const updateDimensions = () => {
@@ -37,6 +40,15 @@ const App = () => {
         <Route path="/blog" element={<BlogScreen />} />
         <Route path="/faqs" element={<FaqsScreen />} />
         <Route path="/ai-mcq-generator" element={<MCQScreen />} />
+        <Route
+          path="/ai-true-false-quiz-generator"
+          element={<TrueFalseScreen />}
+        />
+        <Route path="/ai-faq-generator" element={<AiFaqScreen />} />
+        <Route
+          path="/ai-high-order-question-generator"
+          element={<HighOrderScreen />}
+        />
       </Routes>
     </Router>
   );
