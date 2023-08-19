@@ -11,7 +11,12 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
   handleChange,
   handleChecked,
   handleQuestion,
+  handleGenQuest,
 }) => {
+  const [type, setType] = React.useState<string>("0");
+
+  const [level, setLevel] = React.useState<string>("0");
+
   const [content, setContent] = React.useState<string>(
     "Elon Musk has shown again he can influence the digital currency market with just his tweets. After saying that his electric vehicle-making company Tesla will not accept payments in Bitcoin because of environmental concerns, he tweeted that he was working with developers of Dogecoin to improve system transaction efficiency. Following the two distinct statements from him, the world's largest cryptocurrency hit a two-month low, while Dogecoin rallied by about 20 percent. The SpaceX CEO has in recent months often tweeted in support of Dogecoin, but rarely for Bitcoin.  In a recent tweet, Musk put out a statement from Tesla that it was concerned about the rapidly increasing use of fossil fuels for Bitcoin (price in India) mining and transaction, and hence was suspending vehicle purchases using the cryptocurrency. A day later he again tweeted saying, To be clear, I strongly believe in crypto, but it can't drive a massive increase in fossil fuel use, especially coal. It triggered a downward spiral for Bitcoin value but the cryptocurrency has stabilised since.  A number of Twitter users welcomed Musk's statement. One of them said it's time people started realising that Dogecoin is here to stay and another referred to Musk's previous assertion that crypto could become the world's future currency."
   );
@@ -58,8 +63,12 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
               onChange={handleChangeContent}
             />
           </div>
-          <Form.Select aria-label="Default select example">
-            <option>MCQ</option>
+          <Form.Select
+            aria-label="Default select example"
+            value={type}
+            onChange={(e: any) => setType(e.currentTarget.value)}
+          >
+            <option value="0">MCQ</option>
             <option value="1">MCQ(Multiple Correct Answers)</option>
             <option value="2">TrueFalse</option>
             <option value="3">Fill in the blanks</option>
@@ -98,14 +107,22 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
                 Difficulty Level
               </h6>
 
-              <Form.Select aria-label="Default select example">
-                <option>Easy</option>
+              <Form.Select
+                aria-label="Default select example"
+                value={level}
+                onChange={(e: any) => setLevel(e.currentTarget.value)}
+              >
+                <option value="0">Easy</option>
                 <option value="1">Medium</option>
                 <option value="2">Hard</option>
               </Form.Select>
             </Col>
           </Row>
-          <Button style={{ width: "100%" }} className="mt-4 fw-bold">
+          <Button
+            style={{ width: "100%" }}
+            className="mt-4 fw-bold"
+            onClick={() => handleGenQuest(content, type, level)}
+          >
             Try for free
           </Button>
         </Col>
@@ -220,6 +237,10 @@ export interface HomeDashboardProps {
   handleChecked: (indexAnswer: number, indexQuestion: number) => () => void;
 
   handleQuestion: (indexQuestion: number) => (e: any) => void;
+
+  // answer: any;
+
+  handleGenQuest: (content: string, type: string, level: string) => void;
 }
 
 export default HomeDashboard;

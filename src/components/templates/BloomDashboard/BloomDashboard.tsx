@@ -169,6 +169,8 @@ export interface BloomDashboardProps {
   handleChecked: (indexAnswer: number, indexQuestion: number) => () => void;
 
   handleQuestion: (indexQuestion: number) => (e: any) => void;
+
+  handleGenQuest: (content: string, type: string, level: string) => void;
 }
 
 export default BloomDashboard;

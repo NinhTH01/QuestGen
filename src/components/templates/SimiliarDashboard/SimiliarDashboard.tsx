@@ -120,6 +120,8 @@ export interface SimiliarDashboardProps {
   setEdit: React.Dispatch<React.SetStateAction<boolean>>;
 
   handleQuestion: (indexQuestion: number) => (e: any) => void;
+
+  handleGenQuest: (content: string, type: string, level: string) => void;
 }
 
 export default SimiliarDashboard;

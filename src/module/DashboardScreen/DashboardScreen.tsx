@@ -9,6 +9,7 @@ import SimiliarDashboard from "../../components/templates/SimiliarDashboard/Simi
 import AccountDashboard from "../../components/templates/AccountDashboard/AccountDashboard";
 import { useSelector } from "react-redux";
 import { currentWidth } from "../../global/selectors";
+import { useQuestgen } from "../../service/questgen-service";
 
 const DashboardScreen = () => {
   const width = useSelector(currentWidth);
@@ -16,6 +17,8 @@ const DashboardScreen = () => {
   const [route, setRoute] = React.useState<number>(0);
 
   const [isEdit, setEdit] = React.useState<boolean>(false);
+
+  const [, handleGenQuest] = useQuestgen();
 
   const [array, setArray] = React.useState<any>(data);
 
@@ -78,6 +81,7 @@ const DashboardScreen = () => {
           handleChange={handleChange}
           handleChecked={handleChecked}
           handleQuestion={handleChangeQuestion}
+          handleGenQuest={handleGenQuest}
         />
       );
     } else if (route === 1) {
@@ -90,6 +94,7 @@ const DashboardScreen = () => {
           handleChange={handleChange}
           handleChecked={handleChecked}
           handleQuestion={handleChangeQuestion}
+          handleGenQuest={handleGenQuest}
         />
       );
     } else if (route === 2) {
@@ -100,6 +105,7 @@ const DashboardScreen = () => {
           setArray={setSimiliarArray}
           array={similiarArray}
           handleQuestion={handleChangeQuestion}
+          handleGenQuest={handleGenQuest}
         />
       );
     } else if (route === 3) {
@@ -111,6 +117,7 @@ const DashboardScreen = () => {
     handleChange,
     handleChangeQuestion,
     handleChecked,
+    handleGenQuest,
     isEdit,
     route,
     similiarArray,
