@@ -29,6 +29,8 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
     setContent(e.target.value);
   }, []);
 
+  console.log(array);
+
   return (
     <>
       <h5 className="text-center fw-bold mt-4">
@@ -127,16 +129,19 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
           </Button>
         </Col>
         <Col className=" bg-light">
-          <div className=" justify-content-end d-flex p-4">
-            <Button
-              style={{ marginRight: 16 }}
-              className="px-4 rounded-2 fw-bold"
-              onClick={() => setEdit(!isEdit)}
-            >
-              {`${isEdit ? "SAVE" : "EDIT"}`}
-            </Button>
-            <Button className="px-4 rounded-2 fw-bold">EXPORT</Button>
-          </div>
+          {array.size > 0 && (
+            <div className=" justify-content-end d-flex p-4">
+              <Button
+                style={{ marginRight: 16 }}
+                className="px-4 rounded-2 fw-bold"
+                onClick={() => setEdit(!isEdit)}
+              >
+                {`${isEdit ? "SAVE" : "EDIT"}`}
+              </Button>
+              <Button className="px-4 rounded-2 fw-bold">EXPORT</Button>
+            </div>
+          )}
+
           {isEdit ? (
             <ReactSortable list={array} setList={setArray}>
               {array?.map((value: any, _index: number) => {

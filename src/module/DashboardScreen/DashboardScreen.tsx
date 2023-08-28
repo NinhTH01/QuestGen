@@ -18,57 +18,26 @@ const DashboardScreen = () => {
 
   const [isEdit, setEdit] = React.useState<boolean>(false);
 
-  const [, handleGenQuest] = useQuestgen();
+  const [
+    answer,
+    setAnswer,
+    handleGenQuest,
+    handleChange,
+    handleChecked,
+    handleChangeQuestion,
+  ] = useQuestgen(route);
 
-  const [array, setArray] = React.useState<any>(data);
+  // const [array, setArray] = React.useState<any>(data);
 
-  const [bloomArray, setBloomArray] = React.useState<any>(
-    bloomData?.quesAndPair
-  );
+  // const [bloomArray, setBloomArray] = React.useState<any>(
+  //   bloomData?.quesAndPair
+  // );
 
-  const [similiarArray, setSimiliarArray] = React.useState<any>(
-    similiarData?.quesAndPair
-  );
+  // const [similiarArray, setSimiliarArray] = React.useState<any>(
+  //   similiarData?.quesAndPair
+  // );
 
-  const handleChangeQuestion = React.useCallback(
-    (indexQuestion: number) => (e: any) => {
-      if (route === 0) {
-        array[indexQuestion].question = e.target.value;
-        setArray([...array]);
-      } else if (route === 1) {
-        bloomArray[indexQuestion].question = e.target.value;
-        setBloomArray([...bloomArray]);
-      } else if (route === 2) {
-        similiarArray[indexQuestion].question = e.target.value;
-        setSimiliarArray([...similiarArray]);
-      }
-    },
-    [array, bloomArray, route, similiarArray]
-  );
-
-  const handleChange = React.useCallback(
-    (indexAnswer: number, indexQuestion: number) => (e: any) => {
-      if (route === 0) {
-        array[indexQuestion].answers[indexAnswer] = e.target.value;
-        setArray([...array]);
-      } else if (route === 1) {
-        bloomArray[indexQuestion].answers[indexAnswer] = e.target.value;
-        setBloomArray([...bloomArray]);
-      }
-    },
-    [array, bloomArray, route]
-  );
-
-  const handleChecked = React.useCallback(
-    (indexAnswer: number, indexQuestion: number) => () => {
-      if (route === 0) {
-        array[indexQuestion].correctAnswerIndices = [indexAnswer];
-
-        setArray([...array]);
-      }
-    },
-    [array, route]
-  );
+  console.log(answer);
 
   const RouteComponent = React.useMemo(() => {
     if (route === 0) {
@@ -76,8 +45,8 @@ const DashboardScreen = () => {
         <HomeDashboard
           isEdit={isEdit}
           setEdit={setEdit}
-          setArray={setArray}
-          array={array}
+          setArray={setAnswer}
+          array={answer}
           handleChange={handleChange}
           handleChecked={handleChecked}
           handleQuestion={handleChangeQuestion}
@@ -89,8 +58,8 @@ const DashboardScreen = () => {
         <BloomDashboard
           isEdit={isEdit}
           setEdit={setEdit}
-          setArray={setBloomArray}
-          array={bloomArray}
+          setArray={setAnswer}
+          array={answer}
           handleChange={handleChange}
           handleChecked={handleChecked}
           handleQuestion={handleChangeQuestion}
@@ -102,8 +71,8 @@ const DashboardScreen = () => {
         <SimiliarDashboard
           isEdit={isEdit}
           setEdit={setEdit}
-          setArray={setSimiliarArray}
-          array={similiarArray}
+          setArray={setAnswer}
+          array={answer}
           handleQuestion={handleChangeQuestion}
           handleGenQuest={handleGenQuest}
         />
@@ -112,15 +81,14 @@ const DashboardScreen = () => {
       return <AccountDashboard />;
     }
   }, [
-    array,
-    bloomArray,
+    answer,
     handleChange,
     handleChangeQuestion,
     handleChecked,
     handleGenQuest,
     isEdit,
     route,
-    similiarArray,
+    setAnswer,
   ]);
 
   return (
