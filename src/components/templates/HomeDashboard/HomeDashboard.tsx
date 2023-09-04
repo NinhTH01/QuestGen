@@ -13,6 +13,8 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
   handleQuestion,
   handleGenQuest,
 }) => {
+  console.log(array);
+
   const [type, setType] = React.useState<string>("0");
 
   const [level, setLevel] = React.useState<string>("0");
@@ -29,7 +31,9 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
     setContent(e.target.value);
   }, []);
 
-  console.log(array);
+  console.log(array, "array");
+
+  console.log(array.length);
 
   return (
     <>
@@ -129,7 +133,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
           </Button>
         </Col>
         <Col className=" bg-light">
-          {array.size > 0 && (
+          {array.length > 0 && (
             <div className=" justify-content-end d-flex p-4">
               <Button
                 style={{ marginRight: 16 }}
@@ -159,7 +163,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
                       onChange={handleQuestion(_index)}
                     />
 
-                    {value?.answers?.map((answer: any, index: number) => {
+                    {value?.options?.map((answer: any, index: number) => {
                       return (
                         <div className="d-flex align-items-center" key={index}>
                           <Form.Check
@@ -198,7 +202,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
                   key={index}
                 >
                   <h5 className="mb-4 fw-bold">{value?.question}</h5>
-                  {value?.answers?.map((answer: any, index: number) => (
+                  {value?.options?.map((answer: any, index: number) => (
                     <h6
                       key={index}
                       className={`${

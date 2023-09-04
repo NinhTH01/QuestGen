@@ -18,6 +18,32 @@ export function useQuestgen(
 
   // const [loading, setLoading] = React.useState<boolean>(false);
 
+  const handleFindCorrectIndex = React.useCallback((r: any, level: string) => {
+    let result: any;
+    if (level === "0") {
+      result = r["easy"];
+    } else if (level === "1") {
+      result = r["medium"];
+    } else {
+      result = r["hard"];
+    }
+
+    result = result.map((r: any) => {
+      const correctIndex = r?.options?.findIndex((value: any) => {
+        return value === r["true option"][0];
+      });
+
+      r = {
+        ...r,
+        correctAnswerIndices: [correctIndex],
+      };
+
+      return r;
+    });
+
+    setAnswer(result);
+  }, []);
+
   const handleGenQuest = React.useCallback(
     async (context: string, questType: string, level: string) => {
       const data = {
@@ -35,24 +61,16 @@ export function useQuestgen(
       ) {
         try {
           const response = questgenRepository.product(data);
-          console.log(
-            response.then((r) => {
-              if (level === "0") {
-                setAnswer(r["easy"]);
-              } else if (level === "1") {
-                setAnswer(r["medium"]);
-              } else {
-                setAnswer(r["hard"]);
-              }
-              console.log(r["easy"]);
-            })
-          );
+
+          response.then((r) => {
+            handleFindCorrectIndex(r, level);
+          });
         } catch (error: any) {
           console.error(`API Error: ${error?.message}`);
         }
       }
     },
-    []
+    [handleFindCorrectIndex]
   );
 
   const handleChange = React.useCallback(
@@ -68,9 +86,9 @@ export function useQuestgen(
 
   const handleChecked = React.useCallback(
     (indexAnswer: number, indexQuestion: number) => () => {
-      console.log(indexQuestion);
+      console.log(indexQuestion, indexAnswer);
       if (route === 0) {
-        answer[indexQuestion]["true option"] = [indexAnswer];
+        answer[indexQuestion].correctAnswerIndices = [indexAnswer];
         setAnswer([...answer]);
         console.log(answer);
       }
