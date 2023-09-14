@@ -2,6 +2,8 @@ import { Button, Row, Col, Form } from "react-bootstrap";
 import styles from "./HomeDashbaord.module.css";
 import { ReactSortable } from "react-sortablejs";
 import React from "react";
+import ReactQuill from "react-quill";
+import Editor from "../../organisms/Editor/Editor";
 
 const HomeDashboard: React.FC<HomeDashboardProps> = ({
   isEdit,
@@ -14,6 +16,8 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
   handleGenQuest,
 }) => {
   console.log(array);
+
+  const [value, setValue] = React.useState("");
 
   const [type, setType] = React.useState<string>("0");
 
@@ -30,10 +34,6 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
   const handleChangeContent = React.useCallback((e: any) => {
     setContent(e.target.value);
   }, []);
-
-  console.log(array, "array");
-
-  console.log(array.length);
 
   return (
     <>
@@ -59,7 +59,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
           </h6>
 
           <div className="d-flex justify-content-center mb-4">
-            <Form.Control
+            {/* <Form.Control
               as={"textarea"}
               id="inputPassword5"
               className="fw-medium text-black"
@@ -67,7 +67,8 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
               placeholder={content}
               value={content}
               onChange={handleChangeContent}
-            />
+            /> */}
+            <Editor />
           </div>
           <Form.Select
             aria-label="Default select example"

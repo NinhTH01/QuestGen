@@ -37,8 +37,6 @@ const DashboardScreen = () => {
   //   similiarData?.quesAndPair
   // );
 
-  console.log(answer);
-
   const RouteComponent = React.useMemo(() => {
     if (route === 0) {
       return (
