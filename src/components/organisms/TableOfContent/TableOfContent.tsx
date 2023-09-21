@@ -1,28 +1,35 @@
 import React from "react";
 import $ from "jquery";
-import styles from "./TableOfContent.module.scss"
+import styles from "./TableOfContent.module.scss";
 import { Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { currentWidth } from "../../../global/selectors";
+import MenuIcon from "@mui/icons-material/Menu";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import ClearIcon from "@mui/icons-material/Clear";
+
 /**
  * This renders an item in the table of contents list.
  * scrollIntoView is used to ensure that when a user clicks on an item, it will smoothly scroll.
  */
-const Headings = ({ headings, activeId }: any) => (
+const Headings = ({ headings, activeId, expanded }: any) => (
   // <div>
   //   {headings.map((heading: any, index: number) => (
   //     // <li key={index} className={heading.id === activeId ? "active" : ""} >
   //     <>
   //       <a
-  //         href={`#${index}`} 
-  //         onClick={(e) => { 
+  //         href={`#${index}`}
+  //         onClick={(e) => {
   //           e.preventDefault();
   //           document.querySelector(`#${heading.id}`)?.scrollIntoView({
   //             behavior: "smooth",
   //           });
-  //         }} 
+  //         }}
   //         className=" text-black"
-  //       >  
+  //       >
   //         {heading.title}
-  //       </a> 
+  //       </a>
   //       {heading.items.length > 0 && (
   //         <ul>
   //           {heading.items.map((child: any) => (
@@ -50,11 +57,19 @@ const Headings = ({ headings, activeId }: any) => (
   //   ))}
   // </div>
 
-  <ul className=" " style={{height: '80%',  overflow: 'scroll', width: '100%', overflowX: 'hidden'}}>
+  <ul
+    className=" "
+    style={{
+      height: expanded ? "95%" : "80%",
+      overflow: "scroll",
+      width: "100%",
+      overflowX: "hidden",
+    }}
+  >
     {headings.map((heading: any, index: number) => (
-      <li key={index} className={heading.id === activeId ? "active" : ""} >
+      <li key={index} className={heading.id === activeId ? "active" : ""}>
         <a
-          href={`#${index}`} 
+          href={`#${index}`}
           onClick={(e) => {
             e.preventDefault();
             document.querySelector(`#${heading.id}`)?.scrollIntoView({
@@ -206,23 +221,101 @@ const useIntersectionObserver = (setActiveId: any) => {
  */
 
 const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
+  const width = useSelector(currentWidth);
+
   const [activeId, setActiveId] = React.useState();
   const { nestedHeadings } = useHeadingsData(content);
 
-  // console.log(nestedHeadings);
+  const [closed, setClosed] = React.useState<boolean>(false);
+
+  const [expanded, setExpanded] = React.useState<boolean>(false);
+
+  const handleChange = React.useCallback(() => {
+    setClosed(!closed);
+  }, [closed]);
+
+  const handleExpand = React.useCallback(() => {
+    setExpanded(!expanded);
+  }, [expanded]);
+
   useIntersectionObserver(setActiveId);
 
+  console.log(width);
+
   return (
-    <nav aria-label="Table of contents" style={{position: "absolute", right: 20, top: 160, width: '40%', height: 140, background: "rgba(137, 236, 255,.4)", borderRadius: 10,  padding: 10
-  }}>
-    <div style={{height: '20%'}} className="flex">
-       Table of Contents
-       <Button>
-        X
+    <>
+      {closed ? (
+        <Button
+          style={{
+            position: "absolute",
+            right: 20,
+            top: 180,
+            background: "rgba(137, 236, 255,.4)",
+            borderRadius: 10,
+            padding: 8,
+          }}
+          onClick={handleChange}
+        >
+          <MenuIcon htmlColor={"black"} />
         </Button>
-      </div>
-      <Headings headings={nestedHeadings} activeId={activeId} />
-    </nav>
+      ) : (
+        <nav
+          aria-label="Table of contents"
+          style={{
+            position: "absolute",
+            right: 20,
+            top: 180,
+            width: width < 750 ? "90%" : "30%",
+            height: expanded ? "80%" : 140,
+            background: "rgba(137, 236, 255,.4)",
+            borderRadius: 10,
+            padding: 16,
+          }}
+        >
+          <div
+            style={{ height: expanded ? "5%" : "20%" }}
+            className="d-flex justify-content-between align-items-center"
+          >
+            <div style={{ fontWeight: "bold" }}> Table of Contents</div>
+
+            <div style={{ paddingRight: 28, marginRight: 8 }}>
+              <Button
+                className=""
+                style={{
+                  right: 0,
+                  backgroundColor: "rgba(137, 236, 255,.01)",
+                  borderWidth: 0,
+                }}
+                onClick={handleExpand}
+              >
+                {expanded ? (
+                  <KeyboardArrowDownIcon htmlColor="black" />
+                ) : (
+                  <KeyboardArrowUpIcon htmlColor="black" />
+                )}
+              </Button>
+              <Button
+                className=""
+                style={{
+                  right: 0,
+                  marginLeft: 16,
+                  backgroundColor: "rgba(137, 236, 255,.01)",
+                  borderWidth: 0,
+                }}
+                onClick={handleChange}
+              >
+                <ClearIcon htmlColor="black" />
+              </Button>
+            </div>
+          </div>
+          <Headings
+            headings={nestedHeadings}
+            activeId={activeId}
+            expanded={expanded}
+          />
+        </nav>
+      )}
+    </>
   );
 };
 
