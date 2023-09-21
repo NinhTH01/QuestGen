@@ -217,7 +217,9 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
   }}>
     <div style={{height: '20%'}} className="flex">
        Table of Contents
-       <Button>X</Button>
+       <Button>
+        X
+        </Button>
       </div>
       <Headings headings={nestedHeadings} activeId={activeId} />
     </nav>
