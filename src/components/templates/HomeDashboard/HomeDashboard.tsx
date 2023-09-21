@@ -219,7 +219,6 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
             })
           )}
         </Col>
-        <h2> 123 </h2>
       </Row>
     </>
   );

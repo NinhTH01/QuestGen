@@ -3,6 +3,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
 import TableOfContents from "../TableOfContent/TableOfContent";
 
+
 // import TableOfContent from "../TableOfContent/TableOfContent";
 
 const Editor: React.FC<EditorProps> = () => {
@@ -18,8 +19,8 @@ const Editor: React.FC<EditorProps> = () => {
         { indent: "-1" },
         { indent: "+1" },
       ],
-      ["link", "image"],
-      ["clean"],
+      // ["link", "image"],
+      // ["clean"],
     ],
   };
 
@@ -32,9 +33,9 @@ const Editor: React.FC<EditorProps> = () => {
     "blockquote",
     "list",
     "bullet",
-    "indent",
-    "link",
-    "image",
+    // "indent",
+    // "link",
+    // "image",
   ];
 
   const handleChange = React.useCallback((html: any) => {

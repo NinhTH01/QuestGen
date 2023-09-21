@@ -1,21 +1,67 @@
 import React from "react";
 import $ from "jquery";
+import styles from "./TableOfContent.module.scss"
+import { Button } from "react-bootstrap";
 /**
  * This renders an item in the table of contents list.
  * scrollIntoView is used to ensure that when a user clicks on an item, it will smoothly scroll.
  */
 const Headings = ({ headings, activeId }: any) => (
-  <ul>
+  // <div>
+  //   {headings.map((heading: any, index: number) => (
+  //     // <li key={index} className={heading.id === activeId ? "active" : ""} >
+  //     <>
+  //       <a
+  //         href={`#${index}`} 
+  //         onClick={(e) => { 
+  //           e.preventDefault();
+  //           document.querySelector(`#${heading.id}`)?.scrollIntoView({
+  //             behavior: "smooth",
+  //           });
+  //         }} 
+  //         className=" text-black"
+  //       >  
+  //         {heading.title}
+  //       </a> 
+  //       {heading.items.length > 0 && (
+  //         <ul>
+  //           {heading.items.map((child: any) => (
+  //             <li
+  //               key={child.id}
+  //               className={child.id === activeId ? "active" : ""}
+  //             >
+  //               <a
+  //                 href={`#${child.id}`}
+  //                 onClick={(e) => {
+  //                   e.preventDefault();
+  //                   document.querySelector(`#${child.id}`)?.scrollIntoView({
+  //                     behavior: "smooth",
+  //                   });
+  //                 }}
+  //               >
+  //                 {child.title}
+  //               </a>
+  //             </li>
+  //           ))}
+  //         </ul>
+  //       )}
+  //     {/* </li> */}
+  //     </>
+  //   ))}
+  // </div>
+
+  <ul className=" " style={{height: '80%',  overflow: 'scroll', width: '100%', overflowX: 'hidden'}}>
     {headings.map((heading: any, index: number) => (
-      <li key={index} className={heading.id === activeId ? "active" : ""}>
+      <li key={index} className={heading.id === activeId ? "active" : ""} >
         <a
-          href={`#${index}`}
+          href={`#${index}`} 
           onClick={(e) => {
             e.preventDefault();
             document.querySelector(`#${heading.id}`)?.scrollIntoView({
               behavior: "smooth",
             });
           }}
+          className=" text-black"
         >
           {heading.title}
         </a>
@@ -167,7 +213,12 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
   useIntersectionObserver(setActiveId);
 
   return (
-    <nav aria-label="Table of contents">
+    <nav aria-label="Table of contents" style={{position: "absolute", right: 20, top: 160, width: '40%', height: 140, background: "rgba(137, 236, 255,.4)", borderRadius: 10,  padding: 10
+  }}>
+    <div style={{height: '20%'}} className="flex">
+       Table of Contents
+       <Button>X</Button>
+      </div>
       <Headings headings={nestedHeadings} activeId={activeId} />
     </nav>
   );
