@@ -2,12 +2,14 @@ import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
 import TableOfContents from "../TableOfContent/TableOfContent";
+import katex from "katex";
 
-
+window.katex = katex;
 // import TableOfContent from "../TableOfContent/TableOfContent";
-
 const Editor: React.FC<EditorProps> = () => {
   const [html, setHTML] = React.useState<any>("");
+
+  const katex = require("katex");
 
   const modules = {
     toolbar: [
@@ -20,7 +22,7 @@ const Editor: React.FC<EditorProps> = () => {
         { indent: "+1" },
       ],
       // ["link", "image"],
-      // ["clean"],
+      ["formula"],
     ],
   };
 
@@ -33,9 +35,10 @@ const Editor: React.FC<EditorProps> = () => {
     "blockquote",
     "list",
     "bullet",
-    // "indent",
-    // "link",
-    // "image",
+    "formula",
+    "indent",
+    "link",
+    "image",
   ];
 
   const handleChange = React.useCallback((html: any) => {

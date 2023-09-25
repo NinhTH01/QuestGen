@@ -1,6 +1,6 @@
 import React from "react";
 import $ from "jquery";
-import styles from "./TableOfContent.module.scss";
+import styles from "./TableOfContent.module.css";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { currentWidth } from "../../../global/selectors";
@@ -14,49 +14,6 @@ import ClearIcon from "@mui/icons-material/Clear";
  * scrollIntoView is used to ensure that when a user clicks on an item, it will smoothly scroll.
  */
 const Headings = ({ headings, activeId, expanded }: any) => (
-  // <div>
-  //   {headings.map((heading: any, index: number) => (
-  //     // <li key={index} className={heading.id === activeId ? "active" : ""} >
-  //     <>
-  //       <a
-  //         href={`#${index}`}
-  //         onClick={(e) => {
-  //           e.preventDefault();
-  //           document.querySelector(`#${heading.id}`)?.scrollIntoView({
-  //             behavior: "smooth",
-  //           });
-  //         }}
-  //         className=" text-black"
-  //       >
-  //         {heading.title}
-  //       </a>
-  //       {heading.items.length > 0 && (
-  //         <ul>
-  //           {heading.items.map((child: any) => (
-  //             <li
-  //               key={child.id}
-  //               className={child.id === activeId ? "active" : ""}
-  //             >
-  //               <a
-  //                 href={`#${child.id}`}
-  //                 onClick={(e) => {
-  //                   e.preventDefault();
-  //                   document.querySelector(`#${child.id}`)?.scrollIntoView({
-  //                     behavior: "smooth",
-  //                   });
-  //                 }}
-  //               >
-  //                 {child.title}
-  //               </a>
-  //             </li>
-  //           ))}
-  //         </ul>
-  //       )}
-  //     {/* </li> */}
-  //     </>
-  //   ))}
-  // </div>
-
   <ul
     className=" "
     style={{
@@ -68,18 +25,22 @@ const Headings = ({ headings, activeId, expanded }: any) => (
   >
     {headings.map((heading: any, index: number) => (
       <li key={index} className={heading.id === activeId ? "active" : ""}>
-        <a
-          href={`#${index}`}
+        <div
+          // href={`#${index}`}
           onClick={(e) => {
             e.preventDefault();
             document.querySelector(`#${heading.id}`)?.scrollIntoView({
               behavior: "smooth",
             });
           }}
-          className=" text-black"
+          className={` ${styles.tooltip} text-black`}
         >
           {heading.title}
-        </a>
+          <span className={` text-white ${styles.tooltiptext}`}>
+            Click to generate
+          </span>
+        </div>
+
         {heading.items.length > 0 && (
           <ul>
             {heading.items.map((child: any) => (
@@ -87,8 +48,7 @@ const Headings = ({ headings, activeId, expanded }: any) => (
                 key={child.id}
                 className={child.id === activeId ? "active" : ""}
               >
-                <a
-                  href={`#${child.id}`}
+                <div
                   onClick={(e) => {
                     e.preventDefault();
                     document.querySelector(`#${child.id}`)?.scrollIntoView({
@@ -97,7 +57,7 @@ const Headings = ({ headings, activeId, expanded }: any) => (
                   }}
                 >
                   {child.title}
-                </a>
+                </div>
               </li>
             ))}
           </ul>
@@ -289,9 +249,9 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
                 onClick={handleExpand}
               >
                 {expanded ? (
-                  <KeyboardArrowDownIcon htmlColor="black" />
-                ) : (
                   <KeyboardArrowUpIcon htmlColor="black" />
+                ) : (
+                  <KeyboardArrowDownIcon htmlColor="black" />
                 )}
               </Button>
               <Button
