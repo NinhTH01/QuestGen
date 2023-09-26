@@ -13,7 +13,7 @@ import ClearIcon from "@mui/icons-material/Clear";
  * This renders an item in the table of contents list.
  * scrollIntoView is used to ensure that when a user clicks on an item, it will smoothly scroll.
  */
-const Headings = ({ headings, activeId, expanded }: any) => (
+const Headings = ({ headings, activeId, expanded, handleGenQuest }: any) => (
   <ul
     className=" "
     style={{
@@ -25,13 +25,10 @@ const Headings = ({ headings, activeId, expanded }: any) => (
   >
     {headings.map((heading: any, index: number) => (
       <li key={index} className={heading.id === activeId ? "active" : ""}>
-        <div
-          // href={`#${index}`}
-          onClick={(e) => {
-            e.preventDefault();
-            document.querySelector(`#${heading.id}`)?.scrollIntoView({
-              behavior: "smooth",
-            });
+        <a
+          href={`#1`}
+          onClick={() => {
+            handleGenQuest(heading);
           }}
           className={` ${styles.tooltip} text-black`}
         >
@@ -39,7 +36,7 @@ const Headings = ({ headings, activeId, expanded }: any) => (
           <span className={` text-white ${styles.tooltiptext}`}>
             Click to generate
           </span>
-        </div>
+        </a>
 
         {heading.items.length > 0 && (
           <ul>
@@ -180,7 +177,12 @@ const useIntersectionObserver = (setActiveId: any) => {
  * Renders the table of contents.
  */
 
-const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
+const TableOfContents: React.FC<TableOfContentsProps> = ({
+  content,
+  handleQuestgen,
+  type,
+  level,
+}) => {
   const width = useSelector(currentWidth);
 
   const [activeId, setActiveId] = React.useState();
@@ -198,9 +200,18 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
     setExpanded(!expanded);
   }, [expanded]);
 
-  useIntersectionObserver(setActiveId);
+  const handleGenQuest = React.useCallback(
+    (heading: any) => {
+      const convertedArray: any = [];
+      heading?.contents?.map((index: any) => {
+        return convertedArray.push(heading?.contents[index]?.innerText);
+      });
+      handleQuestgen(convertedArray.toString(), type, level);
+    },
+    [handleQuestgen, level, type]
+  );
 
-  console.log(width);
+  useIntersectionObserver(setActiveId);
 
   return (
     <>
@@ -272,6 +283,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
             headings={nestedHeadings}
             activeId={activeId}
             expanded={expanded}
+            handleGenQuest={handleGenQuest}
           />
         </nav>
       )}
@@ -281,6 +293,12 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
 
 export interface TableOfContentsProps {
   content: any;
+
+  type: any;
+
+  level: any;
+
+  handleQuestgen: any;
 }
 
 export default TableOfContents;

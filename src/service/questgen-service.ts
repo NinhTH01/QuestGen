@@ -54,6 +54,8 @@ export function useQuestgen(
         hard: 0,
       };
 
+      console.log(data);
+
       if (
         context !== "" &&
         !isNaN(Number(questType)) &&

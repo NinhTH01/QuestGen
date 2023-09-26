@@ -14,8 +14,6 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
   handleQuestion,
   handleGenQuest,
 }) => {
-  console.log(array);
-
   const [value, setValue] = React.useState("");
 
   const [type, setType] = React.useState<string>("0");
@@ -61,7 +59,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
           </h6>
 
           <div className="d-flex justify-content-center mb-4">
-            <Editor />
+            <Editor handleQuestgen={handleGenQuest} type={type} level={level} />
           </div>
           <Form.Select
             aria-label="Default select example"
