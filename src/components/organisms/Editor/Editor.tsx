@@ -21,7 +21,7 @@ const Editor: React.FC<EditorProps> = ({ type, level, handleQuestgen }) => {
         { indent: "-1" },
         { indent: "+1" },
       ],
-      // ["link", "image"],
+      ["link", "image"],
       ["formula"],
     ],
   };
