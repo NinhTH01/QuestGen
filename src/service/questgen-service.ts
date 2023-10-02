@@ -6,7 +6,12 @@ export function useQuestgen(
 ): [
   answer: any,
   setAnswer: React.Dispatch<any>,
-  handleQuestGen: (context: string, questType: string, level: string) => void,
+  handleQuestGen: (
+    context: string,
+    questType: string,
+    level: string,
+    count: number
+  ) => void,
   handleChange: (
     indexAnswer: number,
     indexQuestion: number
@@ -45,10 +50,15 @@ export function useQuestgen(
   }, []);
 
   const handleGenQuest = React.useCallback(
-    async (context: string, questType: string, level: string) => {
+    async (
+      context: string,
+      questType: string,
+      level: string,
+      count: number
+    ) => {
       const data = {
         text: context,
-        quest_type: "multiple choice",
+        quest_type: questType,
         easy: 1,
         medium: 0,
         hard: 0,

@@ -182,6 +182,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
   handleQuestgen,
   type,
   level,
+  count,
 }) => {
   const width = useSelector(currentWidth);
 
@@ -206,9 +207,9 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
       heading?.contents?.map((index: any) => {
         return convertedArray.push(heading?.contents[index]?.innerText);
       });
-      handleQuestgen(convertedArray.toString(), type, level);
+      handleQuestgen(convertedArray.toString(), type, level, count);
     },
-    [handleQuestgen, level, type]
+    [handleQuestgen, level, type, count]
   );
 
   useIntersectionObserver(setActiveId);
@@ -299,6 +300,8 @@ export interface TableOfContentsProps {
   level: any;
 
   handleQuestgen: any;
+
+  count: number;
 }
 
 export default TableOfContents;

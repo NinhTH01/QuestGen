@@ -2,6 +2,7 @@ import { Button, Row, Col, Form } from "react-bootstrap";
 import styles from "./SimiliarDashboard.module.css";
 import { ReactSortable } from "react-sortablejs";
 import React from "react";
+import Editor from "../../organisms/Editor/Editor";
 
 const SimiliarDashboard: React.FC<SimiliarDashboardProps> = ({
   isEdit,
@@ -9,6 +10,7 @@ const SimiliarDashboard: React.FC<SimiliarDashboardProps> = ({
   setEdit,
   array,
   handleQuestion,
+  handleGenQuest,
 }) => {
   const [content, setContent] = React.useState<string>(
     "Two trains are on the same track a distance 100 km apart heading towards one another, each at a speed of 50 km/h. A fly starting out at the front of one train, flies towards the other at a speed of 75 km/h. Upon reaching the other train, the fly turns around and continues towards the first train. How many kilometers does the fly travel before getting squashed in the collision of the two trains?"
@@ -45,18 +47,19 @@ const SimiliarDashboard: React.FC<SimiliarDashboardProps> = ({
           </h6>
 
           <div className="d-flex justify-content-center mb-4">
-            <Form.Control
-              as={"textarea"}
-              id="inputPassword5"
-              className="fw-medium text-black"
-              style={{ height: 300 }}
-              placeholder={content}
-              value={content}
-              onChange={handleChangeContent}
+            <Editor
+              handleQuestgen={handleGenQuest}
+              type={"boolean"}
+              level={"0"}
+              count={1}
             />
           </div>
 
-          <Button style={{ width: "100%" }} className="mt-4 fw-bold">
+          <Button
+            style={{ width: "100%" }}
+            className="mt-4 fw-bold"
+            onClick={() => handleGenQuest(content, "boolean", "0", 1)}
+          >
             Try for free
           </Button>
         </Col>
@@ -121,7 +124,12 @@ export interface SimiliarDashboardProps {
 
   handleQuestion: (indexQuestion: number) => (e: any) => void;
 
-  handleGenQuest: (content: string, type: string, level: string) => void;
+  handleGenQuest: (
+    content: string,
+    type: string,
+    level: string,
+    count: number
+  ) => void;
 }
 
 export default SimiliarDashboard;

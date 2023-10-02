@@ -14,7 +14,9 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
   handleQuestion,
   handleGenQuest,
 }) => {
-  const [value, setValue] = React.useState("");
+  const [count, setCount] = React.useState(0);
+
+  console.log(count);
 
   const [image, setImage] = React.useState("");
 
@@ -70,7 +72,12 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
           </h6>
 
           <div className="d-flex justify-content-center mb-4">
-            <Editor handleQuestgen={handleGenQuest} type={type} level={level} />
+            <Editor
+              handleQuestgen={handleGenQuest}
+              type={"multiple choice"}
+              level={level}
+              count={count}
+            />
           </div>
           <Form.Select
             aria-label="Default select example"
@@ -101,7 +108,10 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
               <h6 className="fw-medium px-1" style={{ fontSize: 15 }}>
                 Count
               </h6>
-              <Form.Select aria-label="Default select example">
+              <Form.Select
+                aria-label="Default select example"
+                onChange={(e: any) => setCount(e.currentTarget.value)}
+              >
                 <option>0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -127,15 +137,16 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
               </Form.Select>
             </Col>
           </Row>
-          {/* <Button
+          <Button
             style={{ width: "100%" }}
             className="mt-4 fw-bold"
-            onClick={() => handleGenQuest(content, type, level)}
-
+            onClick={() =>
+              handleGenQuest(content, "multiple choice", level, count)
+            }
           >
             Try for free
-          </Button> */}
-          <input type="file" name="myImage" onChange={handleImage}></input>
+          </Button>
+          {/* <input type="file" name="myImage" onChange={handleImage}></input> */}
         </Col>
         <Col className=" bg-light">
           {array.length > 0 && (
@@ -254,7 +265,12 @@ export interface HomeDashboardProps {
 
   // answer: any;
 
-  handleGenQuest: (content: string, type: string, level: string) => void;
+  handleGenQuest: (
+    content: string,
+    type: string,
+    level: string,
+    count: number
+  ) => void;
 }
 
 export default HomeDashboard;

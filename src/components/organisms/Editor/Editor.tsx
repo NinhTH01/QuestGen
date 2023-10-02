@@ -6,7 +6,12 @@ import katex from "katex";
 
 window.katex = katex;
 // import TableOfContent from "../TableOfContent/TableOfContent";
-const Editor: React.FC<EditorProps> = ({ type, level, handleQuestgen }) => {
+const Editor: React.FC<EditorProps> = ({
+  type,
+  level,
+  handleQuestgen,
+  count,
+}) => {
   const [html, setHTML] = React.useState<any>("");
 
   const katex = require("katex");
@@ -68,6 +73,7 @@ const Editor: React.FC<EditorProps> = ({ type, level, handleQuestgen }) => {
         handleQuestgen={handleQuestgen}
         type={type}
         level={level}
+        count={count}
       />
     </>
   );
@@ -77,6 +83,7 @@ export interface EditorProps {
   handleQuestgen: any;
   type: any;
   level: any;
+  count: number;
 }
 
 export default Editor;
