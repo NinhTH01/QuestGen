@@ -16,8 +16,6 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
 }) => {
   const [count, setCount] = React.useState(0);
 
-  console.log(count);
-
   const [image, setImage] = React.useState("");
 
   const [type, setType] = React.useState<string>("0");
@@ -38,12 +36,9 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
 
   const handleImage = React.useCallback((event: any) => {
     if (event.target.files && event.target.files[0]) {
-      console.log(event);
       setImage(URL.createObjectURL(event.target.files[0]));
     }
   }, []);
-
-  console.log(image);
 
   const DummyText =
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";

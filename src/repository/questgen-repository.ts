@@ -1,7 +1,5 @@
 export class QuestgenRepository {
   public product = async (data: any): Promise<any> => {
-    console.log(data);
-
     const response = await fetch("http://127.0.0.1:8000/api/getQuestFromText", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, *cors, same-origin

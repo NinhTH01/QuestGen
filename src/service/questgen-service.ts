@@ -56,15 +56,33 @@ export function useQuestgen(
       level: string,
       count: number
     ) => {
-      const data = {
-        text: context,
-        quest_type: questType,
-        easy: 1,
-        medium: 0,
-        hard: 0,
-      };
+      let data: any = [];
 
-      console.log(data);
+      if (level === "0") {
+        data = {
+          text: context,
+          quest_type: questType,
+          easy: count,
+          medium: 0,
+          hard: 0,
+        };
+      } else if (level === "1") {
+        data = {
+          text: context,
+          quest_type: questType,
+          easy: 0,
+          medium: count,
+          hard: 0,
+        };
+      } else {
+        data = {
+          text: context,
+          quest_type: questType,
+          easy: 0,
+          medium: 0,
+          hard: count,
+        };
+      }
 
       if (
         context !== "" &&
@@ -98,11 +116,9 @@ export function useQuestgen(
 
   const handleChecked = React.useCallback(
     (indexAnswer: number, indexQuestion: number) => () => {
-      console.log(indexQuestion, indexAnswer);
       if (route === 0) {
         answer[indexQuestion].correctAnswerIndices = [indexAnswer];
         setAnswer([...answer]);
-        console.log(answer);
       }
     },
     [answer, route]
@@ -112,7 +128,6 @@ export function useQuestgen(
     (indexQuestion: number) => (e: any) => {
       if (route === 0 || route === 1 || route === 2) {
         answer[indexQuestion].question = e.target.value;
-        console.log(answer);
         setAnswer([...answer]);
       }
     },

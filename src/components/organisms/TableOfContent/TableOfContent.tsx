@@ -221,8 +221,8 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
           style={{
             position: "absolute",
             right: 20,
-            top: 180,
-            background: "rgba(137, 236, 255,.4)",
+            top: 175,
+            background: "rgba(137, 236, 255,.7)",
             borderRadius: 10,
             padding: 8,
           }}
@@ -236,10 +236,10 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
           style={{
             position: "absolute",
             right: 20,
-            top: 180,
+            top: 175,
             width: width < 750 ? "90%" : "30%",
             height: expanded ? "80%" : 140,
-            background: "rgba(137, 236, 255,.4)",
+            background: "rgba(137, 236, 255)",
             borderRadius: 10,
             padding: 16,
           }}
