@@ -1,8 +1,6 @@
-import { Button, Col, Container, Form, Nav, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import Sidebar from "../../components/molecules/Sidebar/Sidebar";
-import styles from "./DashboardScreen.module.css";
 import React from "react";
-import { bloomData, data, similiarData } from "../../sample/data/sampleGen";
 import HomeDashboard from "../../components/templates/HomeDashboard/HomeDashboard";
 import BloomDashboard from "../../components/templates/BloomDashboard/BloomDashboard";
 import SimiliarDashboard from "../../components/templates/SimiliarDashboard/SimiliarDashboard";
@@ -10,6 +8,7 @@ import AccountDashboard from "../../components/templates/AccountDashboard/Accoun
 import { useSelector } from "react-redux";
 import { currentWidth } from "../../global/selectors";
 import { useQuestgen } from "../../service/questgen-service";
+import QuizDashboard from "../../components/templates/QuizDashboard/QuizDashboard";
 
 const DashboardScreen = () => {
   const width = useSelector(currentWidth);
@@ -26,16 +25,6 @@ const DashboardScreen = () => {
     handleChecked,
     handleChangeQuestion,
   ] = useQuestgen(route);
-
-  // const [array, setArray] = React.useState<any>(data);
-
-  // const [bloomArray, setBloomArray] = React.useState<any>(
-  //   bloomData?.quesAndPair
-  // );
-
-  // const [similiarArray, setSimiliarArray] = React.useState<any>(
-  //   similiarData?.quesAndPair
-  // );
 
   const RouteComponent = React.useMemo(() => {
     if (route === 0) {
@@ -76,6 +65,19 @@ const DashboardScreen = () => {
         />
       );
     } else if (route === 3) {
+      return (
+        <QuizDashboard
+          isEdit={isEdit}
+          setEdit={setEdit}
+          setArray={setAnswer}
+          array={answer}
+          handleChange={handleChange}
+          handleChecked={handleChecked}
+          handleQuestion={handleChangeQuestion}
+          handleGenQuest={handleGenQuest}
+        />
+      );
+    } else if (route === 4) {
       return <AccountDashboard />;
     }
   }, [

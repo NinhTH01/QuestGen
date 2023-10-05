@@ -35,6 +35,11 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
   }, []);
 
   const handleImage = React.useCallback((event: any) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      console.log(e);
+    };
+    reader.readAsText(event.target.files[0]);
     if (event.target.files && event.target.files[0]) {
       setImage(URL.createObjectURL(event.target.files[0]));
     }
@@ -74,6 +79,15 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
               count={count}
             />
           </div>
+          <div className="my-4">
+            <input
+              type="file"
+              name="myImage"
+              onChange={handleImage}
+              multiple
+            ></input>
+          </div>
+
           <Form.Select
             aria-label="Default select example"
             value={type}
@@ -141,7 +155,6 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
           >
             Try for free
           </Button>
-          {/* <input type="file" name="myImage" onChange={handleImage}></input> */}
         </Col>
         <Col className=" bg-light">
           {array.length > 0 && (
