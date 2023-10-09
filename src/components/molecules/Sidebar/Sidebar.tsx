@@ -57,12 +57,24 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
               </span>
             </Nav.Link>
           </Nav.Item>
+
+          <Nav.Item className="my-2">
+            <Nav.Link className={` ${styles.nav}`} eventKey={"4"}>
+              <span
+                className={`text-white ${
+                  route === 4 ? "fw-bold" : "fw-medium"
+                } `}
+              >
+                Quiz from Image
+              </span>
+            </Nav.Link>
+          </Nav.Item>
         </Form>
 
         <Nav.Item className="my-2">
-          <Nav.Link className={` ${styles.nav}`} eventKey={"4"}>
+          <Nav.Link className={` ${styles.nav}`} eventKey={"5"}>
             <span
-              className={`text-white ${route === 4 ? "fw-bold" : "fw-medium"} `}
+              className={`text-white ${route === 5 ? "fw-bold" : "fw-medium"} `}
             >
               Account
             </span>

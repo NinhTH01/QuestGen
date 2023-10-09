@@ -16,8 +16,6 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
 }) => {
   const [count, setCount] = React.useState(0);
 
-  const [image, setImage] = React.useState("");
-
   const [type, setType] = React.useState<string>("0");
 
   const [level, setLevel] = React.useState<string>("0");
@@ -32,17 +30,6 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
 
   const handleChangeContent = React.useCallback((e: any) => {
     setContent(e.target.value);
-  }, []);
-
-  const handleImage = React.useCallback((event: any) => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      console.log(e);
-    };
-    reader.readAsText(event.target.files[0]);
-    if (event.target.files && event.target.files[0]) {
-      setImage(URL.createObjectURL(event.target.files[0]));
-    }
   }, []);
 
   const DummyText =
@@ -78,14 +65,6 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
               level={level}
               count={count}
             />
-          </div>
-          <div className="my-4">
-            <input
-              type="file"
-              name="myImage"
-              onChange={handleImage}
-              multiple
-            ></input>
           </div>
 
           <Form.Select

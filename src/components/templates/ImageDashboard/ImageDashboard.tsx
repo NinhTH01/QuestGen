@@ -1,9 +1,11 @@
 import { Button, Row, Col, Form } from "react-bootstrap";
-import styles from "./QuizDashboard.module.css";
+import styles from "./ImageDashboard.module.css";
 import { ReactSortable } from "react-sortablejs";
-import React, { ChangeEvent } from "react";
+import React from "react";
+import { Document, Page, pdfjs } from "react-pdf";
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const QuizDashboard: React.FC<QuizDashboardProps> = ({
+const ImageDashboard: React.FC<ImageDashboardProps> = ({
   isEdit,
   setArray,
   setEdit,
@@ -21,12 +23,31 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
 
   const [content, setContent] = React.useState<string>("");
 
+  const [pdfData, setPdfData] = React.useState<any>();
+
   const handleChangeContent = React.useCallback((e: any) => {
     setContent(e.target.value);
   }, []);
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  // const onFileLoad = React.useCallback(
+  //   ({ target: { result } }: ChangeEvent<HTMLInputElement>) => {
+
+  //     setPdfData(result)
+  //   },
+  //   []
+  // );
+
+  const handleFileChange = (e: any) => {
     setFileList(e.target.files);
+    // let selectedFile = e.target.files[0];
+    // const fileType = ["application/pdf"];
+    // if (selectedFile) {
+    //   let reader = new FileReader();
+    //   reader.readAsDataURL(selectedFile);
+    //   reader.onloadend = (event) => {
+    //     setPdfData(event.target?.result);
+    //   };
+    // }
   };
 
   const handleUploadClick = () => {
@@ -45,13 +66,15 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        let contentArray = "";
+        // let contentArray = "";
 
-        files.forEach((file, i) => {
-          contentArray = contentArray + "\n" + data.files[`file-${i}`];
-        });
+        // files.forEach((file, i) => {
+        //   contentArray = contentArray + "\n" + data.files[`file-${i}`];
+        // });
 
-        setContent(contentArray);
+        // setContent(contentArray);
+        console.log(data);
+        // setPdfData(data);
       })
       .catch((err) => console.error(err));
   };
@@ -72,36 +95,31 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
             </h6>
           </div>
 
-          <div className="d-flex justify-content-center mb-4">
-            <Form.Control
-              as={"textarea"}
-              id="inputPassword5"
-              className="fw-medium text-black"
-              style={{ height: 300 }}
-              value={content}
-              onChange={handleChangeContent}
-            />
-          </div>
+          {
+            <Document file={pdfData}>
+              <Page pageNumber={1} />
+            </Document>
+          }
+
+          {/* {pdfData && (
+              <p>
+                Page {pageNumber} of {numPages}
+              </p>
+            )} */}
 
           <div className="my-4">
-            <div>
-              <input
-                type="file"
-                onChange={handleFileChange}
-                multiple
-                name="Upload"
-              />
+            <input type="file" onChange={handleFileChange} multiple />
 
-              <ul>
-                {files.length > 1 &&
-                  files.map((file, i) => (
-                    <li key={i}>
-                      {file.name} - {file.type}
-                    </li>
-                  ))}
-              </ul>
-            </div>
+            {/* <ul>
+              {files.length > 1 &&
+                files.map((file, i) => (
+                  <li key={i}>
+                    {file.name} - {file.type}
+                  </li>
+                ))}
+            </ul> */}
           </div>
+
           {files.length > 0 && (
             <Button className="mt-4 fw-bold" onClick={handleUploadClick}>
               Upload
@@ -260,7 +278,7 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
     </>
   );
 };
-export interface QuizDashboardProps {
+export interface ImageDashboardProps {
   array: any;
 
   setArray: React.Dispatch<any>;
@@ -288,4 +306,4 @@ export interface QuizDashboardProps {
   ) => void;
 }
 
-export default QuizDashboard;
+export default ImageDashboard;

@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { currentWidth } from "../../global/selectors";
 import { useQuestgen } from "../../service/questgen-service";
 import QuizDashboard from "../../components/templates/QuizDashboard/QuizDashboard";
+import ImageDashboard from "../../components/templates/ImageDashboard/ImageDashboard";
 
 const DashboardScreen = () => {
   const width = useSelector(currentWidth);
@@ -78,6 +79,19 @@ const DashboardScreen = () => {
         />
       );
     } else if (route === 4) {
+      return (
+        <ImageDashboard
+          isEdit={isEdit}
+          setEdit={setEdit}
+          setArray={setAnswer}
+          array={answer}
+          handleChange={handleChange}
+          handleChecked={handleChecked}
+          handleQuestion={handleChangeQuestion}
+          handleGenQuest={handleGenQuest}
+        />
+      );
+    } else if (route === 5) {
       return <AccountDashboard />;
     }
   }, [
