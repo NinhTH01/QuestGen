@@ -11,6 +11,7 @@ const Editor: React.FC<EditorProps> = ({
   level,
   handleQuestgen,
   count,
+  defaultValue
 }) => {
   const [html, setHTML] = React.useState<any>("");
 
@@ -66,6 +67,7 @@ const Editor: React.FC<EditorProps> = ({
         onChange={handleChange}
         modules={modules}
         formats={formats}
+        defaultValue={defaultValue}
         style={{ background: "white", width: "100%", height: 300 }}
       ></ReactQuill>
       <TableOfContents
@@ -84,6 +86,7 @@ export interface EditorProps {
   type: any;
   level: any;
   count: number;
+  defaultValue?: string;
 }
 
 export default Editor;

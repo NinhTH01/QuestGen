@@ -64,6 +64,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
               type={"multiple choice"}
               level={level}
               count={count}
+              defaultValue={DummyText}
             />
           </div>
 

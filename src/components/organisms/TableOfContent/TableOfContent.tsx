@@ -250,7 +250,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
           >
             <div style={{ fontWeight: "bold" }}> Table of Contents</div>
 
-            <div style={{ paddingRight: 28, marginRight: 8 }}>
+            <div style={{ paddingRight: 28, marginRight: 8 }} >
               <Button
                 className=""
                 style={{
@@ -270,7 +270,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
                 className=""
                 style={{
                   right: 0,
-                  marginLeft: 16,
+                  // marginLeft: 16,
                   backgroundColor: "rgba(137, 236, 255,.01)",
                   borderWidth: 0,
                 }}

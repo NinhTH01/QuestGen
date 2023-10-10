@@ -65,7 +65,7 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
                   route === 4 ? "fw-bold" : "fw-medium"
                 } `}
               >
-                Quiz from Image
+                Quiz from Image/Pdf
               </span>
             </Nav.Link>
           </Nav.Item>

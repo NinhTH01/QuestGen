@@ -2,8 +2,18 @@ import { Button, Row, Col, Form } from "react-bootstrap";
 import styles from "./ImageDashboard.module.css";
 import { ReactSortable } from "react-sortablejs";
 import React from "react";
-import { Document, Page, pdfjs } from "react-pdf";
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+import {
+  Document,Page,PDFViewer,
+  Text,
+  View,
+  Font,
+  StyleSheet,
+  Image,
+  usePDF,
+  PDFDownloadLink,
+} from "@react-pdf/renderer";
+// import {Document, Page, pdfjs } from "react-pdf";
+// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const ImageDashboard: React.FC<ImageDashboardProps> = ({
   isEdit,
@@ -21,34 +31,20 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
 
   const [fileList, setFileList] = React.useState<FileList | null>(null);
 
-  const [content, setContent] = React.useState<string>("");
+  // const [content, setContent] = React.useState<string>("");
 
-  const [pdfData, setPdfData] = React.useState<any>();
-
-  const handleChangeContent = React.useCallback((e: any) => {
-    setContent(e.target.value);
-  }, []);
-
-  // const onFileLoad = React.useCallback(
-  //   ({ target: { result } }: ChangeEvent<HTMLInputElement>) => {
-
-  //     setPdfData(result)
-  //   },
-  //   []
-  // );
+  const [pdfData, setPdfData] = React.useState<any>([]);
 
   const handleFileChange = (e: any) => {
     setFileList(e.target.files);
-    // let selectedFile = e.target.files[0];
-    // const fileType = ["application/pdf"];
-    // if (selectedFile) {
-    //   let reader = new FileReader();
-    //   reader.readAsDataURL(selectedFile);
-    //   reader.onloadend = (event) => {
-    //     setPdfData(event.target?.result);
-    //   };
-    // }
   };
+
+//   const generatePdfDocument = async (csvReport: any, ReportsDownload, fileName) => {
+//     const blob = await pdf(
+//         <PdfDocument csvReport={csvReport} ReportsDownload={ReportsDownload?.data}/>
+//     ).toBlob();
+//     FileSaver.saveAs(blob, fileName);
+// };
 
   const handleUploadClick = () => {
     if (!fileList) {
@@ -66,20 +62,35 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        // let contentArray = "";
+        console.log(data)
+        let contentArray: any = [];
 
-        // files.forEach((file, i) => {
-        //   contentArray = contentArray + "\n" + data.files[`file-${i}`];
-        // });
-
-        // setContent(contentArray);
-        console.log(data);
-        // setPdfData(data);
+        files.forEach((file, i) => {
+          contentArray.push(data.files[`file-${i}`])
+        });
+        setPdfData(contentArray);
       })
       .catch((err) => console.error(err));
   };
 
   const files = fileList ? [...fileList] : [];
+
+  const MyDocument = () => (
+    <Document>
+    <Page >
+      {pdfData.length > 0 && pdfData.map((data: any) => {
+        return (<Image src={data} />)
+      }) }
+      
+    </Page>
+  </Document>
+  )
+
+
+
+  // const [instance, update] = usePDF({document: (<MyDocument/>)} );
+
+  // console.log(instance)
 
   return (
     <>
@@ -94,36 +105,37 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
               file only)
             </h6>
           </div>
-
-          {
-            <Document file={pdfData}>
-              <Page pageNumber={1} />
-            </Document>
-          }
-
-          {/* {pdfData && (
-              <p>
-                Page {pageNumber} of {numPages}
-              </p>
-            )} */}
+              <PDFViewer>
+             <MyDocument/>
+      
+              </PDFViewer>
+              <PDFDownloadLink document={<MyDocument />} fileName="somename.pdf">
+        {({ blob, url, loading, error }) =>
+          loading
+            ? "Loading document..."
+            : `Download now!`
+        }
+      </PDFDownloadLink>
 
           <div className="my-4">
             <input type="file" onChange={handleFileChange} multiple />
-
-            {/* <ul>
+            <ul>
               {files.length > 1 &&
                 files.map((file, i) => (
                   <li key={i}>
                     {file.name} - {file.type}
                   </li>
                 ))}
-            </ul> */}
+            </ul>
+          
           </div>
 
-          {files.length > 0 && (
+          {files.length > 0 && (<>
             <Button className="mt-4 fw-bold" onClick={handleUploadClick}>
               Upload
             </Button>
+            
+          </>
           )}
           <Row
             xxl={2}
@@ -275,6 +287,7 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
           )}
         </Col>
       </Row>
+   
     </>
   );
 };
