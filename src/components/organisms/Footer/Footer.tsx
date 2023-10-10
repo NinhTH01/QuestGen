@@ -13,10 +13,10 @@ const Footer: React.FC<FooterProps> = () => {
 
       <div className={`justify-content-center d-flex ${styles.stepContainer}`}>
         <Row
-          xxl={3}
-          xl={3}
-          lg={3}
-          md={3}
+          xxl={2}
+          xl={2}
+          lg={2}
+          md={2}
           sm={1}
           xs={1}
           style={{
@@ -40,41 +40,35 @@ const Footer: React.FC<FooterProps> = () => {
 
           <div className="p-4">
             <div>
-              <h5 className="fw-medium">Company</h5>
-              <div className="mt-2">
-                <a> Twitter </a>
-              </div>
-              <div className="mt-2">
-                <a> Linkedin </a>
-              </div>
+              <h5 className="fw-medium">Liên hệ</h5>
               <div className="mt-2">
                 <a> hninh1710@gmail.com </a>
               </div>
-              <h5 className="fw-medium mt-4">Use-cases</h5>
+              <h5 className="fw-medium mt-4">Các công dụng</h5>
               <div className="mt-2">
-                <a> AI MCQ Generator</a>
+                <a>Tạo AI MCQ</a>
               </div>
               <div className="mt-2">
-                <a> AI FAQ Generator</a>
+                <a>Tạo AI FAQ </a>
               </div>
               <div className="mt-2">
-                <a> AI True or False Generator</a>
+                <a>Tạo AI True or False </a>
               </div>
               <div className="mt-2">
-                <a> AI High Order Question Generator</a>
+                <a>Tạo AI High Order Question </a>
               </div>
               <div className="mt-2">
-                <a> AI Fill-in-the-Blank Quiz Generator</a>
+                <a>Tạo AI Fill-in-the-Blank Quiz </a>
               </div>
               <div className="mt-2">
-                <a> AI Bloom's Taxonomy Quiz Generator</a>
+                <a>Tạo AI Bloom's Taxonomy Quiz </a>
               </div>
               <div className="mt-2">
-                <a> AI Similiar Question Generator</a>
+                <a>Tạo AI Similiar Question </a>
               </div>
             </div>
           </div>
-          <div className="p-4">
+          {/* <div className="p-4">
             <div>
               <h5 className="fw-medium">Legal</h5>
               <div className="mt-2">
@@ -94,7 +88,7 @@ const Footer: React.FC<FooterProps> = () => {
                 <a> Questgen FAQs</a>
               </div>
             </div>
-          </div>
+          </div> */}
         </Row>
       </div>
     </>

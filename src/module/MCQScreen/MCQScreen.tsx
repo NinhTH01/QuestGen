@@ -22,17 +22,17 @@ const MCQScreen = () => {
             className="text-center "
             style={{ fontWeight: 900, fontSize: 52, marginBottom: 32 }}
           >
-            <span>Create Multiple Choice Questions</span>
+            <span>Tạo câu hỏi trắc nghiệm</span>
             <span style={{ color: "blue" }}>(MCQs)</span>
-            <span>online from any text using AI.</span>
+            <span>Từ bất cứ đoạn văn bản nào từ AI.</span>
           </h1>
           <h4
             className="text-center fw-medium mb-4"
             style={{ color: "#6b6f76" }}
           >
             <div>
-              Questgen is an online tool to generate automatically using
-              advanced AI techniques.
+              Questgen là công cụ online tự động tạo câu hỏi sử dựng kĩ thuật AI
+              nâng cao.
             </div>
           </h4>
           <div
@@ -50,7 +50,7 @@ const MCQScreen = () => {
               className={`px-4 py-3 fw-bold ${styles.shadow}`}
               onClick={() => navigate("/dashboard")}
             >
-              Get started for free
+              Bắt đầu miễn phí
             </Button>
           </div>
         </div>
@@ -58,12 +58,13 @@ const MCQScreen = () => {
       <div className="d-flex justify-content-center">
         <div className="" style={{ width: 1000 }}>
           <h1 className="text-center" style={{ fontWeight: 700 }}>
-            A hassle-free MCQ generation experience
+            Trải nghiệm tạo câu hỏi trắc nghiệm một các đơn giản.
           </h1>
           <h6 className="text-center fw-medium mt-4">
-            Believing in total automation, Questgen allows you to turn
-            paragraphs into several multiple-choice questions with ease. All it
-            takes is one click, a few rearrangements and you are good to go.
+            Tin tưởng vào sự tự động hóa hoàn toàn, Questgen cho phép bạn biến
+            các đoạn văn thành nhiều câu hỏi trắc nghiệm một cách dễ dàng. Tất
+            cả chỉ cần một cú nhấp chuột, một vài lần sắp xếp lại và bạn đã sẵn
+            sàng.
           </h6>
           <div
             className={`justify-content-center d-flex ${styles.stepContainer}`}
@@ -108,7 +109,7 @@ const MCQScreen = () => {
             </Row>
           </div>
           <h1 className="text-center" style={{ fontWeight: 700 }}>
-            Who is it for?
+            Một số ứng dụng
           </h1>
 
           <div
@@ -142,12 +143,12 @@ const MCQScreen = () => {
                     />
                   </div>
                   <div className="mt-4 text-center ">
-                    <h3 className="fw-bold">Teachers and Schools </h3>
+                    <h3 className="fw-bold">Giáo viên và các trường học </h3>
                     <h6>
-                      Teachers and Schools can use the Questgen authoring tool
-                      to create worksheets easily in a few seconds. They can
-                      avoid repetitive questions chosen from a fixed question
-                      bank every year.
+                      Giáo viên và trường học có thể sử dụng công cụ soạn thảo
+                      Questgen để tạo các bộ câu hỏi dễ dàng trong vài giây. Họ
+                      có thể tránh được những câu hỏi lặp đi lặp lại được chọn
+                      từ ngân hàng câu hỏi cố định hàng năm.
                     </h6>
                   </div>
                 </div>
@@ -166,13 +167,12 @@ const MCQScreen = () => {
                     />
                   </div>
                   <div className="mt-4 text-center ">
-                    <h3 className="fw-bold">HR Teams</h3>
+                    <h3 className="fw-bold">Đội HR</h3>
                     <h6>
-                      HR teams can use Questgen to create assessments from
-                      compliance documents. Every time there is a change in
-                      policies, assessments could be generated and given to
-                      employees to make sure that they have read and understood
-                      the new policies.
+                      Nhóm nhân sự có thể sử dụng Questgen để tạo đánh giá từ
+                      các tài liệu tuân thủ. Mỗi khi có thay đổi về chính sách,
+                      các đánh giá có thể được tạo và đưa ra cho nhân viên để
+                      đảm bảo rằng họ đã đọc và hiểu các chính sách mới.
                     </h6>
                   </div>
                 </div>
@@ -192,12 +192,15 @@ const MCQScreen = () => {
                   </div>
 
                   <div className=" text-center " style={{ marginTop: 50 }}>
-                    <h3 className="fw-bold">Publishers and Edtech Companies</h3>
+                    <h3 className="fw-bold">
+                      {" "}
+                      Nhà xuất bản và các công ty công nghệ giáo dục
+                    </h3>
                     <h6>
-                      Textbook publishers and edtech companies can use Questgen
-                      instead of outsourcing the assessment creation process.
-                      They can have a small in-house team and save hugely on
-                      time and cost.
+                      Các nhà xuất bản sách giáo khoa và các công ty công nghệ
+                      giáo dục có thể sử dụng Questgen thay vì thuê ngoài quy
+                      trình tạo đánh giá. Họ có thể có một đội ngũ nội bộ nhỏ và
+                      tiết kiệm rất nhiều thời gian và chi phí.
                     </h6>
                   </div>
                 </div>
@@ -206,20 +209,22 @@ const MCQScreen = () => {
           </div>
 
           <h1 className="text-center" style={{ fontWeight: 700 }}>
-            How are MCQs made?
+            Câu hỏi trắc nghiệm được tạo ra như nào?
           </h1>
           <h6 className="text-center fw-medium mt-4">
-            The following is a guide on how teachers and tutors create MCQs.
+            Dưới đây là hướng dẫn cho giáo viên và hướng dẫn viên các tạo câu
+            hỏi trắc nghiệm.
           </h6>
           <h6 className="text-center fw-medium mt-2">
-            Questgen uses AI algorithms to mimic the human MCQ creation process.
+            QuestGen sử dụng thuật toán AI để bắt chước chu trình tạo câu hỏi
+            trắc nghiệm của con người.
           </h6>
 
           <div className="p-4">
-            <h2 style={{ fontWeight: 700 }}>1. Identifying Key Sentences</h2>
+            <h2 style={{ fontWeight: 700 }}>1. Nhận diện ý chính</h2>
             <h6 className=" fw-medium mt-2">
-              We start with identifying key sentences that carry key concepts
-              from any given text.
+              Chúng ta bắt đầu với việc nhận diện ý chính mà thể hiện nội dung
+              của đoạn văn.
             </h6>
             <div className="d-flex justify-content-center">
               <Image
@@ -232,12 +237,10 @@ const MCQScreen = () => {
           </div>
 
           <div className="p-4">
-            <h2 style={{ fontWeight: 700 }}>
-              2. Extracting Keywords from Sentences
-            </h2>
+            <h2 style={{ fontWeight: 700 }}>2. Trích xuất từ khóa cua câu</h2>
             <h6 className=" fw-medium mt-2">
-              From the key sentences, we identify keywords and key phrases that
-              form the correct answer to which questions are created.
+              Từ các câu chính, chúng tôi xác định các từ khóa và cụm từ khóa
+              tạo thành câu trả lời chính xác cho câu hỏi nào được tạo.
             </h6>
             <div className="d-flex justify-content-center">
               <Image
@@ -250,14 +253,16 @@ const MCQScreen = () => {
           </div>
 
           <div className="p-4">
-            <h2 style={{ fontWeight: 700 }}>3. Forming an MCQ</h2>
+            <h2 style={{ fontWeight: 700 }}>3. Tạo câu hỏi trắc nghiệm</h2>
             <h6 className=" fw-medium mt-2">
-              After we extract a keyword or keyphrase (correct answer), we use
-              AI algorithms to generate a question from the key sentence such
-              that the extracted keyword or keyphrase is the right answer. For a
-              given generated question and right answer pair, we generate
-              relevant distractors (wrong answer choices) using another AI
-              algorithm to generate the complete Multiple Choice Question (MCQ).
+              ​Tra cứu thông tin chi tiết 383 / 5.000 Kết quả dịch Kết quả bản
+              dịch Sau khi trích xuất từ khóa hoặc cụm từ khóa (câu trả lời
+              đúng), chúng tôi sử dụng thuật toán AI để tạo câu hỏi từ câu chính
+              sao cho từ khóa hoặc cụm từ khóa được trích xuất là câu trả lời
+              đúng. Đối với một cặp câu hỏi được tạo và câu trả lời đúng nhất
+              định, chúng tôi tạo ra các yếu tố phân tâm có liên quan (lựa chọn
+              câu trả lời sai) bằng thuật toán AI khác để tạo Câu hỏi trắc
+              nghiệm (MCQ) hoàn chỉnh.
             </h6>
             <div className="d-flex justify-content-center">
               <Image

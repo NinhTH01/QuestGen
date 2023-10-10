@@ -18,19 +18,19 @@ const Header: React.FC<HeaderProps> = () => {
       <Navbar.Collapse>
         <Nav className="me-auto flex-grow-1 justify-content-end">
           <Nav.Link href="/" className="fw-medium mx-2">
-            Home
+            Trang chủ
           </Nav.Link>
           <Nav.Link href="/pricing" className="fw-medium mx-2">
-            Pricing
+            Thu phí
           </Nav.Link>
-          <Nav.Link href="/team" className="fw-medium mx-2">
+          {/* <Nav.Link href="/team" className="fw-medium mx-2">
             Team
-          </Nav.Link>
-          <Nav.Link href="/blog" className="fw-medium mx-2">
+          </Nav.Link> */}
+          {/* <Nav.Link href="/blog" className="fw-medium mx-2">
             Blog
-          </Nav.Link>
+          </Nav.Link> */}
           <Nav.Link href="/contact" className="fw-medium mx-2">
-            Contact
+            Liên lạc
           </Nav.Link>
           <Dropdown align="end">
             <Dropdown.Toggle
@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = () => {
               className=" text-black border-0 fw-medium pt-2"
               style={{ backgroundColor: "inherit" }}
             >
-              Products
+              Sản phẩm
             </Dropdown.Toggle>
             <Dropdown.Menu className="p-4">
               <Dropdown.Item href="/faqs" className="p-4">
@@ -54,7 +54,7 @@ const Header: React.FC<HeaderProps> = () => {
                       className=" overflow-hidden "
                       style={{ textOverflow: "ellipsis" }}
                     >
-                      Frequently asked questions about Questgen.
+                      Những câu hỏi thường gặp
                     </div>
                   </div>
                 </div>
@@ -67,12 +67,12 @@ const Header: React.FC<HeaderProps> = () => {
                     width={80}
                   />
                   <div style={{ width: 250, marginLeft: 16 }}>
-                    <div>AI MCQ Generator</div>
+                    <div>Tạo AI MCQ</div>
                     <div
                       className=" overflow-hidden "
                       style={{ textOverflow: "ellipsis" }}
                     >
-                      Create Multiple Choice Questions from any text.
+                      Tạo câu hỏi trắc nghiệm từ bất kì văn bản nào
                     </div>
                   </div>
                 </div>
@@ -88,12 +88,12 @@ const Header: React.FC<HeaderProps> = () => {
                     width={80}
                   />
                   <div style={{ width: 250, marginLeft: 16 }}>
-                    <div>AI True/False Generator</div>
+                    <div>Tạo AI True/False</div>
                     <div
                       className=" overflow-hidden "
                       style={{ textOverflow: "ellipsis" }}
                     >
-                      Create True or False quiz online from any text.
+                      Tạo câu hỏi đúng sai từ bất cứ văn bản nào
                     </div>
                   </div>
                 </div>
@@ -106,12 +106,12 @@ const Header: React.FC<HeaderProps> = () => {
                     width={80}
                   />
                   <div style={{ width: 250, marginLeft: 16 }}>
-                    <div>AI FAQ Generator</div>
+                    <div>Tạo AI FAQ</div>
                     <div
                       className=" overflow-hidden "
                       style={{ textOverflow: "ellipsis" }}
                     >
-                      Create FAQs online from any text using AI.
+                      Tạo câu hỏi thường gặp từ bất cứ đoạn văn bản nào
                     </div>
                   </div>
                 </div>
@@ -127,12 +127,12 @@ const Header: React.FC<HeaderProps> = () => {
                     width={80}
                   />
                   <div style={{ width: 250, marginLeft: 16 }}>
-                    <div> AI higher order Questions</div>
+                    <div>Câu hỏi bậc cao</div>
                     <div
                       className=" overflow-hidden "
                       style={{ textOverflow: "ellipsis" }}
                     >
-                      Create Higher order quiz on Bloom's Taxonomy.
+                      Tạo câu hỏi bậc cao
                     </div>
                   </div>
                 </div>
@@ -151,7 +151,7 @@ const Header: React.FC<HeaderProps> = () => {
             className={`px-4 fw-bold ${styles.shadow}`}
             onClick={() => navigate("/dashboard")}
           >
-            Start for free
+            Thử miễn phí
           </Button>
         </Nav>
       </Navbar.Collapse>

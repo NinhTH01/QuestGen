@@ -38,17 +38,17 @@ const TrueFalseScreen = () => {
                 className="text-center "
                 style={{ fontWeight: 900, fontSize: 52, marginBottom: 32 }}
               >
-                <span>Create</span>
-                <span style={{ color: "blue" }}>(True or False)</span>
-                <span>quiz online from any text using AI.</span>
+                <span>Tạo câu hỏi</span>
+                <span style={{ color: "blue" }}>(Đúng hay Sai)</span>
+                <span>từ bất cứ đoạn văn bản nào.</span>
               </h1>
               <h4
                 className="text-center fw-medium mb-4"
                 style={{ color: "#6b6f76" }}
               >
                 <div>
-                  Questgen is an online tool to generate automatically using
-                  advanced AI techniques.
+                  Questgen là một công cụ trực tuyến để tạo tự động bằng các kỹ
+                  thuật AI tiên tiến.
                 </div>
               </h4>
               <div className="d-flex justify-content-center">
@@ -63,7 +63,7 @@ const TrueFalseScreen = () => {
                   className={`px-4 py-3 fw-bold ${styles.shadow}`}
                   onClick={() => navigate("/dashboard")}
                 >
-                  Get started for free
+                  Bắt đầu miễn phí
                 </Button>
               </div>
             </div>
@@ -85,13 +85,13 @@ const TrueFalseScreen = () => {
       <div className="d-flex justify-content-center">
         <div className="" style={{ width: 1000 }}>
           <h1 className="text-center" style={{ fontWeight: 700 }}>
-            A sophisticated AI for True or False question generation!
+            Một AI phức tạp để tạo câu hỏi Đúng hoặc Sai!
           </h1>
           <h6 className="text-center fw-medium mt-4">
-            Questgen provides its users with a simple tool to seamlessly
-            generate a True or False quiz from any given text with just a single
-            click. You can try out Questgen for free (No credit card needed!).
-            Simply sign-up and you are good to go!
+            Questgen cung cấp cho người dùng một công cụ đơn giản để tạo liền
+            mạch câu đố Đúng hoặc Sai từ bất kỳ văn bản nhất định nào chỉ bằng
+            một cú nhấp chuột. Bạn có thể dùng thử Questgen miễn phí. Chỉ cần
+            đăng ký và bạn đã sẵn sàng để đi!
           </h6>
           <div
             className={`justify-content-center d-flex ${styles.stepContainer}`}
@@ -137,102 +137,103 @@ const TrueFalseScreen = () => {
           </div>
 
           <h1 className="text-center" style={{ fontWeight: 700 }}>
-            Developing a True or False quiz question
+            Phát triển một câu hỏi trắc nghiệm Đúng hay Sai
           </h1>
           <h6 className="text-center fw-medium mt-4">
-            A true or false question is used to judge students whether a factual
-            statement or scenario is either true or false. These types of
-            questions are generally used to assess factual knowledge.
+            Câu hỏi đúng hay sai được sử dụng để đánh giá học sinh xem một tuyên
+            bố hoặc tình huống thực tế là đúng hay sai. Những loại câu hỏi này
+            thường được sử dụng để đánh giá kiến thức thực tế.
           </h6>
           <h6 className="text-center fw-medium mt-2">
-            Following are some of the most common techniques used to create a
-            true or false quiz from a given paragraph.
+            Sau đây là một số kỹ thuật phổ biến nhất được sử dụng để tạo ra một
+            bài kiểm tra đúng hoặc sai từ một đoạn văn nhất định.
           </h6>
 
           <div className="p-4">
-            <h2 style={{ fontWeight: 700 }}>1. Add or remove negation</h2>
+            <h2 style={{ fontWeight: 700 }}>1. Thêm hoặc loại bỏ phủ định</h2>
             <h6 className=" fw-medium mt-2">
-              Any factual sentence in a paragraph can be converted into a
-              true/false question by adding or removing negation in it.
+              Bất kỳ câu thực tế nào trong đoạn văn đều có thể được chuyển đổi
+              thành câu hỏi đúng/sai bằng cách thêm hoặc bớt phủ định trong đó.
             </h6>
-            <h6 className="fw-bold">Example:</h6>
-            <h6 className="fw-bold">True: A grasshopper can fly.</h6>
-            <h6 className="fw-bold">False: A grasshopper cannot fly.</h6>
+            <h6 className="fw-bold">Ví dụ:</h6>
+            <h6 className="fw-bold">Đúng: Một con châu chấu có thể bay.</h6>
+            <h6 className="fw-bold">Sai: Một con châu chấu không thể bay.</h6>
           </div>
 
           <div className="p-4">
-            <h2 style={{ fontWeight: 700 }}>2. Change a named entity</h2>
+            <h2 style={{ fontWeight: 700 }}>
+              2. Thay đổi một thực thể được đặt tên
+            </h2>
             <h6 className=" fw-medium mt-2">
-              A sentence containing a name or a date can be used as a true/false
-              question by changing the entity in the sentence.
+              Một câu có chứa tên hoặc ngày tháng có thể được sử dụng làm câu
+              hỏi đúng/sai bằng cách thay đổi sự vật trong câu.
             </h6>
-            <h6 className="fw-bold">Example:</h6>
+            <h6 className="fw-bold">Ví dụ:</h6>
             <h6 className="fw-bold">
-              True: Augustus was the first Roman emperor.
+              Đúng: Augustus là hoàng đế Roman đầu tiền
             </h6>
-            <h6 className="fw-bold">
-              False: Nero was the first Roman emperor.
-            </h6>
+            <h6 className="fw-bold">Sai: Nero là hoàng đế Roman đầu tiền</h6>
           </div>
 
           <div className="p-4">
-            <h2 style={{ fontWeight: 700 }}>3. Change adjective</h2>
+            <h2 style={{ fontWeight: 700 }}>3. Thay đổi tính chất</h2>
             <h6 className=" fw-medium mt-2">
-              Any sentence containing an adjective can be reversed or changed to
-              generate a true/false question.
+              Bất kỳ câu nào có chứa tính từ đều có thể đảo ngược hoặc thay đổi
+              để tạo thành câu hỏi đúng/sai.
             </h6>
-            <h6 className="fw-bold">Example:</h6>
-            <h6 className="fw-bold">True: Bob has a big house.</h6>
-            <h6 className="fw-bold">False: Bob has a small house.</h6>
+            <h6 className="fw-bold">Ví dụ:</h6>
+            <h6 className="fw-bold">Đúng: Bob có một ngôi nhà lớn.</h6>
+            <h6 className="fw-bold">Sai: Bob có một ngôi nhà nhỏ.</h6>
           </div>
 
           <div className="p-4">
-            <h2 style={{ fontWeight: 700 }}>4. Change Main Verb.</h2>
+            <h2 style={{ fontWeight: 700 }}>4. Thay đổi động từ chính.</h2>
             <h6 className=" fw-medium mt-2">
-              The main verb of a sentence can be modified to generate a
-              true/false question.
+              Động từ chính của câu có thể được sửa đổi để tạo ra câu hỏi
+              đúng/sai.
             </h6>
-            <h6 className="fw-bold">Example:</h6>
+            <h6 className="fw-bold">Ví dụ:</h6>
             <h6 className="fw-bold">
-              True: When electrons are shared between two atoms, a covalent bond
-              is formed.
+              Đúng: Khi các electron được chia sẻ giữa hai nguyên tử, liên kết
+              cộng hóa trị được hình thành.
             </h6>
             <h6 className="fw-bold">
-              False: When electrons are transferred between two atoms, a
-              covalent bond is formed.
+              Sai: Khi các electron được chuyển giữa hai nguyên tử, liên kết
+              cộng hóa trị được hình thành.
             </h6>
           </div>
 
           <div className="p-4">
             <h2 style={{ fontWeight: 700 }}>
-              5. Split compound or complex sentences into simple sentences.
+              5. Tách câu ghép hoặc câu phức thành câu đơn.
             </h2>
             <h6 className=" fw-medium mt-2">
-              A compound sentence can be split into smaller sentences which can
-              then be used for a true/false question.
+              Một câu ghép có thể được chia thành các câu nhỏ hơn để sử dụng cho
+              câu hỏi đúng/sai.
             </h6>
-            <h6 className="fw-bold">Example:</h6>
+            <h6 className="fw-bold">Ví dụ:</h6>
             <h6 className="fw-bold">
-              True: He wiped off the water and turned the boat upside down.
+              Đúng: Anh ta lau nước và lật ngược con thuyền.
             </h6>
-            <h6 className="fw-bold">False: He turned the boat upside down</h6>
+            <h6 className="fw-bold">Sai: Anh lật ngược con thuyền</h6>
           </div>
 
           <div className="p-4">
             <h2 style={{ fontWeight: 700 }}>
-              6. Changing the ending noun phrase or verb phrase
+              6. Thay đổi cụm danh từ hoặc cụm động từ kết thúc
             </h2>
             <h6 className=" fw-medium mt-2">
-              A true or false quiz can also be generated by replacing the ending
-              noun phrase or verb phrase with a different one.
+              Một bài kiểm tra đúng hoặc sai cũng có thể được tạo ra bằng cách
+              thay thế cụm danh từ hoặc cụm động từ kết thúc bằng một cụm từ
+              khác.
             </h6>
-            <h6 className="fw-bold">Example:</h6>
+            <h6 className="fw-bold">Ví dụ:</h6>
             <h6 className="fw-bold">
-              True: Aunt Avanti was sitting in the armchair watching the newly
-              washed trees and beautiful sky.
+              Đúng: Dì Avanti đang ngồi trên ghế bành ngắm nhìn những hàng cây
+              mới được rửa sạch và bầu trời tuyệt đẹp.
             </h6>
             <h6 className="fw-bold">
-              False: Aunt Avanti was sitting on the sofa, watching television.
+              Sai: Dì Avanti đang ngồi trên ghế sofa xem tivi.
             </h6>
           </div>
 
@@ -240,11 +241,11 @@ const TrueFalseScreen = () => {
             className="text-center"
             style={{ fontWeight: 700, marginTop: 100 }}
           >
-            How Questgen generates True or False questions
+            Cách Questgen tạo câu hỏi Đúng hoặc Sai
           </h1>
           <h6 className="text-center fw-medium mt-4">
-            An overview of the steps followed by Questgen to generate a True or
-            False quiz.
+            Tổng quan về các bước mà Questgen thực hiện để tạo bài kiểm tra Đúng
+            hoặc Sai.
           </h6>
 
           <div
@@ -275,29 +276,29 @@ const TrueFalseScreen = () => {
                 </div>
                 <div className="p-4">
                   <h6 className="fw-medium mt-4 fw-bold">
-                    01. Summarization to identify key sentences
+                    01. Tóm tắt để xác định các câu quan trọng
                   </h6>
                   <h6 className="fw-medium ">
-                    The given text input is summarized to identify key sentences
-                    that contain important concepts discussed in the text. The
-                    summarized text is split into individual sentences.
+                    Dữ liệu nhập văn bản nhất định được tóm tắt để xác định các
+                    câu chính chứa các khái niệm quan trọng được thảo luận trong
+                    văn bản. Văn bản tóm tắt được chia thành các câu riêng lẻ.
                   </h6>
                   <h6 className="fw-medium mt-4 fw-bold">
-                    02. Negate candidate sentences
+                    02.Phủ định câu ứng cử viên
                   </h6>
                   <h6 className="fw-medium ">
-                    The sentences from step 1 are negated (falsified) with a
-                    custom-trained sentence negation algorithm to generate a
-                    false sentence from a given true sentence.
+                    Các câu ở bước 1 được phủ định (làm sai lệch) bằng thuật
+                    toán phủ định câu được đào tạo tùy chỉnh để tạo ra một câu
+                    sai từ một câu đúng nhất định.
                   </h6>
                   <h6 className="fw-medium mt-4 fw-bold">
-                    03. Post filtering of sentences
+                    03. Lọc các câu sau cuối
                   </h6>
                   <h6 className="fw-medium ">
-                    Special filters are also used to cluster and eliminate near
-                    duplicate sentences that are similar to each other so we
-                    preserve diversity in the generated True or False quiz
-                    questions.
+                    Các bộ lọc đặc biệt cũng được sử dụng để phân cụm và loại bỏ
+                    các câu gần trùng lặp giống nhau để chúng tôi duy trì tính
+                    đa dạng trong các câu hỏi trắc nghiệm Đúng hoặc Sai được
+                    tạo.
                   </h6>
                 </div>
               </Row>

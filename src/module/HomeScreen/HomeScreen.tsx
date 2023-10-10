@@ -35,12 +35,12 @@ const HomeScreen = () => {
             }}
             className="text-center p-4"
           >
-            <span className="fw-bold">Generate </span>
+            <span className="fw-bold">Tạo </span>
             <span className="fw-bold" style={{ color: "rgb(20, 60, 244)" }}>
-              quizzes{" "}
+              câu hỏi{" "}
             </span>
             <span className="fw-bold">
-              from any text in one click using AI.
+              từ bất kì nội dung nào chỉ với một cú bấm bằng AI
             </span>
           </h1>
 
@@ -48,24 +48,24 @@ const HomeScreen = () => {
             className="d-flex justify-content-center"
             style={{ marginLeft: 28 }}
           >
-            <span className="fw-bolder">For</span>
+            <span className="fw-bolder">Cho</span>
             <div
               className={`${styles.scroller}`}
               style={{ marginLeft: 16, color: "rgb(20, 60, 244)" }}
             >
               <span>
-                Teachers
+                Giáo viên
                 <br />
-                HR Teams
+                Đội HR
                 <br />
-                Schools
+                Trường học
                 <br />
-                Teachers
+                Giáo viên
               </span>
             </div>
           </h1>
           <h6 className="text-center mt-4">
-            <span>To generate assessments at scale</span>
+            <span>Tạo đánh giá ở các quy mô khác nhau</span>
           </h6>
 
           <div className="justify-content-center d-flex">
@@ -73,12 +73,12 @@ const HomeScreen = () => {
               className={`${styles.freeButton} px-4 py-2 fw-medium mt-2 mb-4`}
               onClick={() => navigate("/dashboard")}
             >
-              <strong>{`Start for free ->`}</strong>
+              <strong>{`Dùng miễn phí ->`}</strong>
             </Button>
           </div>
 
           <h6 className="text-center mt-4">
-            <span>No Credit Card required!</span>
+            <span>Không cần thẻ ngân hàng</span>
           </h6>
         </div>
 
@@ -93,57 +93,17 @@ const HomeScreen = () => {
         </div>
       </Row>
 
-      <div>
-        <h3 className="text-center fw-medium" style={{ marginTop: 100 }}>
-          <span>Trusted by 25,000+ users!</span>
-        </h3>
-        <h5 className="text-center fw-medium">
-          <span>
-            Join our users in saving hundreds of hours every month on quizzes.
-          </span>
-        </h5>
-      </div>
-      <div className="justify-content-center d-flex">
-        <Row
-          xxl={3}
-          xl={3}
-          lg={3}
-          md={1}
-          sm={1}
-          xs={1}
-          style={{
-            paddingTop: width > 1000 ? 50 : 0,
-            paddingBottom: width > 1000 ? 100 : 0,
-            width: "50%",
-          }}
-        >
-          <div className="text-center fw-bold mb-4" style={{ fontSize: 20 }}>
-            <div style={{ color: " rgb(20, 60, 244)" }}>500,000+</div>
-            <div>MCQs</div>
-          </div>
-          <div className="text-center fw-bold mb-4" style={{ fontSize: 20 }}>
-            <div style={{ color: " rgb(20, 60, 244)" }}>300,000+</div>
-            <div>True/False Qs</div>
-          </div>
-          <div className="text-center fw-bold mb-4" style={{ fontSize: 20 }}>
-            <div style={{ color: " rgb(20, 60, 244)" }}>60,000+</div>
-            <div>Hours Saved!</div>
-          </div>
-        </Row>
-      </div>
-
-      <h2 className="text-center fw-bold mb-4">Product Demo</h2>
+      <h2 className="text-center fw-bold mb-4">Demo sản phẩm</h2>
       <div className="justify-content-center d-flex mb-4 mt-2 ">
         <h6
           className={`text-center ${styles.paragragh} fw-medium px-4 `}
           style={{ lineHeight: 1.8 }}
         >
-          Questgen provides an authoring tool to generate various kinds of
-          assessments like Multiple Choice Questions (MCQs), True/False
-          Questions, Fill-in-the-blanks, Higher-Order Questions, Bloom's
-          taxonomy quizzes, etc in one click. You can edit and make
-          modifications to the generated worksheet before exporting it as plain
-          text or JSON.
+          Questgen cung cấp một công cụ soạn thảo để tạo ra nhiều loại đánh giá
+          như Câu hỏi trắc nghiệm (MCQ), Câu hỏi Đúng/Sai, Câu hỏi loại điền vào
+          chỗ trống, Câu đố phân loại, v.v chỉ với 1 cú nhấp chuột Bạn có thể
+          chỉnh sửa và thực hiện sửa đổi bẳng tính được tạo trước khi xuất nó
+          dưới dạng đơn giản văn bản hoặc JSON.
         </h6>
       </div>
 
@@ -157,7 +117,7 @@ const HomeScreen = () => {
         ></iframe>
       </div>
 
-      <h2 className="text-center fw-bold mb-4 mt-4">How it works</h2>
+      <h2 className="text-center fw-bold mb-4 mt-4">Cách hoạt động</h2>
 
       <div className={`justify-content-center d-flex ${styles.stepContainer}`}>
         <Row
@@ -189,11 +149,10 @@ const HomeScreen = () => {
               display: "flex",
             }}
           >
-            <h3 className="text-center">01 Enter any text</h3>
+            <h3 className="text-center">01. Nhập 1 đoạn text bất kì</h3>
             <h6 className="text-center fw-medium px-4">
-              Enter any text (up to 2000 words), choose the type of quiz
-              questions to be generated (MCQ, True/False, Fill-in-the-blank, or
-              Higher Order QA), and click on Generate Questions.
+              Nhập đoạn text bất kì, chọn loại câu hỏi để khởi tạo(MCQ,
+              Đúng/Sai, Điền chỗ trống, Phân loại) và bấm tạo câu hỏi
             </h6>
           </div>
         </Row>
@@ -229,15 +188,15 @@ const HomeScreen = () => {
               display: "flex",
             }}
           >
-            <h3 className="text-center">02 Edit and export quiz</h3>
+            <h3 className="text-center">02. Chỉnh sửa câu hỏi</h3>
             <h6 className="text-center fw-medium px-4">
-              You can edit quiz questions and export them to PDF or text format.
+              Bạn còn có thể chỉnh sửa câu hỏi đã được tạo ra.
             </h6>
           </div>
         </Row>
       </div>
 
-      <h2 className="text-center fw-bold mb-4 mt-4">Who is it for?</h2>
+      <h2 className="text-center fw-bold mb-4 mt-4">Một số ứng dụng</h2>
 
       <div className={`justify-content-center d-flex ${styles.stepContainer}`}>
         <Row
@@ -269,12 +228,12 @@ const HomeScreen = () => {
                 />
               </div>
               <div className="mt-4 text-center ">
-                <h3 className="fw-bold">Teachers and Schools </h3>
+                <h3 className="fw-bold">Giáo viên và các trường học </h3>
                 <h6>
-                  Teachers and Schools can use the Questgen authoring tool to
-                  create worksheets easily in a few seconds. They can avoid
-                  repetitive questions chosen from a fixed question bank every
-                  year.
+                  Giáo viên và trường học có thể sử dụng công cụ soạn thảo
+                  Questgen để tạo các bộ câu hỏi dễ dàng trong vài giây. Họ có
+                  thể tránh được những câu hỏi lặp đi lặp lại được chọn từ ngân
+                  hàng câu hỏi cố định hàng năm.
                 </h6>
               </div>
             </div>
@@ -293,13 +252,12 @@ const HomeScreen = () => {
                 />
               </div>
               <div className="mt-4 text-center ">
-                <h3 className="fw-bold">HR Teams</h3>
+                <h3 className="fw-bold">Đội HR</h3>
                 <h6>
-                  HR teams can use Questgen to create assessments from
-                  compliance documents. Every time there is a change in
-                  policies, assessments could be generated and given to
-                  employees to make sure that they have read and understood the
-                  new policies.
+                  Nhóm nhân sự có thể sử dụng Questgen để tạo đánh giá từ các
+                  tài liệu tuân thủ. Mỗi khi có thay đổi về chính sách, các đánh
+                  giá có thể được tạo và đưa ra cho nhân viên để đảm bảo rằng họ
+                  đã đọc và hiểu các chính sách mới.
                 </h6>
               </div>
             </div>
@@ -319,12 +277,14 @@ const HomeScreen = () => {
               </div>
 
               <div className=" text-center " style={{ marginTop: 50 }}>
-                <h3 className="fw-bold">Publishers and Edtech Companies</h3>
+                <h3 className="fw-bold">
+                  Nhà xuất bản và các công ty công nghệ giáo dục
+                </h3>
                 <h6>
-                  Textbook publishers and edtech companies can use Questgen
-                  instead of outsourcing the assessment creation process. They
-                  can have a small in-house team and save hugely on time and
-                  cost.
+                  Các nhà xuất bản sách giáo khoa và các công ty công nghệ giáo
+                  dục có thể sử dụng Questgen thay vì thuê ngoài quy trình tạo
+                  đánh giá. Họ có thể có một đội ngũ nội bộ nhỏ và tiết kiệm rất
+                  nhiều thời gian và chi phí.
                 </h6>
               </div>
             </div>
@@ -332,34 +292,68 @@ const HomeScreen = () => {
         </Row>
       </div>
 
-      <h2 className="text-center fw-bold mb-4">Why choose Questgen?</h2>
+      <h2 className="text-center fw-bold mb-4">Tại sao nên sử dụng QuestGen</h2>
       <div className="justify-content-center d-flex mb-4 mt-2 ">
         <h6
           className={`text-center ${styles.paragragh} fw-medium px-4 `}
           style={{ lineHeight: 1.8 }}
         >
-          Questgen is built on multiple years of AI research by the founders
-          exclusively in question generation for edtech.
+          Sản phẩm đã đươc dựa trên QuestGen của ramsri@questgen.ai một công cụ
+          có số lượng lớn người sử dụng cùng với nhiều cải tiến khác nhau
         </h6>
       </div>
 
-      <h2 className="text-center fw-bold mb-4">What's the technology?</h2>
+      <div>
+        <h3 className="text-center fw-medium" style={{ marginTop: 100 }}>
+          <span>Được sử dụng bởi hơn 25000 người</span>
+        </h3>
+      </div>
+      <div className="justify-content-center d-flex">
+        <Row
+          xxl={3}
+          xl={3}
+          lg={3}
+          md={1}
+          sm={1}
+          xs={1}
+          style={{
+            paddingTop: width > 1000 ? 50 : 0,
+            paddingBottom: width > 1000 ? 100 : 0,
+            width: "50%",
+          }}
+        >
+          <div className="text-center fw-bold mb-4" style={{ fontSize: 20 }}>
+            <div style={{ color: " rgb(20, 60, 244)" }}>500,000+</div>
+            <div>MCQs</div>
+          </div>
+          <div className="text-center fw-bold mb-4" style={{ fontSize: 20 }}>
+            <div style={{ color: " rgb(20, 60, 244)" }}>300,000+</div>
+            <div>True/False Qs</div>
+          </div>
+          <div className="text-center fw-bold mb-4" style={{ fontSize: 20 }}>
+            <div style={{ color: " rgb(20, 60, 244)" }}>60,000+</div>
+            <div>Hours Saved!</div>
+          </div>
+        </Row>
+      </div>
+
+      <h2 className="text-center fw-bold mb-4">Công nghệ</h2>
       <div className="justify-content-center d-flex mb-4 mt-2 ">
         <h6
           className={`text-center ${styles.paragragh} fw-medium px-4 `}
           style={{ lineHeight: 1.8 }}
         >
-          Check out the Questgen open-source library as well as the detailed
-          talk on some of the algorithms that power Questgen.
+          Thư viện mã nguồn mở Questgen cũng như bài nói chuyện chi tiết về một
+          số thuật toán hỗ trợ Questgen.
         </h6>
       </div>
 
       <div className={`justify-content-center d-flex ${styles.stepContainer}`}>
         <Row
-          xxl={2}
-          xl={2}
-          lg={2}
-          md={2}
+          xxl={1}
+          xl={1}
+          lg={1}
+          md={1}
           sm={1}
           xs={1}
           style={{
@@ -386,18 +380,18 @@ const HomeScreen = () => {
 
               <div className=" text-center " style={{ marginTop: 50 }}>
                 <h3 className="fw-bold">
-                  Check out Questgen Open Source Library
+                  Cùng kiểm tra thư viện mã nguồn mở của QuestGen
                 </h3>
                 <Button
                   style={{ background: "rgb(94, 93, 240)" }}
                   className="mt-4 p-3 rounded-5"
                 >
-                  Questgen's Open Source Github Library
+                  Thư viện mã nguồn mở của QuestGen
                 </Button>
               </div>
             </div>
           </div>
-          <div className="p-2">
+          {/* <div className="p-2">
             <div
               style={{ background: "#f0f3f9", height: 600 }}
               className="p-4 rounded-4"
@@ -423,7 +417,7 @@ const HomeScreen = () => {
                 </Button>
               </div>
             </div>
-          </div>
+          </div> */}
         </Row>
       </div>
       <Footer />

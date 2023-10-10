@@ -8,29 +8,29 @@ const FaqsScreen = () => {
       <Header />
       <div style={{ marginTop: 120, marginBottom: 90 }}>
         <h1 className="text-center fw-bold" style={{ marginBottom: 50 }}>
-          Frequently Asked Questions
+          Những câu hỏi thường gặp
         </h1>
         <div>
           <Collapsable
-            question="What languages are supported by Questgen?"
-            answer="Questgen's primary support is English but it does work well with several other languages such as Spanish, French, Hindi, etc. You should try entering the text in your language of choice and see if the output is satisfactory."
+            question="QuestGen hỗ trợ những ngôn ngữ nào?"
+            answer="QuestGen hỗ trợ chính 2 ngôn ngữ là Tiếng Anh và Tiếng Việt nhưng cũng đồng thời hoạt động với một số ngôn ngữ khác. Bạn nên thử nhập văn bản của ngôn ngữ đó để xem nó có hoạt động hay không."
           />
           <Collapsable
-            question="How much content can I give as input to Questgen's engine? How many questions are generated?"
-            answer="Questgen can take text content of 2000 words as input and generates questions. If you have longer content, it is advised to divide it into chunks of 2000 words and generate questions with Questgen for each chunk. Depending on text length anywhere between 5 -20 questions are generated from every 2000-word article content."
+            question="Giới hạn số lượng nội dung mà QuestGen tạo ra? Có bao nhiêu câu hỏi có thể được tạo ra"
+            answer="QuestGen có thể xử lý được 1 số lượng lớn kí tự. Nếu bạn có một nội dung quá dài thì nên chia ra thành nhiểu đoạn nhỏ hơn.Số lượng câu hỏi phụ thuộc vào số lượng độ dài của nội dung mà bạn truyền vào."
           />
           <Collapsable
-            question="Can I request customizations if I get Questgen's B2B API?"
-            answer="Questgen's B2B API is geared toward companies planning to use Questgen and build an internal or external white-labeled solution. Customizations can be made to the API on a case-by-case basis depending on the complexity of the changes requested and the duration of the client contract. Please reach out for more information."
+            question="Có thể sử dụng hình ảnh để tạo câu hỏi được không?"
+            answer="Bạn có thể update hình ảnh lên và chúng tôi sẽ convert chúng thành pdf để có thể sử dụng được cho QuestGen."
           />
           <Collapsable
-            question="Can I get a trial of the API?"
-            answer="The API output is similar to the output on the web application. Hence users are encouraged to try the web app version to see if the output matches their expectations. In order to get the trial API, the user should have an active subscription to the web app. This helps filter non-serious clients from serious clients. Also, API access is generally provided to verifiable businesses and corresponding email addresses."
+            question="GuestGen có mất phí không?"
+            answer="QuestGen hoàn toàn miễn phí."
           />
-          <Collapsable
+          {/* <Collapsable
             question="What do unlimited runs for individual fair usage mean?"
             answer="Questgen considers 1500 runs monthly as individual fair use. If the given volume is exceeded any further usage for the month will be restricted. But you may request for higher volume if you have been a long-time customer or a customer on an annual subscription and have particularly high usage that month."
-          />
+          /> */}
         </div>
       </div>
       <Footer />

@@ -12,22 +12,21 @@ const PricingScreen = () => {
       <Header />
       <div style={{ marginTop: 80 }}>
         <h1 className="text-center" style={{ fontWeight: 800 }}>
-          App Pricing
+          Thu phí App
         </h1>
         <h5 className="text-center mt-4 fw-medium mb-2">
-          Generate high-volume questions and answers with our Pro plan. Cancel
-          any time.
+          Tạo số lượng lớn câu hỏi và câu trả lời mà không mất phí
         </h5>
-        <h6 className="text-center mt-2 fw-light">
+        {/* <h6 className="text-center mt-2 fw-light">
           If you are a company looking to integrate Questgen's API, please check
           API pricing here.
-        </h6>
+        </h6> */}
         <div className="d-flex justify-content-center">
           <Row
-            xxl={2}
-            xl={2}
-            lg={2}
-            md={2}
+            xxl={1}
+            xl={1}
+            lg={1}
+            md={1}
             sm={1}
             xs={1}
             style={{
@@ -47,28 +46,28 @@ const PricingScreen = () => {
                   className="text-center fw-bold"
                   style={{ color: "rgb(94, 93, 240)" }}
                 >
-                  Basic
+                  Cơ bản
                 </h3>
 
-                <h4 className="text-center fw-bold">Free</h4>
+                <h4 className="text-center fw-bold">Miễn Phí!</h4>
                 <h5 className="text-center fw-light" style={{ marginTop: 50 }}>
-                  Get started for free and try out Questgen.
+                  Thử ngay QuestGen một cách miến phí
                 </h5>
                 <h5 className=" fw-light" style={{ marginTop: 100 }}>
-                  ✓ Get started with 20 Free Runs
+                  ✓ Không giới hạn số lượng câu hỏi
                 </h5>
-                <h5 className=" fw-light">✓ Email support</h5>
+                {/* <h5 className=" fw-light">✓ Email support</h5> */}
                 <div className=" text-center " style={{ marginTop: 100 }}>
                   <Button
                     style={{ background: "rgb(94, 93, 240)" }}
                     className={`mt-4 py-2 px-3 rounded-5 ${styles.buttonShadow}`}
                   >
-                    Get Started!
+                    Bắt đầu!
                   </Button>
                 </div>
               </div>
             </div>
-            <div className="p-2">
+            {/* <div className="p-2">
               <div
                 style={{ background: "#f0f3f9", height: 600 }}
                 className={`p-4 rounded-4 ${styles.shadow}`}
@@ -98,7 +97,7 @@ const PricingScreen = () => {
                   </Button>
                 </div>
               </div>
-            </div>
+            </div> */}
           </Row>
         </div>
       </div>
