@@ -39,8 +39,7 @@ const HighOrderScreen = () => {
                 style={{ fontWeight: 900, fontSize: 52, marginBottom: 32 }}
               >
                 <span>
-                  Create higher-order questions on different levels of Bloom's
-                  Taxonomy.
+                Tạo các câu hỏi bậc cao hơn ở các cấp độ khác nhau của Phân loại tư duy của Bloom.
                 </span>
                 <span style={{ color: "blue" }}>(Bloom's Taxonomy.)</span>
               </h1>
@@ -49,8 +48,8 @@ const HighOrderScreen = () => {
                 style={{ color: "#6b6f76" }}
               >
                 <div>
-                  Questgen is an online tool to generate automatically using
-                  advanced AI techniques.
+                  
+Questgen là một công cụ trực tuyến để tạo tự động bằng các kỹ thuật AI tiên tiến.
                 </div>
               </h4>
               <div className="d-flex justify-content-center">
@@ -65,7 +64,7 @@ const HighOrderScreen = () => {
                   className={`px-4 py-3 fw-bold ${styles.shadow}`}
                   onClick={() => navigate("/dashboard")}
                 >
-                  Get started for free
+                  Bắt đầu miễn phí
                 </Button>
               </div>
             </div>
@@ -87,14 +86,10 @@ const HighOrderScreen = () => {
       <div className="d-flex justify-content-center">
         <div className="" style={{ width: 1000 }}>
           <h1 className="text-center" style={{ fontWeight: 700 }}>
-            A sophisticated AI to generate Higher-Order questions from any text
-            in one click!
+          Một AI phức tạp để tạo ra các câu hỏi bậc cao hơn từ bất kỳ văn bản nào chỉ bằng một cú nhấp chuột!
           </h1>
           <h6 className="text-center fw-medium mt-4">
-            Questgen provides a simple one-click solution to generate quizzes
-            that need reasoning and critical thinking skills. You can try out
-            Questgen for free (No credit card needed!). Simply sign-up and you
-            are good to go!
+          Questgen cung cấp giải pháp đơn giản chỉ bằng một cú nhấp chuột để tạo ra các câu đố cần kỹ năng suy luận và tư duy phản biện. Bạn có thể dùng thử Questgen miễn phí (Không cần thẻ tín dụng!).
           </h6>
           <div className="justify-content-center d-flex p-4">
             <Image
@@ -104,76 +99,66 @@ const HighOrderScreen = () => {
           </div>
 
           <h1 className="text-center" style={{ fontWeight: 700 }}>
-            What is Bloom's Taxonomy?
+          Phân loại của Bloom là gì?
           </h1>
           <h6 className="text-center fw-medium mt-4">
-            Bloom's Taxonomy is a classification method to classify the learning
-            objectives of students into different levels of complexity ranging
-            from factual retrieval to critical thinking.
+            
+Thang phân loại của Bloom là một phương pháp phân loại nhằm phân loại mục tiêu học tập của học sinh thành các mức độ phức tạp khác nhau, từ truy xuất dữ kiện đến tư duy phản biện.
           </h6>
 
           <h1
             className="text-center"
             style={{ fontWeight: 700, marginTop: 50 }}
           >
-            The different levels of Bloom's Taxonomy
+            
+Các cấp độ khác nhau của thang phân loại Bloom
           </h1>
 
           <div className="p-4">
-            <h2 style={{ fontWeight: 700 }}>Remember</h2>
+            <h2 style={{ fontWeight: 700 }}>Ghi nhớ</h2>
             <h6 className=" fw-medium mt-2">
-              This is the lowest level of the taxonomy. At this level, you are
-              allowed to take in as much information as possible. It involves
-              listening, reading, memorizing, etc. This level mostly involves
-              the retrieval of factual information as a learning objective.
+              
+Đây là mức thấp nhất của phân loại. Ở cấp độ này, bạn được phép tiếp nhận càng nhiều thông tin càng tốt. Nó liên quan đến việc nghe, đọc, ghi nhớ, v.v. Cấp độ này chủ yếu liên quan đến việc lấy lại thông tin thực tế như một mục tiêu học tập.
             </h6>
           </div>
 
           <div className="p-4">
-            <h2 style={{ fontWeight: 700 }}>Understand</h2>
+            <h2 style={{ fontWeight: 700 }}>Thấu hiểu</h2>
             <h6 className=" fw-medium mt-2">
-              This level involves you placing these pieces of information into
-              different classes and trying to find similarities, differences,
-              and meeting points. The learning objectives here are comparing,
-              contrasting, summarizing, exemplifying, the content, etc.
+            Cấp độ này liên quan đến việc bạn đặt những mẩu thông tin này vào các lớp khác nhau và cố gắng tìm ra những điểm tương đồng, khác biệt và điểm gặp gỡ. Mục tiêu học tập ở đây là so sánh, đối chiếu, tóm tắt, ví dụ, nội dung, v.v.
             </h6>
           </div>
 
           <div className="p-4">
-            <h2 style={{ fontWeight: 700 }}>Apply</h2>
+            <h2 style={{ fontWeight: 700 }}>Áp dụng</h2>
             <h6 className=" fw-medium mt-2">
-              At this level, you use this categorized knowledge and try to apply
-              it in your everyday life scenarios, relate ​it to recent
-              happenings, etc. This helps solidify what you understand and its
-              retention. You try to act out, display, relate, execute, etc.
+              
+Ở cấp độ này, bạn sử dụng kiến ​​thức đã phân loại này và cố gắng áp dụng nó vào các tình huống cuộc sống hàng ngày của mình, liên hệ nó với những sự kiện xảy ra gần đây, v.v. Điều này giúp củng cố những gì bạn hiểu và ghi nhớ nó. Bạn cố gắng diễn xuất, thể hiện, liên hệ, thực hiện, v.v.
             </h6>
           </div>
 
           <div className="p-4">
-            <h2 style={{ fontWeight: 700 }}>Analyze</h2>
+            <h2 style={{ fontWeight: 700 }}>Phân tích</h2>
             <h6 className=" fw-medium mt-2">
-              At the analysis level, you organize, brainstorm, and differentiate
-              all the gathered information while attributing to its results.
-              This is where critical thinking gets involved.
+              
+Ở cấp độ phân tích, bạn sắp xếp, động não và phân biệt tất cả thông tin được thu thập đồng thời đưa ra kết quả của nó. Đây là nơi tư duy phản biện được tham gia.
             </h6>
           </div>
 
           <div className="p-4">
-            <h2 style={{ fontWeight: 700 }}>Evaluate</h2>
+            <h2 style={{ fontWeight: 700 }}>
+Đánh giá</h2>
             <h6 className=" fw-medium mt-2">
-              At the evaluation level, you make a well-thought judgment or an
-              interpretation of the information and results at your disposal.
-              You evaluate or give thoughts on the statement, either for it or
-              against it.
+              
+Ở cấp độ đánh giá, bạn đưa ra phán đoán được cân nhắc kỹ lưỡng hoặc diễn giải thông tin và kết quả theo ý của bạn. Bạn đánh giá hoặc đưa ra suy nghĩ về tuyên bố đó, ủng hộ hoặc phản đối nó
             </h6>
           </div>
 
           <div className="p-4">
-            <h2 style={{ fontWeight: 700 }}>Create</h2>
+            <h2 style={{ fontWeight: 700 }}>Khởi tạo</h2>
             <h6 className=" fw-medium mt-2">
-              At the highest level of Bloom's Taxonomy, you have adequate
-              knowledge of the particular concept and now you can create designs
-              and solutions to the problems yourself.
+              
+Ở cấp độ cao nhất của Phân loại tư duy của Bloom, bạn có đủ kiến ​​thức về khái niệm cụ thể và bây giờ bạn có thể tự mình tạo ra các thiết kế và giải pháp cho các vấn đề.
             </h6>
           </div>
 
@@ -181,18 +166,17 @@ const HighOrderScreen = () => {
             className="text-center"
             style={{ fontWeight: 700, marginTop: 100 }}
           >
-            How does Questgen help generate Higher Order Questions On Blooms
-            Taxonomy?
+            Questgen giúp tạo ra các câu hỏi bậc cao hơn về phân loại Blooms như thế nào?
           </h1>
           <div className="p-4">
             <h6 className=" fw-medium mt-4">
-              Using Questgen, you can generate various types of quizzes using AI
-              that cater to different levels of Bloom's Taxonomy in one click:
+              
+Khi sử dụng Questgen, bạn có thể tạo nhiều loại câu đố khác nhau bằng AI phục vụ cho các cấp độ Phân loại khác nhau của Bloom chỉ bằng một cú nhấp chuột:
             </h6>
-            <h6> - Multiple Choice Questions</h6>
-            <h6> - True or False Questions</h6>
-            <h6> - FAQs</h6>
-            <h6> - Higher-Order Questions and Answers</h6>
+            <h6> - Câu hỏi trắc nghiệm</h6>
+            <h6> - Câu hỏi đúng sai</h6>
+            <h6> - Câu hỏi thường gặp</h6>
+            <h6> - Câu hỏi bậc cao</h6>
           </div>
         </div>
       </div>
