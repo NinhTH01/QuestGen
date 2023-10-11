@@ -1,5 +1,6 @@
 import React from "react";
 import { questgenRepository } from "../repository/questgen-repository";
+import { bloomData, data } from "../sample/data/sampleGen";
 
 export function useQuestgen(
   route: number
@@ -21,33 +22,32 @@ export function useQuestgen(
 ] {
   const [answer, setAnswer] = React.useState<any>([]);
 
+  const [res, setRes] = React.useState<any>(bloomData);
+
+  // console.log(res);
+
   // const [loading, setLoading] = React.useState<boolean>(false);
 
-  const handleFindCorrectIndex = React.useCallback((r: any, level: string) => {
-    let result: any;
-    if (level === "0") {
-      result = r["easy"];
-    } else if (level === "1") {
-      result = r["medium"];
-    } else {
-      result = r["hard"];
-    }
-
-    result = result.map((r: any) => {
-      const correctIndex = r?.options?.findIndex((value: any) => {
-        return value === r["true option"][0];
-      });
-
-      r = {
-        ...r,
-        correctAnswerIndices: [correctIndex],
-      };
-
-      return r;
-    });
-
-    setAnswer(result);
-  }, []);
+  const handleFindCorrectIndex = React.useCallback(
+    (r: any) => {
+      if (route === 0) {
+        const finalResult = r?.map((result: any) => {
+          const correctIndex = result?.options?.findIndex((value: any) => {
+            return value === result["true option"][0];
+          });
+          result = {
+            ...result,
+            correctAnswerIndices: correctIndex,
+          };
+          return result;
+        });
+        setAnswer(finalResult);
+      } else {
+        setAnswer(r);
+      }
+    },
+    [route]
+  );
 
   const handleGenQuest = React.useCallback(
     async (
@@ -65,6 +65,7 @@ export function useQuestgen(
           easy: count,
           medium: 0,
           hard: 0,
+          language: "english",
         };
       } else if (level === "1") {
         data = {
@@ -73,6 +74,7 @@ export function useQuestgen(
           easy: 0,
           medium: count,
           hard: 0,
+          language: "english",
         };
       } else {
         data = {
@@ -81,31 +83,31 @@ export function useQuestgen(
           easy: 0,
           medium: 0,
           hard: count,
+          language: "english",
         };
       }
 
-      if (
-        context !== "" &&
-        !isNaN(Number(questType)) &&
-        !isNaN(Number(level))
-      ) {
-        try {
-          const response = questgenRepository.product(data);
+      console.log(data);
 
-          response.then((r) => {
-            handleFindCorrectIndex(r, level);
-          });
+      if (context !== "" && !isNaN(Number(level))) {
+        try {
+          // const response = questgenRepository.product(data);
+          // response.then((r) => {
+          //   // setRes(r);
+          //   handleFindCorrectIndex(r);
+          // });
+          handleFindCorrectIndex(res);
         } catch (error: any) {
           console.error(`API Error: ${error?.message}`);
         }
       }
     },
-    [handleFindCorrectIndex]
+    [handleFindCorrectIndex, res]
   );
 
   const handleChange = React.useCallback(
     (indexAnswer: number, indexQuestion: number) => (e: any) => {
-      if (route === 0 || route === 1) {
+      if (route === 0) {
         answer[indexQuestion].options[indexAnswer] = e.target.value;
 
         setAnswer([...answer]);
@@ -116,9 +118,12 @@ export function useQuestgen(
 
   const handleChecked = React.useCallback(
     (indexAnswer: number, indexQuestion: number) => () => {
+      console.log(indexAnswer, indexQuestion);
       if (route === 0) {
-        answer[indexQuestion].correctAnswerIndices = [indexAnswer];
+        answer[indexQuestion].correctAnswerIndices = indexAnswer;
         setAnswer([...answer]);
+      } else if (route === 1) {
+        answer[indexQuestion].answer = indexAnswer === 1 ? "False" : "True";
       }
     },
     [answer, route]

@@ -88,8 +88,6 @@ const useHeadingsData = (content: any) => {
 
     // Created a list of headings, with H3s nested
     const newNestedHeadings = getNestedHeadings(tableContent);
-
-    console.log(newNestedHeadings, "22");
     setNestedHeadings(newNestedHeadings);
   }, [content]);
 
@@ -250,7 +248,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
           >
             <div style={{ fontWeight: "bold" }}> Table of Contents</div>
 
-            <div style={{ paddingRight: 28, marginRight: 8 }} >
+            <div style={{ paddingRight: 28, marginRight: 8 }}>
               <Button
                 className=""
                 style={{

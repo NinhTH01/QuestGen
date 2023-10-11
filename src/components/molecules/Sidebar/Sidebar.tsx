@@ -20,7 +20,7 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
                   route === 0 ? "fw-bold" : "fw-medium"
                 }`}
               >
-                Home
+                Câu hỏi trắc nghiệm
               </span>
             </Nav.Link>
           </Nav.Item>
@@ -31,7 +31,7 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
                   route === 1 ? "fw-bold" : "fw-medium"
                 } `}
               >
-                Bloom's Quiz
+                Câu hỏi đúng sai
               </span>
             </Nav.Link>
           </Nav.Item>
@@ -42,7 +42,7 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
                   route === 2 ? "fw-bold" : "fw-medium"
                 } `}
               >
-                Similiar Quiz
+                Câu hỏi điền vào chỗ trống
               </span>
             </Nav.Link>
           </Nav.Item>

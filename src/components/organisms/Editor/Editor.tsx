@@ -1,33 +1,32 @@
 import React from "react";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.bubble.css";
 import TableOfContents from "../TableOfContent/TableOfContent";
-import katex from "katex";
+import "react-quill/dist/quill.bubble.css";
+import "katex/dist/katex.min.css";
 
-window.katex = katex;
-// import TableOfContent from "../TableOfContent/TableOfContent";
 const Editor: React.FC<EditorProps> = ({
   type,
   level,
   handleQuestgen,
   count,
-  defaultValue
+  defaultValue,
+  handleEditorChange,
 }) => {
   const [html, setHTML] = React.useState<any>("");
 
-  const katex = require("katex");
+  // const katex = require("katex");
 
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, false] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
-      [
-        { list: "ordered" },
-        { list: "bullet" },
-        { indent: "-1" },
-        { indent: "+1" },
-      ],
-      ["link", "image"],
+      // [
+      //   { list: "ordered" },
+      //   { list: "bullet" },
+      //   { indent: "-1" },
+      //   { indent: "+1" },
+      // ],
+      // ["link", "image"],
       ["formula"],
     ],
   };
@@ -39,26 +38,30 @@ const Editor: React.FC<EditorProps> = ({
     "underline",
     "strike",
     "blockquote",
-    "list",
+    // "list",
     "bullet",
     "formula",
-    "indent",
-    "link",
+    // "link",
     "image",
   ];
 
-  const handleChange = React.useCallback((html: any) => {
-    var divContainer = document.querySelectorAll(
-      "div.quill h2, div.quill strong, div.quill h3"
-    );
-    // return divContainer.textContent || divContainer.innerText || "";
-
-    // var divContainer1 = document.createElement("div");
-    // divContainer1.innerHTML = html;
-    // // return divContainer.textContent || divContainer.innerText || "";
-    // console.log(divContainer1.innerHTML);
-    setHTML(divContainer);
-  }, []);
+  const handleChange = React.useCallback(
+    (html: any) => {
+      var divContainer = document.querySelectorAll(
+        "div.quill h2, div.quill strong, div.quill h3"
+      );
+      if (handleEditorChange) {
+        var divContainer1 = document.createElement("div");
+        divContainer1.innerHTML = html;
+        console.log(divContainer1.textContent || divContainer1.innerText);
+        handleEditorChange(
+          divContainer1.textContent || divContainer1.innerText
+        );
+      }
+      setHTML(divContainer);
+    },
+    [handleEditorChange]
+  );
 
   return (
     <>
@@ -68,7 +71,7 @@ const Editor: React.FC<EditorProps> = ({
         modules={modules}
         formats={formats}
         defaultValue={defaultValue}
-        style={{ background: "white", width: "100%", height: 300 }}
+        style={{ background: "white", width: "100%", minHeight: 600 }}
       ></ReactQuill>
       <TableOfContents
         content={html}
@@ -87,6 +90,7 @@ export interface EditorProps {
   level: any;
   count: number;
   defaultValue?: string;
+  handleEditorChange?: any;
 }
 
 export default Editor;

@@ -14,112 +14,178 @@ const BloomDashboard: React.FC<BloomDashboardProps> = ({
   handleQuestion,
   handleGenQuest,
 }) => {
+  const [count, setCount] = React.useState(1);
+
+  const [level, setLevel] = React.useState<string>("0");
+
   const [content, setContent] = React.useState<string>(
     "Elon Musk has shown again he can influence the digital currency market with just his tweets. After saying that his electric vehicle-making company Tesla will not accept payments in Bitcoin because of environmental concerns, he tweeted that he was working with developers of Dogecoin to improve system transaction efficiency. Following the two distinct statements from him, the world's largest cryptocurrency hit a two-month low, while Dogecoin rallied by about 20 percent. The SpaceX CEO has in recent months often tweeted in support of Dogecoin, but rarely for Bitcoin.  In a recent tweet, Musk put out a statement from Tesla that it was concerned about the rapidly increasing use of fossil fuels for Bitcoin (price in India) mining and transaction, and hence was suspending vehicle purchases using the cryptocurrency. A day later he again tweeted saying, To be clear, I strongly believe in crypto, but it can't drive a massive increase in fossil fuel use, especially coal. It triggered a downward spiral for Bitcoin value but the cryptocurrency has stabilised since.  A number of Twitter users welcomed Musk's statement. One of them said it's time people started realising that Dogecoin is here to stay and another referred to Musk's previous assertion that crypto could become the world's future currency."
   );
 
-  const characterCount = React.useMemo(() => {
-    return content.length;
-  }, [content.length]);
+  const handleEditorChange = React.useCallback((text: string) => {
+    setContent(text);
+  }, []);
+
+  const DummyText =
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+
+  console.log(array);
 
   return (
     <>
-      <h5 className="text-center fw-bold mt-4">
-        Generate questions on different levels of Bloom's Taxonomy.
-      </h5>
+      <h5 className="text-center fw-bold mt-4">Tạo các câu hỏi đúng/sai</h5>
       <Row xxl={2} xl={2} lg={2} md={2} sm={2} xs={1} style={{ width: "100%" }}>
         <Col className="bg-light" style={{ padding: 60 }}>
           <div className="mb-4">
-            <h6 style={{ fontWeight: 400 }}>
-              Questions? Write to: ramsri@questgen.ai
+            <h6 style={{ fontWeight: 400 }} className=" fw-bold ">
+              Nhập văn bản có nội dung bất kì. Hỗ trợ tốt với Tiếng Việt và
+              Tiếng Anh
             </h6>
           </div>
-          <div className="mb-4">
-            <h6 style={{ fontWeight: 400 }}>
-              Suggested text length: 50 - 1000 words. Supports English.
-            </h6>
-          </div>
-          <h6 style={{ fontWeight: 600, color: "green", fontSize: 14 }}>
-            Character Count: {characterCount}
-          </h6>
 
           <div className="d-flex justify-content-center mb-4">
             <Editor
               handleQuestgen={handleGenQuest}
-              type={"boolean"}
-              level={"0"}
-              count={1}
+              type={"tf"}
+              level={level}
+              count={count}
+              defaultValue={DummyText}
+              handleEditorChange={handleEditorChange}
             />
           </div>
 
+          {/* <Form.Select
+            aria-label="Default select example"
+            value={type}
+            onChange={(e: any) => setType(e.currentTarget.value)}
+          >
+            <option value="0">MCQ</option>
+            <option value="1">MCQ(Multiple Correct Answers)</option>
+            <option value="2">TrueFalse</option>
+            <option value="3">Fill in the blanks</option>
+            <option value="4">FAQ</option>
+            <option value="5">Higher Order QA</option>
+          </Form.Select> */}
+          <Row
+            xxl={2}
+            xl={2}
+            lg={2}
+            md={2}
+            sm={2}
+            xs={2}
+            style={{
+              width: "100%",
+              marginLeft: 1,
+              marginTop: 16,
+            }}
+          >
+            <Col style={{ paddingLeft: 0 }}>
+              <h6 className="fw-medium px-1" style={{ fontSize: 15 }}>
+                Số lượng
+              </h6>
+              <Form.Select
+                aria-label="Default select example"
+                onChange={(e: any) => setCount(e.currentTarget.value)}
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </Form.Select>
+            </Col>
+
+            <Col style={{ paddingRight: 0 }}>
+              <h6 className="fw-medium px-1" style={{ fontSize: 15 }}>
+                Độ khó
+              </h6>
+
+              <Form.Select
+                aria-label="Default select example"
+                value={level}
+                onChange={(e: any) => setLevel(e.currentTarget.value)}
+              >
+                <option value="0">Dễ</option>
+                <option value="1">Trung bình</option>
+                <option value="2">Khó</option>
+              </Form.Select>
+            </Col>
+          </Row>
           <Button
             style={{ width: "100%" }}
             className="mt-4 fw-bold"
-            onClick={() => handleGenQuest(content, "boolean", "0", 1)}
+            onClick={() => handleGenQuest(content, "tf", level, count)}
           >
-            Try for free
+            Tạo câu hỏi
           </Button>
         </Col>
         <Col className=" bg-light">
-          <div className=" justify-content-end d-flex p-4">
-            {array.length > 0 && (
-              <div className=" justify-content-end d-flex p-4">
-                <Button
-                  style={{ marginRight: 16 }}
-                  className="px-4 rounded-2 fw-bold"
-                  onClick={() => setEdit(!isEdit)}
-                >
-                  {`${isEdit ? "SAVE" : "EDIT"}`}
-                </Button>
-                <Button className="px-4 rounded-2 fw-bold">EXPORT</Button>
-              </div>
-            )}
-          </div>
+          {array.length > 0 && (
+            <div className=" justify-content-end d-flex p-4">
+              <Button
+                style={{ marginRight: 16 }}
+                className="px-4 rounded-2 fw-bold"
+                onClick={() => setEdit(!isEdit)}
+              >
+                {`${isEdit ? "Lưu" : "Sửa"}`}
+              </Button>
+              {/* <Button className="px-4 rounded-2 fw-bold">EXPORT</Button> */}
+            </div>
+          )}
+
           {isEdit ? (
             <ReactSortable list={array} setList={setArray}>
               {array?.map((value: any, _index: number) => {
                 return (
                   <Form
                     className={`p-4 bg-white m-4 ${styles.shadowAnswerBox} rounded-2`}
+                    key={_index}
                   >
-                    <h6 className=" text-danger fw-bold mb-4">
-                      {" "}
-                      {value?.context}{" "}
-                    </h6>
                     <Form.Control
                       as={"textarea"}
                       id="inputPassword5"
                       className="fw-bold mb-2"
                       placeholder={value?.question}
-                      style={{ fontSize: 18 }}
                       value={value?.question}
+                      style={{ fontSize: 18 }}
                       onChange={handleQuestion(_index)}
                     />
 
-                    {value?.answers?.map((answer: any, index: number) => {
-                      return (
-                        <div className="d-flex align-items-center" key={index}>
-                          {value?.context}{" "}
-                          <Form.Check
-                            checked={true}
-                            onClick={handleChecked(index, _index)}
-                            inline
-                            name="group1"
-                            type={"radio"}
-                            id={`inline-${"radio"}-${index}`}
-                          />
-                          <Form.Control
-                            as={"textarea"}
-                            id="inputPassword5"
-                            className={`${"fw-bold"} text-black mt-2`}
-                            style={{ marginRight: 0 }}
-                            placeholder={answer}
-                            onChange={handleChange(index, _index)}
-                            value={answer}
-                          />
-                        </div>
-                      );
-                    })}
+                    <div className="d-flex align-items-center">
+                      <Form.Check
+                        defaultChecked={value?.answer === "True"}
+                        onClick={handleChecked(0, _index)}
+                        inline
+                        name="group1"
+                        type={"radio"}
+                        id={`inline-${"radio"}-${0}`}
+                      />
+                      <h5
+                        className={`${
+                          value?.answer === "True" ? "fw-bold" : "fw-medium"
+                        } text-black mt-2`}
+                      >
+                        Đúng
+                      </h5>
+                    </div>
+
+                    <div className="d-flex align-items-center">
+                      <Form.Check
+                        defaultChecked={value?.answer === "False"}
+                        onClick={handleChecked(1, _index)}
+                        inline
+                        name="group1"
+                        type={"radio"}
+                        id={`inline-${"radio"}-${1}`}
+                      />
+                      <h5
+                        className={`${
+                          value?.answer === "False" ? "fw-bold" : "fw-medium"
+                        } text-black mt-2`}
+                      >
+                        Sai
+                      </h5>
+                    </div>
                   </Form>
                 );
               })}
@@ -131,21 +197,30 @@ const BloomDashboard: React.FC<BloomDashboardProps> = ({
                   className={`p-4 bg-white m-4 ${styles.shadowAnswerBox} rounded-2`}
                   key={index}
                 >
-                  <h6 className=" text-danger fw-bold mb-4">
-                    {" "}
-                    {value?.context}{" "}
-                  </h6>
                   <h5 className="mb-4 fw-bold">{value?.question}</h5>
-                  {value?.answers?.map((answer: any, index: number) => (
-                    <h6
-                      key={index}
-                      className={`${"fw-bold"} m-2`}
-                      style={{
-                        color: "rgb(22,163,74)",
-                        fontSize: 16,
-                      }}
-                    >{`-      ${answer}`}</h6>
-                  ))}
+
+                  <h6
+                    className={`${
+                      value?.answer === "True" ? "fw-bold" : "fw-medium"
+                    } m-2`}
+                    style={{
+                      color:
+                        value?.answer === "True" ? "rgb(22,163,74)" : "black",
+
+                      fontSize: 16,
+                    }}
+                  >{`- Đúng`}</h6>
+                  <h6
+                    className={`${
+                      value?.answer === "False" ? "fw-bold" : "fw-medium"
+                    } m-2`}
+                    style={{
+                      color:
+                        value?.answer === "False" ? "rgb(22,163,74)" : "black",
+
+                      fontSize: 16,
+                    }}
+                  >{`- Sai`}</h6>
                 </div>
               );
             })

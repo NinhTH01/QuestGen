@@ -14,9 +14,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
   handleQuestion,
   handleGenQuest,
 }) => {
-  const [count, setCount] = React.useState(0);
-
-  const [type, setType] = React.useState<string>("0");
+  const [count, setCount] = React.useState(1);
 
   const [level, setLevel] = React.useState<string>("0");
 
@@ -24,12 +22,8 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
     "Elon Musk has shown again he can influence the digital currency market with just his tweets. After saying that his electric vehicle-making company Tesla will not accept payments in Bitcoin because of environmental concerns, he tweeted that he was working with developers of Dogecoin to improve system transaction efficiency. Following the two distinct statements from him, the world's largest cryptocurrency hit a two-month low, while Dogecoin rallied by about 20 percent. The SpaceX CEO has in recent months often tweeted in support of Dogecoin, but rarely for Bitcoin.  In a recent tweet, Musk put out a statement from Tesla that it was concerned about the rapidly increasing use of fossil fuels for Bitcoin (price in India) mining and transaction, and hence was suspending vehicle purchases using the cryptocurrency. A day later he again tweeted saying, To be clear, I strongly believe in crypto, but it can't drive a massive increase in fossil fuel use, especially coal. It triggered a downward spiral for Bitcoin value but the cryptocurrency has stabilised since.  A number of Twitter users welcomed Musk's statement. One of them said it's time people started realising that Dogecoin is here to stay and another referred to Musk's previous assertion that crypto could become the world's future currency."
   );
 
-  const characterCount = React.useMemo(() => {
-    return content.length;
-  }, [content.length]);
-
-  const handleChangeContent = React.useCallback((e: any) => {
-    setContent(e.target.value);
+  const handleEditorChange = React.useCallback((text: string) => {
+    setContent(text);
   }, []);
 
   const DummyText =
@@ -37,49 +31,26 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
 
   return (
     <>
-      <h5 className="text-center fw-bold mt-4">
-        Generate different quizzes like MCQs, True or False, Fill-in-the-blanks,
-        FAQs etc
-      </h5>
+      <h5 className="text-center fw-bold mt-4">Tạo các câu hỏi trắc nghiệm</h5>
       <Row xxl={2} xl={2} lg={2} md={2} sm={2} xs={1} style={{ width: "100%" }}>
         <Col className="bg-light" style={{ padding: 60 }}>
           <div className="mb-4">
-            <h6 style={{ fontWeight: 400 }}>
-              Questions? Write to: ramsri@questgen.ai
+            <h6 style={{ fontWeight: 400 }} className=" fw-bold ">
+              Nhập văn bản có nội dung bất kì. Hỗ trợ tốt với Tiếng Việt và
+              Tiếng Anh
             </h6>
           </div>
-          <div className="mb-4">
-            <h6 style={{ fontWeight: 400 }}>
-              Suggested text length: 50 - 3000 words. Supports English and other
-              major languages
-            </h6>
-          </div>
-          <h6 style={{ fontWeight: 600, color: "green", fontSize: 14 }}>
-            Character Count: {characterCount}
-          </h6>
 
           <div className="d-flex justify-content-center mb-4">
             <Editor
               handleQuestgen={handleGenQuest}
-              type={"multiple choice"}
+              type={"mcq"}
               level={level}
               count={count}
               defaultValue={DummyText}
+              handleEditorChange={handleEditorChange}
             />
           </div>
-
-          <Form.Select
-            aria-label="Default select example"
-            value={type}
-            onChange={(e: any) => setType(e.currentTarget.value)}
-          >
-            <option value="0">MCQ</option>
-            <option value="1">MCQ(Multiple Correct Answers)</option>
-            <option value="2">TrueFalse</option>
-            <option value="3">Fill in the blanks</option>
-            <option value="4">FAQ</option>
-            <option value="5">Higher Order QA</option>
-          </Form.Select>
           <Row
             xxl={2}
             xl={2}
@@ -95,13 +66,12 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
           >
             <Col style={{ paddingLeft: 0 }}>
               <h6 className="fw-medium px-1" style={{ fontSize: 15 }}>
-                Count
+                Số lượng
               </h6>
               <Form.Select
                 aria-label="Default select example"
                 onChange={(e: any) => setCount(e.currentTarget.value)}
               >
-                <option>0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -112,7 +82,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
 
             <Col style={{ paddingRight: 0 }}>
               <h6 className="fw-medium px-1" style={{ fontSize: 15 }}>
-                Difficulty Level
+                Độ khó
               </h6>
 
               <Form.Select
@@ -120,20 +90,18 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
                 value={level}
                 onChange={(e: any) => setLevel(e.currentTarget.value)}
               >
-                <option value="0">Easy</option>
-                <option value="1">Medium</option>
-                <option value="2">Hard</option>
+                <option value="0">Dễ</option>
+                <option value="1">Trung bình</option>
+                <option value="2">Khó</option>
               </Form.Select>
             </Col>
           </Row>
           <Button
             style={{ width: "100%" }}
             className="mt-4 fw-bold"
-            onClick={() =>
-              handleGenQuest(content, "multiple choice", level, count)
-            }
+            onClick={() => handleGenQuest(content, "mcq", level, count)}
           >
-            Try for free
+            Tạo câu hỏi
           </Button>
         </Col>
         <Col className=" bg-light">
@@ -144,9 +112,8 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
                 className="px-4 rounded-2 fw-bold"
                 onClick={() => setEdit(!isEdit)}
               >
-                {`${isEdit ? "SAVE" : "EDIT"}`}
+                {`${isEdit ? "Lưu" : "Sửa"}`}
               </Button>
-              <Button className="px-4 rounded-2 fw-bold">EXPORT</Button>
             </div>
           )}
 
@@ -156,6 +123,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
                 return (
                   <Form
                     className={`p-4 bg-white m-4 ${styles.shadowAnswerBox} rounded-2`}
+                    key={_index}
                   >
                     <Form.Control
                       as={"textarea"}
@@ -171,7 +139,9 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
                       return (
                         <div className="d-flex align-items-center" key={index}>
                           <Form.Check
-                            checked={index === value.correctAnswerIndices[0]}
+                            defaultChecked={
+                              index === value.correctAnswerIndices
+                            }
                             onClick={handleChecked(index, _index)}
                             inline
                             name="group1"
@@ -182,7 +152,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
                             as={"textarea"}
                             id="inputPassword5"
                             className={`${
-                              index === value.correctAnswerIndices[0]
+                              index === value.correctAnswerIndices
                                 ? "fw-bold"
                                 : "fw-medium"
                             } text-black mt-2`}
@@ -210,13 +180,13 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
                     <h6
                       key={index}
                       className={`${
-                        index === value.correctAnswerIndices[0]
+                        index === value.correctAnswerIndices
                           ? "fw-bold"
                           : "fw-medium"
                       } m-2`}
                       style={{
                         color:
-                          index === value?.correctAnswerIndices[0]
+                          index === value?.correctAnswerIndices
                             ? "rgb(22,163,74)"
                             : "black",
 

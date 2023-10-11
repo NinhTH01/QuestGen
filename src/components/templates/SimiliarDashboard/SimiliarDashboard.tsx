@@ -58,7 +58,7 @@ const SimiliarDashboard: React.FC<SimiliarDashboardProps> = ({
           <Button
             style={{ width: "100%" }}
             className="mt-4 fw-bold"
-            onClick={() => handleGenQuest(content, "boolean", "0", 1)}
+            onClick={() => handleGenQuest(content, "tf", "0", 1)}
           >
             Try for free
           </Button>
