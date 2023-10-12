@@ -158,7 +158,7 @@ Các cấp độ khác nhau của thang phân loại Bloom
             <h2 style={{ fontWeight: 700 }}>Khởi tạo</h2>
             <h6 className=" fw-medium mt-2">
               
-Ở cấp độ cao nhất của Phân loại tư duy của Bloom, bạn có đủ kiến ​​thức về khái niệm cụ thể và bây giờ bạn có thể tự mình tạo ra các thiết kế và giải pháp cho các vấn đề.
+          Ở cấp độ cao nhất của Phân loại tư duy của Bloom, bạn có đủ kiến ​​thức về khái niệm cụ thể và bây giờ bạn có thể tự mình tạo ra các thiết kế và giải pháp cho các vấn đề.
             </h6>
           </div>
 

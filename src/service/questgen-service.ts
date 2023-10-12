@@ -7,8 +7,14 @@ export function useQuestgen(
 ): [
   answer: any,
   setAnswer: React.Dispatch<any>,
-  handleQuestGen: (
+  handleQuestGenFromText: (
     context: string,
+    questType: string,
+    level: string,
+    count: number
+  ) => void,
+  hhandleQuestGenFromFile: (
+    context: any,
     questType: string,
     level: string,
     count: number
@@ -49,7 +55,7 @@ export function useQuestgen(
     [route]
   );
 
-  const handleGenQuest = React.useCallback(
+  const handleGenQuestFromText = React.useCallback(
     async (
       context: string,
       questType: string,
@@ -87,11 +93,9 @@ export function useQuestgen(
         };
       }
 
-      console.log(data);
-
       if (context !== "" && !isNaN(Number(level))) {
         try {
-          // const response = questgenRepository.product(data);
+          // const response = questgenRepository.textGen(data);
           // response.then((r) => {
           //   // setRes(r);
           //   handleFindCorrectIndex(r);
@@ -103,6 +107,52 @@ export function useQuestgen(
       }
     },
     [handleFindCorrectIndex, res]
+  );
+
+  const handleGenQuestFromFile = React.useCallback(
+    async (
+      context: any,
+      questType: string,
+      level: string,
+      count: number
+    ) => {
+
+      const formData = new FormData();
+
+      if (level === "0") {
+        formData.append(`file`, context, context.name);
+        formData.append('language', 'english');
+        formData.append('easy', `${count}`);
+        formData.append('medium', '0');
+        formData.append('hard', '0');
+        formData.append('quest_type', `${questType}`);
+      } else if (level === "1") {
+        formData.append(`file`, context, context.name);
+        formData.append('language', 'english');
+        formData.append('easy', `0`);
+        formData.append('medium', `${count}`);
+        formData.append('hard', '0');
+        formData.append('quest_type', `${questType}`);
+      } else {
+        formData.append(`file`, context, context.name);
+        formData.append('language', 'english');
+        formData.append('easy', `0`);
+        formData.append('medium', '0');
+        formData.append('hard', `${count}`);
+        formData.append('quest_type', `${questType}`);
+      }
+
+        // try {
+        //   const response = questgenRepository.fileGen(formData);
+        //   response.then((r) => {
+        //     handleFindCorrectIndex(r);
+        //   });   
+        // } catch (error: any) {
+        //   console.error(`API Error: ${error?.message}`);
+        // }
+      
+    },
+    [handleFindCorrectIndex]
   );
 
   const handleChange = React.useCallback(
@@ -142,7 +192,8 @@ export function useQuestgen(
   return [
     answer,
     setAnswer,
-    handleGenQuest,
+    handleGenQuestFromText,
+    handleGenQuestFromFile,
     handleChange,
     handleChecked,
     handleChangeQuestion,

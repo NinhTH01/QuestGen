@@ -29,14 +29,21 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
 
   const [level, setLevel] = React.useState<string>("0");
 
-  const [fileList, setFileList] = React.useState<FileList | null>(null);
+  const [fileList, setFileList] = React.useState<any>("");
+
+
 
   // const [content, setContent] = React.useState<string>("");
 
   const [pdfData, setPdfData] = React.useState<any>([]);
 
   const handleFileChange = (e: any) => {
+    // let formData = new FormData();
+    // console.log(0);
+    
     setFileList(e.target.files);
+    // formData.append('files', e.target.files);
+    // console.log(formData.append('files', e.target.files));
   };
 
 //   const generatePdfDocument = async (csvReport: any, ReportsDownload, fileName) => {
@@ -51,27 +58,38 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
       return;
     }
 
+    console.log(files, 'files');
+
     const data = new FormData();
     files.forEach((file, i) => {
-      data.append(`file-${i}`, file, file.name);
+      data.append(`file`, file, file.name);
+      data.append('language', 'english');
+      data.append('easy', '1');
+      data.append('medium', '1');
+      data.append('hard', '1');
+      data.append('quest_type', 'mcq');
     });
 
-    fetch("https://httpbin.org/post", {
-      method: "POST",
-      body: data,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-        let contentArray: any = [];
+    // console.log(data,'data');
 
-        files.forEach((file, i) => {
-          contentArray.push(data.files[`file-${i}`])
-        });
-        setPdfData(contentArray);
-      })
-      .catch((err) => console.error(err));
+    // fetch("https://upgraded-spoon-p6wx9q465rqfvx7-8000.app.github.dev/api/getQuestFromFile", {
+    //   method: "POST",
+    //   body: data,
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data)
+    //     let contentArray: any = [];
+
+    //     files.forEach((file, i) => {
+    //       contentArray.push(data.files[`file-${i}`])
+    //     });
+    //     setPdfData(contentArray);
+    //   })
+    //   .catch((err) => console.error(err));
   };
+
+  // console.log(pdfData);
 
   const files = fileList ? [...fileList] : [];
 
@@ -118,7 +136,7 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
       </PDFDownloadLink>
 
           <div className="my-4">
-            <input type="file" onChange={handleFileChange} multiple />
+            <input type="file" onChange={handleFileChange} />
             <ul>
               {files.length > 1 &&
                 files.map((file, i) => (
@@ -187,7 +205,7 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
             style={{ width: "100%" }}
             className="mt-4 fw-bold"
             onClick={() =>
-              handleGenQuest("content", "multiple choice", level, count)
+              handleGenQuest(fileList[0], "mcq", level, count)
             }
           >
             Try for free

@@ -21,7 +21,8 @@ const DashboardScreen = () => {
   const [
     answer,
     setAnswer,
-    handleGenQuest,
+    handleGenQuestFromText,
+    handleGenQuestFromFile,
     handleChange,
     handleChecked,
     handleChangeQuestion,
@@ -38,7 +39,7 @@ const DashboardScreen = () => {
           handleChange={handleChange}
           handleChecked={handleChecked}
           handleQuestion={handleChangeQuestion}
-          handleGenQuest={handleGenQuest}
+          handleGenQuest={handleGenQuestFromText}
         />
       );
     } else if (route === 1) {
@@ -51,7 +52,7 @@ const DashboardScreen = () => {
           handleChange={handleChange}
           handleChecked={handleChecked}
           handleQuestion={handleChangeQuestion}
-          handleGenQuest={handleGenQuest}
+          handleGenQuest={handleGenQuestFromText}
         />
       );
     } else if (route === 2) {
@@ -62,7 +63,7 @@ const DashboardScreen = () => {
           setArray={setAnswer}
           array={answer}
           handleQuestion={handleChangeQuestion}
-          handleGenQuest={handleGenQuest}
+          handleGenQuest={handleGenQuestFromText}
         />
       );
     } else if (route === 3) {
@@ -75,7 +76,7 @@ const DashboardScreen = () => {
           handleChange={handleChange}
           handleChecked={handleChecked}
           handleQuestion={handleChangeQuestion}
-          handleGenQuest={handleGenQuest}
+          handleGenQuest={handleGenQuestFromText}
         />
       );
     } else if (route === 4) {
@@ -88,22 +89,13 @@ const DashboardScreen = () => {
           handleChange={handleChange}
           handleChecked={handleChecked}
           handleQuestion={handleChangeQuestion}
-          handleGenQuest={handleGenQuest}
+          handleGenQuest={handleGenQuestFromFile}
         />
       );
     } else if (route === 5) {
       return <AccountDashboard />;
     }
-  }, [
-    answer,
-    handleChange,
-    handleChangeQuestion,
-    handleChecked,
-    handleGenQuest,
-    isEdit,
-    route,
-    setAnswer,
-  ]);
+  }, [answer, handleChange, handleChangeQuestion, handleChecked, handleGenQuestFromText, isEdit, route, setAnswer]);
 
   return (
     <div style={{ width: "100%" }} className="bg-light">
