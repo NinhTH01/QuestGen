@@ -95,7 +95,7 @@ const DashboardScreen = () => {
     } else if (route === 5) {
       return <AccountDashboard />;
     }
-  }, [answer, handleChange, handleChangeQuestion, handleChecked, handleGenQuestFromText, isEdit, route, setAnswer]);
+  }, [answer, handleChange, handleChangeQuestion, handleChecked, handleGenQuestFromFile, handleGenQuestFromText, isEdit, route, setAnswer]);
 
   return (
     <div style={{ width: "100%" }} className="bg-light">

@@ -62,31 +62,24 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
 
     const data = new FormData();
     files.forEach((file, i) => {
-      data.append(`file`, file, file.name);
-      data.append('language', 'english');
-      data.append('easy', '1');
-      data.append('medium', '1');
-      data.append('hard', '1');
-      data.append('quest_type', 'mcq');
+      data.append(`file-${i}`, file, file.name);
     });
 
-    // console.log(data,'data');
+    fetch("https://httpbin.org/post", {
+      method: "POST",
+      body: data,
+    })
+      .then((res) => res.json())
+    .then((data) => {
+    console.log(data)
+    let contentArray: any = [];
 
-    // fetch("https://upgraded-spoon-p6wx9q465rqfvx7-8000.app.github.dev/api/getQuestFromFile", {
-    //   method: "POST",
-    //   body: data,
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data)
-    //     let contentArray: any = [];
-
-    //     files.forEach((file, i) => {
-    //       contentArray.push(data.files[`file-${i}`])
-    //     });
-    //     setPdfData(contentArray);
-    //   })
-    //   .catch((err) => console.error(err));
+    files.forEach((file, i) => {
+    contentArray.push(data.files[`file-${i}`])
+    });
+    setPdfData(contentArray);
+    })
+    .catch((err) => console.error(err));
   };
 
   // console.log(pdfData);

@@ -17,7 +17,7 @@ const Headings = ({ headings, activeId, expanded, handleGenQuest }: any) => (
   <ul
     className=" "
     style={{
-      height: expanded ? "95%" : "80%",
+  
       overflow: "scroll",
       width: "100%",
       overflowX: "hidden",
@@ -218,10 +218,10 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
         <Button
           style={{
             position: "absolute",
-            right: 20,
-            top: 175,
+            left: 0,
+            top: 0,          
             background: "rgba(137, 236, 255,.7)",
-            borderRadius: 10,
+            borderRadius: 0,
             padding: 8,
           }}
           onClick={handleChange}
@@ -233,22 +233,22 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
           aria-label="Table of contents"
           style={{
             position: "absolute",
-            right: 20,
-            top: 175,
-            width: width < 750 ? "90%" : "30%",
-            height: expanded ? "80%" : 140,
+            left: 0,
+            top: 0,
+            width: 250,
+            // height: '100%',
             background: "rgba(137, 236, 255)",
             borderRadius: 10,
             padding: 16,
           }}
         >
           <div
-            style={{ height: expanded ? "5%" : "20%" }}
+            // style={{ height: expanded ? "5%" : "20%" }}
             className="d-flex justify-content-between align-items-center"
           >
             <div style={{ fontWeight: "bold" }}> Table of Contents</div>
 
-            <div style={{ paddingRight: 28, marginRight: 8 }}>
+            <div>
               <Button
                 className=""
                 style={{

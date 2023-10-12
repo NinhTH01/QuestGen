@@ -2,6 +2,7 @@ import { Button, Row, Col, Form } from "react-bootstrap";
 import styles from "./QuizDashboard.module.css";
 import { ReactSortable } from "react-sortablejs";
 import React, { ChangeEvent } from "react";
+import { VerticalAlignBottomOutlined } from "@mui/icons-material";
 
 const QuizDashboard: React.FC<QuizDashboardProps> = ({
   isEdit,
@@ -25,9 +26,12 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
     setContent(e.target.value);
   }, []);
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = React.useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setFileList(e.target.files);
-  };
+  },[])
+
+
+  const files = React.useMemo(() => {return fileList ? [...fileList] : []},[fileList])
 
   const handleUploadClick = () => {
     if (!fileList) {
@@ -56,8 +60,6 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
       .catch((err) => console.error(err));
   };
 
-  const files = fileList ? [...fileList] : [];
-
   return (
     <>
       <h5 className="text-center fw-bold mt-4">
@@ -84,29 +86,33 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
           </div>
 
           <div className="my-4">
-            <div>
-              <input
-                type="file"
-                onChange={handleFileChange}
-                multiple
-                name="Upload"
-              />
+           
+            <div className={`${styles.fileupload} mb-2`}>
+              <div className="d-flex justify-content-center align-content-center align-items-center">
+             
+              <h5 className="mt-2"> {"Bấm để chọn file"}</h5>
+              <VerticalAlignBottomOutlined />
+                </div>
+           
+              <input type="file" onChange={handleFileChange} multiple/>
+            </div>
+              
 
               <ul>
-                {files.length > 1 &&
+                {files.length >= 1 &&
                   files.map((file, i) => (
                     <li key={i}>
-                      {file.name} - {file.type}
+                      {file.name} 
                     </li>
                   ))}
               </ul>
-            </div>
-          </div>
-          {files.length > 0 && (
-            <Button className="mt-4 fw-bold" onClick={handleUploadClick}>
-              Upload
+
+              <Button  style={{ width: "100%" }}
+            className=" fw-bold" onClick={handleUploadClick}>Upload File
             </Button>
-          )}
+           
+          </div>
+        
           <Row
             xxl={2}
             xl={2}
