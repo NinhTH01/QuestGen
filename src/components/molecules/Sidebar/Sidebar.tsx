@@ -7,19 +7,24 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
     <>
       <Nav
         className={`d-flex flex-column rounded-2 p-2 ${styles.nav_tabs} justify-content-between`}
-        style={{ minHeight: "98vh", background: "rgb(99 102 241)", width: 200 }}
+        style={{
+          minHeight: "98vh",
+          background: "rgb(99 102 241)",
+          width: 200,
+          zIndex: 1,
+        }}
         activeKey="/home"
         onSelect={(selectedKey) => setRoute(Number(selectedKey))}
         variant="pills"
       >
         <Form>
-          <Nav.Item className="my-1 mt-3">
+          <Nav.Item className="my-1 mt-5">
             <Nav.Link eventKey={"0"} className={` ${styles.nav}`}>
               <span
                 className={`text-white ${
                   route === 0 ? "fw-bold" : "fw-medium"
                 }`}
-                style={{fontSize: 14}}
+                style={{ fontSize: 14 }}
               >
                 Câu hỏi trắc nghiệm
               </span>
@@ -31,7 +36,7 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
                 className={`text-white ${
                   route === 1 ? "fw-bold" : "fw-medium"
                 } `}
-                style={{fontSize: 14}}
+                style={{ fontSize: 14 }}
               >
                 Câu hỏi đúng sai
               </span>
@@ -43,7 +48,7 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
                 className={`text-white ${
                   route === 2 ? "fw-bold" : "fw-medium"
                 } `}
-                style={{fontSize: 14}}
+                style={{ fontSize: 14 }}
               >
                 Câu hỏi điền vào chỗ trống
               </span>
@@ -55,7 +60,7 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
                 className={`text-white ${
                   route === 3 ? "fw-bold" : "fw-medium"
                 } `}
-                style={{fontSize: 14}}
+                style={{ fontSize: 14 }}
               >
                 Tạo câu hỏi từ text
               </span>
@@ -68,7 +73,7 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
                 className={`text-white ${
                   route === 4 ? "fw-bold" : "fw-medium"
                 } `}
-                style={{fontSize: 14}}
+                style={{ fontSize: 14 }}
               >
                 Quiz from Image/Pdf
               </span>

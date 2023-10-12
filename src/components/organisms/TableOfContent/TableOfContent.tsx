@@ -15,24 +15,39 @@ import ClearIcon from "@mui/icons-material/Clear";
  */
 const Headings = ({ headings, activeId, expanded, handleGenQuest }: any) => (
   <ul
-    className=" "
+    id="mySideNav"
+    className={`${styles.body} `}
     style={{
-  
       overflow: "scroll",
-      width: "100%",
-      overflowX: "hidden",
+      marginLeft: -15,
+      marginTop: 20,
+      height: "100vh",
+      whiteSpace: "nowrap",
+      // width: 100,
     }}
   >
     {headings.map((heading: any, index: number) => (
-      <li key={index} className={heading.id === activeId ? "active" : ""}>
+      <li key={index} style={{ listStyleType: "none" }}>
         <a
           href={`#1`}
           onClick={() => {
             handleGenQuest(heading);
           }}
-          className={` ${styles.tooltip} text-black`}
+          className={` ${styles.tooltip} text-black my-2`}
+          style={{ textDecoration: "none" }}
         >
-          {heading.title}
+          <div
+            className=" overflow-hidden text-white"
+            style={{
+              textOverflow: "ellipsis",
+              width: 160,
+              textDecoration: "none",
+              // overflowX: "hidden",
+            }}
+          >
+            {heading.title}
+          </div>
+
           <span className={` text-white ${styles.tooltiptext}`}>
             Click to generate
           </span>
@@ -42,19 +57,34 @@ const Headings = ({ headings, activeId, expanded, handleGenQuest }: any) => (
           <ul>
             {heading.items.map((child: any) => (
               <li
+                style={{ listStyleType: "none" }}
                 key={child.id}
-                className={child.id === activeId ? "active" : ""}
+                className={` ${styles.tooltip} text-black my-2`}
               >
-                <div
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector(`#${child.id}`)?.scrollIntoView({
-                      behavior: "smooth",
-                    });
+                <a
+                  href={`#1`}
+                  onClick={() => {
+                    handleGenQuest(heading);
                   }}
+                  className={` ${styles.tooltip} text-black`}
+                  style={{ textDecoration: "none" }}
                 >
-                  {child.title}
-                </div>
+                  <div
+                    className=" overflow-hidden text-white"
+                    style={{
+                      textOverflow: "ellipsis",
+                      width: 160,
+                      textDecoration: "none",
+                      // overflowX: "hidden",
+                    }}
+                  >
+                    {child.title}
+                  </div>
+
+                  <span className={` text-white ${styles.tooltiptext}`}>
+                    Click to generate
+                  </span>
+                </a>
               </li>
             ))}
           </ul>
@@ -187,7 +217,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
   const [activeId, setActiveId] = React.useState();
   const { nestedHeadings } = useHeadingsData(content);
 
-  const [closed, setClosed] = React.useState<boolean>(false);
+  const [closed, setClosed] = React.useState<boolean>(true);
 
   const [expanded, setExpanded] = React.useState<boolean>(false);
 
@@ -214,78 +244,81 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
 
   return (
     <>
-      {closed ? (
+      {closed && (
         <Button
           style={{
-            position: "absolute",
+            position: "fixed",
             left: 0,
-            top: 0,          
-            background: "rgba(137, 236, 255,.7)",
+            top: 0,
+            background: "rgb(99 102 241)",
             borderRadius: 0,
+            borderWidth: 0,
             padding: 8,
+            zIndex: -2,
           }}
           onClick={handleChange}
         >
-          <MenuIcon htmlColor={"black"} />
+          <MenuIcon htmlColor={"white"} />
         </Button>
-      ) : (
-        <nav
-          aria-label="Table of contents"
-          style={{
-            position: "absolute",
-            left: 0,
-            top: 0,
-            width: 250,
-            // height: '100%',
-            background: "rgba(137, 236, 255)",
-            borderRadius: 10,
-            padding: 16,
-          }}
+      )}
+
+      <nav
+        aria-label="Table of contents"
+        className={`${styles.container} ${styles.sidenav} `}
+        style={{
+          position: "fixed",
+          left: closed ? -220 : 0,
+          top: 0,
+          width: 220,
+          background: "rgb(99 102 241)",
+          zIndex: -1,
+          minHeight: "98vh",
+          transition: "0.5s",
+        }}
+      >
+        <div
+          // style={{ height: expanded ? "5%" : "20%" }}
+          className="d-flex justify-content-between align-items-center"
         >
           <div
-            // style={{ height: expanded ? "5%" : "20%" }}
-            className="d-flex justify-content-between align-items-center"
+            className="text-white"
+            style={{ fontWeight: "bold", marginLeft: 16 }}
           >
-            <div style={{ fontWeight: "bold" }}> Table of Contents</div>
-
-            <div>
-              <Button
-                className=""
-                style={{
-                  right: 0,
-                  backgroundColor: "rgba(137, 236, 255,.01)",
-                  borderWidth: 0,
-                }}
-                onClick={handleExpand}
-              >
-                {expanded ? (
-                  <KeyboardArrowUpIcon htmlColor="black" />
-                ) : (
-                  <KeyboardArrowDownIcon htmlColor="black" />
-                )}
-              </Button>
-              <Button
-                className=""
-                style={{
-                  right: 0,
-                  // marginLeft: 16,
-                  backgroundColor: "rgba(137, 236, 255,.01)",
-                  borderWidth: 0,
-                }}
-                onClick={handleChange}
-              >
-                <ClearIcon htmlColor="black" />
-              </Button>
-            </div>
+            {" "}
+            Tóm tắt
           </div>
-          <Headings
-            headings={nestedHeadings}
-            activeId={activeId}
-            expanded={expanded}
-            handleGenQuest={handleGenQuest}
-          />
-        </nav>
-      )}
+
+          <div>
+            <Button
+              className=""
+              style={{
+                right: 0,
+                backgroundColor: "rgba(137, 236, 255,.01)",
+                borderWidth: 0,
+              }}
+              onClick={handleExpand}
+            ></Button>
+            <Button
+              className=""
+              style={{
+                right: 0,
+                // marginLeft: 16,
+                backgroundColor: "rgba(137, 236, 255,.01)",
+                borderWidth: 0,
+              }}
+              onClick={handleChange}
+            >
+              <ClearIcon htmlColor="white" />
+            </Button>
+          </div>
+        </div>
+        <Headings
+          headings={nestedHeadings}
+          activeId={activeId}
+          expanded={expanded}
+          handleGenQuest={handleGenQuest}
+        />
+      </nav>
     </>
   );
 };

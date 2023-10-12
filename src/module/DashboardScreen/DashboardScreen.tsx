@@ -95,7 +95,17 @@ const DashboardScreen = () => {
     } else if (route === 5) {
       return <AccountDashboard />;
     }
-  }, [answer, handleChange, handleChangeQuestion, handleChecked, handleGenQuestFromFile, handleGenQuestFromText, isEdit, route, setAnswer]);
+  }, [
+    answer,
+    handleChange,
+    handleChangeQuestion,
+    handleChecked,
+    handleGenQuestFromFile,
+    handleGenQuestFromText,
+    isEdit,
+    route,
+    setAnswer,
+  ]);
 
   return (
     <div style={{ width: "100%" }} className="bg-light">
@@ -111,7 +121,7 @@ const DashboardScreen = () => {
       >
         <Col>
           {width > 800 && (
-            <div className="p-2" style={{ position: "fixed", top: 0 }}>
+            <div className="" style={{ position: "fixed", top: 0 }}>
               <Sidebar route={route} setRoute={setRoute} />
             </div>
           )}
@@ -119,8 +129,9 @@ const DashboardScreen = () => {
         <Col
           style={{
             width: width > 800 ? "calc(100% - 208px)" : "100%",
-            marginLeft: width > 800 ? 220 : 0,
+            marginLeft: width > 800 ? 240 : 0,
             height: "99vh",
+            zIndex: 2,
           }}
         >
           <div className="p-2">

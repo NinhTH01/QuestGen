@@ -14,17 +14,14 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
   handleQuestion,
   handleGenQuest,
 }) => {
-
   const DummyText =
-  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
   const [count, setCount] = React.useState(1);
 
   const [level, setLevel] = React.useState<string>("0");
 
-  const [content, setContent] = React.useState<string>(
-    DummyText
-  );
+  const [content, setContent] = React.useState<string>(DummyText);
 
   const handleEditorChange = React.useCallback((text: string) => {
     setContent(text);
@@ -48,12 +45,11 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
               type={"mcq"}
               level={level}
               count={count}
-              
-              // defaultValue={content}
+              defaultValue={content}
               handleEditorChange={handleEditorChange}
             />
           </div>
-          
+
           <Row
             xxl={2}
             xl={2}

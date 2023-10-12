@@ -32,3 +32,40 @@
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+.container {
+  min-height: 100vh !important;
+  position: fixed;
+  /* z-index: -1001; */
+}
+
+.body {
+  /* width: 200px; */
+}
+
+.body::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
+
+/* The side navigation menu */
+.sidenav {
+  overflow-x: hidden; /* Disable horizontal scroll */
+
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left 0.5s;
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
