@@ -98,11 +98,6 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
   )
 
 
-
-  // const [instance, update] = usePDF({document: (<MyDocument/>)} );
-
-  // console.log(instance)
-
   return (
     <>
       <h5 className="text-center fw-bold mt-4">
@@ -198,7 +193,7 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
             style={{ width: "100%" }}
             className="mt-4 fw-bold"
             onClick={() =>
-              handleGenQuest(fileList[0], "mcq", level, count)
+              handleGenQuest(fileList[0], "mcq", level, count, 'english')
             }
           >
             Try for free
@@ -326,7 +321,8 @@ export interface ImageDashboardProps {
     content: string,
     type: string,
     level: string,
-    count: number
+    count: number,
+    language: string,
   ) => void;
 }
 

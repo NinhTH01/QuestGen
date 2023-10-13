@@ -28,6 +28,11 @@ const DashboardScreen = () => {
     handleChangeQuestion,
   ] = useQuestgen(route);
 
+  const handleChangeRoute = React.useCallback((index: number) => {
+    setAnswer([]);
+    setRoute(index);
+},[setAnswer])
+
   const RouteComponent = React.useMemo(() => {
     if (route === 0) {
       return (
@@ -58,12 +63,14 @@ const DashboardScreen = () => {
     } else if (route === 2) {
       return (
         <SimiliarDashboard
-          isEdit={isEdit}
-          setEdit={setEdit}
-          setArray={setAnswer}
-          array={answer}
-          handleQuestion={handleChangeQuestion}
-          handleGenQuest={handleGenQuestFromText}
+        isEdit={isEdit}
+        setEdit={setEdit}
+        setArray={setAnswer}
+        array={answer}
+        handleChange={handleChange}
+        handleChecked={handleChecked}
+        handleQuestion={handleChangeQuestion}
+        handleGenQuest={handleGenQuestFromText}
         />
       );
     } else if (route === 3) {
@@ -76,7 +83,7 @@ const DashboardScreen = () => {
           handleChange={handleChange}
           handleChecked={handleChecked}
           handleQuestion={handleChangeQuestion}
-          handleGenQuest={handleGenQuestFromText}
+          handleGenQuest={handleGenQuestFromFile}
         />
       );
     } else if (route === 4) {
@@ -122,7 +129,7 @@ const DashboardScreen = () => {
         <Col>
           {width > 800 && (
             <div className="" style={{ position: "fixed", top: 0 }}>
-              <Sidebar route={route} setRoute={setRoute} />
+              <Sidebar route={route} setRoute={handleChangeRoute} />
             </div>
           )}
         </Col>
@@ -136,20 +143,7 @@ const DashboardScreen = () => {
         >
           <div className="p-2">
             <div className="bg-light" style={{}}>
-              <div className=" justify-content-end d-flex p-4">
-                <Button
-                  style={{ marginRight: 16, background: "rgb(99 102 241)" }}
-                  className="px-4 rounded-5 py-2"
-                >
-                  Sign up
-                </Button>
-                <Button
-                  className="px-4 rounded-5 py-2"
-                  style={{ marginRight: 16, background: "rgb(99 102 241)" }}
-                >
-                  Log in
-                </Button>
-              </div>
+              
               {RouteComponent}
             </div>
           </div>

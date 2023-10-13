@@ -1,6 +1,6 @@
 import React from "react";
 import { questgenRepository } from "../repository/questgen-repository";
-import { bloomData, data } from "../sample/data/sampleGen";
+import { bloomData, data, similiarData } from "../sample/data/sampleGen";
 
 export function useQuestgen(
   route: number
@@ -11,13 +11,16 @@ export function useQuestgen(
     context: string,
     questType: string,
     level: string,
-    count: number
+    count: number,
+    language: string,
   ) => void,
   hhandleQuestGenFromFile: (
     context: any,
     questType: string,
     level: string,
-    count: number
+    count: number,
+    language: string,
+
   ) => void,
   handleChange: (
     indexAnswer: number,
@@ -28,15 +31,16 @@ export function useQuestgen(
 ] {
   const [answer, setAnswer] = React.useState<any>([]);
 
-  const [res, setRes] = React.useState<any>(bloomData);
+  const [res, setRes] = React.useState<any>(similiarData);
 
-  // console.log(res);
+  const [type, setType] = React.useState<any>('');
 
   // const [loading, setLoading] = React.useState<boolean>(false);
 
   const handleFindCorrectIndex = React.useCallback(
     (r: any) => {
-      if (route === 0) {
+      console.log(r);
+      if (route === 0 || route === 2) {
         const finalResult = r?.map((result: any) => {
           const correctIndex = result?.options?.findIndex((value: any) => {
             return value === result["true option"][0];
@@ -55,12 +59,36 @@ export function useQuestgen(
     [route]
   );
 
+  const handleFindCorrectIndexFromFile = React.useCallback(
+    (r: any, type: string) => {
+
+      if (type === 'mcq' || type === 'fill') {
+        const finalResult = r?.map((result: any) => {
+          const correctIndex = result?.options?.findIndex((value: any) => {
+            return value === result["true option"][0];
+          });
+          result = {
+            ...result,
+            correctAnswerIndices: correctIndex,
+          };
+          return result;
+        });
+        setAnswer([...finalResult, {type: type}]);
+      } else {
+        setAnswer([...r, {type: type}]);
+      }
+    },
+    []
+  );
+
+
   const handleGenQuestFromText = React.useCallback(
     async (
       context: string,
       questType: string,
       level: string,
-      count: number
+      count: number,
+      language: string,
     ) => {
       let data: any = [];
 
@@ -71,7 +99,7 @@ export function useQuestgen(
           easy: count,
           medium: 0,
           hard: 0,
-          language: "english",
+          language: language,
         };
       } else if (level === "1") {
         data = {
@@ -80,7 +108,7 @@ export function useQuestgen(
           easy: 0,
           medium: count,
           hard: 0,
-          language: "english",
+          language: language,
         };
       } else {
         data = {
@@ -89,7 +117,7 @@ export function useQuestgen(
           easy: 0,
           medium: 0,
           hard: count,
-          language: "english",
+          language: language,
         };
       }
 
@@ -114,42 +142,47 @@ export function useQuestgen(
       context: any,
       questType: string,
       level: string,
-      count: number
+      count: number,
+      language: string,
     ) => {
 
       const formData = new FormData();
 
-      if (level === "0") {
-        formData.append(`file`, context, context.name);
-        formData.append('language', 'english');
-        formData.append('easy', `${count}`);
-        formData.append('medium', '0');
-        formData.append('hard', '0');
-        formData.append('quest_type', `${questType}`);
-      } else if (level === "1") {
-        formData.append(`file`, context, context.name);
-        formData.append('language', 'english');
-        formData.append('easy', `0`);
-        formData.append('medium', `${count}`);
-        formData.append('hard', '0');
-        formData.append('quest_type', `${questType}`);
-      } else {
-        formData.append(`file`, context, context.name);
-        formData.append('language', 'english');
-        formData.append('easy', `0`);
-        formData.append('medium', '0');
-        formData.append('hard', `${count}`);
-        formData.append('quest_type', `${questType}`);
-      }
+      // if (level === "0") {
+      //   formData.append(`file`, context, context.name);
+      //   formData.append('language', `${language}`);
+      //   formData.append('easy', `${count}`);
+      //   formData.append('medium', '0');
+      //   formData.append('hard', '0');
+      //   formData.append('quest_type', `${questType}`);
+      // } else if (level === "1") {
+      //   formData.append(`file`, context, context.name);
+      //   formData.append('language', `${language}`);
+      //   formData.append('easy', `0`);
+      //   formData.append('medium', `${count}`);
+      //   formData.append('hard', '0');
+      //   formData.append('quest_type', `${questType}`);
+      // } else {
+      //   formData.append(`file`, context, context.name);
+      //   formData.append('language', `${language}`);
+      //   formData.append('easy', `0`);
+      //   formData.append('medium', '0');
+      //   formData.append('hard', `${count}`);
+      //   formData.append('quest_type', `${questType}`);
+      // }
 
-        // try {
-        //   const response = questgenRepository.fileGen(formData);
-        //   response.then((r) => {
-        //     handleFindCorrectIndex(r);
-        //   });   
-        // } catch (error: any) {
-        //   console.error(`API Error: ${error?.message}`);
-        // }
+      // console.log(formData)
+
+        try {
+          // const response = questgenRepository.fileGen(formData);
+          // response.then((r) => {
+          //   handleFindCorrectIndex(r);
+          // });   
+          handleFindCorrectIndexFromFile(res, questType);
+          setType(questType)
+        } catch (error: any) {
+          console.error(`API Error: ${error?.message}`);
+        }
       
     },
     [handleFindCorrectIndex]
@@ -157,7 +190,7 @@ export function useQuestgen(
 
   const handleChange = React.useCallback(
     (indexAnswer: number, indexQuestion: number) => (e: any) => {
-      if (route === 0) {
+      if (route === 0 || route === 2) {
         answer[indexQuestion].options[indexAnswer] = e.target.value;
 
         setAnswer([...answer]);
@@ -169,7 +202,7 @@ export function useQuestgen(
   const handleChecked = React.useCallback(
     (indexAnswer: number, indexQuestion: number) => () => {
       console.log(indexAnswer, indexQuestion);
-      if (route === 0) {
+      if (route === 0 || route === 2 ) {
         answer[indexQuestion].correctAnswerIndices = indexAnswer;
         setAnswer([...answer]);
       } else if (route === 1) {

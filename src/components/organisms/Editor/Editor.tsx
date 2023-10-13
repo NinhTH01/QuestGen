@@ -11,6 +11,7 @@ const Editor: React.FC<EditorProps> = ({
   count,
   defaultValue,
   handleEditorChange,
+  language
 }) => {
   const [html, setHTML] = React.useState<any>("");
 
@@ -71,7 +72,7 @@ const Editor: React.FC<EditorProps> = ({
         modules={modules}
         formats={formats}
         defaultValue={defaultValue}
-        style={{ background: "white", width: "100%", minHeight: '50%'}}
+        style={{ background: "white", width: "100%", minHeight: 400}}
       ></ReactQuill>
       <TableOfContents
         content={html}
@@ -79,12 +80,14 @@ const Editor: React.FC<EditorProps> = ({
         type={type}
         level={level}
         count={count}
+        language={language}
       />
     </>
   );
 };
 
 export interface EditorProps {
+  language: string;
   handleQuestgen: any;
   type: any;
   level: any;

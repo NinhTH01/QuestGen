@@ -21,6 +21,8 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
 
   const [level, setLevel] = React.useState<string>("0");
 
+  const [language, setLanguage] = React.useState<string>("Tiếng Việt");
+
   const [content, setContent] = React.useState<string>(DummyText);
 
   const handleEditorChange = React.useCallback((text: string) => {
@@ -47,9 +49,23 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
               count={count}
               defaultValue={content}
               handleEditorChange={handleEditorChange}
+              language={language}
             />
           </div>
+          <div>
 
+          <h6 className="fw-medium px-1" style={{ fontSize: 15 }}>
+                Ngôn ngữ đầu ra
+              </h6>
+          <Form.Select
+                aria-label="Default select example"
+                value={language}
+                onChange={(e: any) => setLanguage(e.currentTarget.value)}
+              >
+                <option value="Tiếng Việt">Tiếng Việt</option>
+                <option value="English">Tiếng Anh</option>
+              </Form.Select>
+</div>
           <Row
             xxl={2}
             xl={2}
@@ -98,7 +114,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
           <Button
             style={{ width: "100%" }}
             className="mt-4 fw-bold"
-            onClick={() => handleGenQuest(content, "mcq", level, count)}
+            onClick={() => handleGenQuest(content, "mcq", level, count, language)}
           >
             Tạo câu hỏi
           </Button>
@@ -226,7 +242,8 @@ export interface HomeDashboardProps {
     content: string,
     type: string,
     level: string,
-    count: number
+    count: number,
+    language: string,
   ) => void;
 }
 

@@ -211,6 +211,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
   type,
   level,
   count,
+  language
 }) => {
   const width = useSelector(currentWidth);
 
@@ -333,6 +334,8 @@ export interface TableOfContentsProps {
   handleQuestgen: any;
 
   count: number;
+
+  language: string;
 }
 
 export default TableOfContents;

@@ -14,22 +14,23 @@ const BloomDashboard: React.FC<BloomDashboardProps> = ({
   handleQuestion,
   handleGenQuest,
 }) => {
+
+  const DummyText =
+  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+
   const [count, setCount] = React.useState(1);
 
   const [level, setLevel] = React.useState<string>("0");
 
   const [content, setContent] = React.useState<string>(
-    "Elon Musk has shown again he can influence the digital currency market with just his tweets. After saying that his electric vehicle-making company Tesla will not accept payments in Bitcoin because of environmental concerns, he tweeted that he was working with developers of Dogecoin to improve system transaction efficiency. Following the two distinct statements from him, the world's largest cryptocurrency hit a two-month low, while Dogecoin rallied by about 20 percent. The SpaceX CEO has in recent months often tweeted in support of Dogecoin, but rarely for Bitcoin.  In a recent tweet, Musk put out a statement from Tesla that it was concerned about the rapidly increasing use of fossil fuels for Bitcoin (price in India) mining and transaction, and hence was suspending vehicle purchases using the cryptocurrency. A day later he again tweeted saying, To be clear, I strongly believe in crypto, but it can't drive a massive increase in fossil fuel use, especially coal. It triggered a downward spiral for Bitcoin value but the cryptocurrency has stabilised since.  A number of Twitter users welcomed Musk's statement. One of them said it's time people started realising that Dogecoin is here to stay and another referred to Musk's previous assertion that crypto could become the world's future currency."
+    DummyText
   );
+
+  const [language, setLanguage] = React.useState<string>("Tiếng Việt");
 
   const handleEditorChange = React.useCallback((text: string) => {
     setContent(text);
   }, []);
-
-  const DummyText =
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
-
-  console.log(array);
 
   return (
     <>
@@ -51,21 +52,24 @@ const BloomDashboard: React.FC<BloomDashboardProps> = ({
               count={count}
               defaultValue={DummyText}
               handleEditorChange={handleEditorChange}
+              language={language}
             />
           </div>
+          <div>
 
-          {/* <Form.Select
-            aria-label="Default select example"
-            value={type}
-            onChange={(e: any) => setType(e.currentTarget.value)}
-          >
-            <option value="0">MCQ</option>
-            <option value="1">MCQ(Multiple Correct Answers)</option>
-            <option value="2">TrueFalse</option>
-            <option value="3">Fill in the blanks</option>
-            <option value="4">FAQ</option>
-            <option value="5">Higher Order QA</option>
-          </Form.Select> */}
+<h6 className="fw-medium px-1" style={{ fontSize: 15 }}>
+      Ngôn ngữ đầu ra
+    </h6>
+<Form.Select
+      aria-label="Default select example"
+      value={language}
+      onChange={(e: any) => setLanguage(e.currentTarget.value)}
+    >
+      <option value="Tiếng Việt">Tiếng Việt</option>
+      <option value="English">Tiếng Anh</option>
+    </Form.Select>
+</div>
+       
           <Row
             xxl={2}
             xl={2}
@@ -114,7 +118,7 @@ const BloomDashboard: React.FC<BloomDashboardProps> = ({
           <Button
             style={{ width: "100%" }}
             className="mt-4 fw-bold"
-            onClick={() => handleGenQuest(content, "tf", level, count)}
+            onClick={() => handleGenQuest(content, "tf", level, count, language)}
           >
             Tạo câu hỏi
           </Button>
@@ -252,7 +256,8 @@ export interface BloomDashboardProps {
     content: string,
     type: string,
     level: string,
-    count: number
+    count: number,
+    language: string,
   ) => void;
 }
 

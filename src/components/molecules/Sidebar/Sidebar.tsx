@@ -6,7 +6,7 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
   return (
     <>
       <Nav
-        className={`d-flex flex-column rounded-2 p-2 ${styles.nav_tabs} justify-content-between`}
+        className={`d-flex flex-column  p-2 ${styles.nav_tabs} justify-content-between`}
         style={{
           minHeight: "98vh",
           background: "rgb(99 102 241)",
@@ -62,7 +62,7 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
                 } `}
                 style={{ fontSize: 14 }}
               >
-                Tạo câu hỏi từ text
+                Tạo câu hỏi từ PDF
               </span>
             </Nav.Link>
           </Nav.Item>

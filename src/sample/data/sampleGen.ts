@@ -59,20 +59,56 @@ export const bloomData: any = [
   },
 ];
 
-export const similiarData = {
-  text: "Two trains are on the same track a distance 100 km apart heading towards one another, each at a speed of 50 km/h. A fly starting out at the front of one train, flies towards the other at a speed of 75 km/h. Upon reaching the other train, the fly turns around and continues towards the first train. How many kilometers does the fly travel before getting squashed in the collision of the two trains?",
-  quesAndPair: [
+export const similiarData = 
+  [
     {
-      question:
-        "Two cars are on the same road a distance 120 miles apart heading towards one another, each at a speed of 30 mph. A bird starting out at the front of one car, flies towards the other at a speed of 45 mph. Upon reaching the other car, the bird turns around and continues towards the first car. How many miles does the bird travel before getting crushed in the collision of the two cars?",
+        "difficulty": "easy",
+        "question": "The document is about ________ questions.",
+        "options": [
+            "fill in the blank",
+            "multiple choice",
+            "true or false",
+            "essay"
+        ],
+        "true option": [
+            "fill in the blank"
+        ]
     },
     {
-      question:
-        "Two ships are on the same river a distance 200 km apart heading towards one another, each at a speed of 25 km/h. A seagull starting out at the front of one ship, flies towards the other at a speed of 50 km/h. Upon reaching the other ship, the seagull turns around and continues towards the first ship. How many kilometers does the seagull travel before getting caught in the collision of the two ships?",
+        "question": "How many easy questions are there in the document?",
+        "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+        ],
+        "true option": [
+            "4"
+        ]
     },
     {
-      question:
-        "Two cars are on the same road a distance 200 miles apart heading towards one another, each at a speed of 35 mph. A bee starting out at the front of one car, flies towards the other at a speed of 55 mph. Upon reaching the other car, the bee turns around and continues towards the first car. How many miles does the bee travel before getting smashed in the collision of the two cars?",
+        "question": "How many medium questions are there in the document?",
+        "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+        ],
+        "true option": [
+            "0"
+        ]
     },
-  ],
-};
+    {
+        "question": "How many difficult questions are there in the document?",
+        "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+        ],
+        "true option": [
+            "0"
+        ]
+    }
+]
+
