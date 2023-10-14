@@ -2,8 +2,8 @@ import { Button, Row, Col, Form } from "react-bootstrap";
 import styles from "./QuizDashboard.module.css";
 import { ReactSortable } from "react-sortablejs";
 import React, { ChangeEvent } from "react";
-import {VerticalAlignBottomOutlined } from "@mui/icons-material";
-import {Document, Page, pdfjs } from "react-pdf";
+import { VerticalAlignBottomOutlined } from "@mui/icons-material";
+import { Document, Page, pdfjs } from "react-pdf";
 import { Pagination } from "antd";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -25,30 +25,33 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
 
   const [pdfData, setPdfData] = React.useState<any>("");
 
-  const [language, setLanguage] = React.useState<string>('Tiếng Việt');
+  const [language, setLanguage] = React.useState<string>("Tiếng Việt");
 
-  const [type, setType] = React.useState<string>('mcq');
+  const [type, setType] = React.useState<string>("mcq");
 
   const [numPages, setNumPages] = React.useState<number>();
 
   const [pageNumber, setPageNumber] = React.useState<number>(1);
 
-  const handleFileChange = React.useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setFileList(e.target.files);
-  },[])
+  const handleFileChange = React.useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setFileList(e.target.files);
+    },
+    []
+  );
 
-  const files = React.useMemo(() => {return fileList ? [...fileList] : []},[fileList])
+  const files = React.useMemo(() => {
+    return fileList ? [...fileList] : [];
+  }, [fileList]);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     // console.log(numPages);
     setNumPages(numPages);
   }
 
-  const handleChangePage = React.useCallback((index:any) => {
+  const handleChangePage = React.useCallback((index: any) => {
     setPageNumber(index);
-  },[])
-
-
+  }, []);
 
   const handleUploadClick = () => {
     if (!fileList) {
@@ -66,212 +69,218 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        setPdfData(data.files[`file-${0}`])
+        setPdfData(data.files[`file-${0}`]);
       })
       .catch((err) => console.error(err));
   };
 
-  console.log(array[array.length - 1]?.type)
+  console.log(array[array.length - 1]?.type);
 
   const AnswerComponent = React.useMemo(() => {
-    if(array.length > 0 ) {
-      if(array[array.length - 1]?.type === 'mcq' || array[array.length -1]?.type === 'fill') {
+    if (array.length > 0) {
+      if (
+        array[array.length - 1]?.type === "mcq" ||
+        array[array.length - 1]?.type === "fill"
+      ) {
         return (
           <>
-            {isEdit ? ( 
-            <ReactSortable list={array} setList={setArray}>
-              {array?.map((value: any, _index: number) => {
-                return (
-                  <Form
-                    className={`p-4 bg-white m-4 ${styles.shadowAnswerBox} rounded-2`}
-                    key={_index}
-                  >
-                    <Form.Control
-                      as={"textarea"}
-                      id="inputPassword5"
-                      className="fw-bold mb-2"
-                      placeholder={value?.question}
-                      value={value?.question}
-                      style={{ fontSize: 18 }}
-                      onChange={handleQuestion(_index)}
-                    />
+            {isEdit ? (
+              <ReactSortable list={array} setList={setArray}>
+                {array?.map((value: any, _index: number) => {
+                  return (
+                    <Form
+                      className={`p-4 bg-white m-4 ${styles.shadowAnswerBox} rounded-2`}
+                      key={_index}
+                    >
+                      <Form.Control
+                        as={"textarea"}
+                        id="inputPassword5"
+                        className="fw-bold mb-2"
+                        placeholder={value?.question}
+                        value={value?.question}
+                        style={{ fontSize: 18 }}
+                        onChange={handleQuestion(_index)}
+                      />
 
-                    {value?.options?.map((answer: any, index: number) => {
-                      return (
-                        <div className="d-flex align-items-center" key={index}>
-                          <Form.Check
-                            defaultChecked={
-                              index === value.correctAnswerIndices
-                            }
-                            onClick={handleChecked(index, _index)}
-                            inline
-                            name="group1"
-                            type={"radio"}
-                            id={`inline-${"radio"}-${index}`}
-                          />
-                          <Form.Control
-                            as={"textarea"}
-                            id="inputPassword5"
-                            className={`${
-                              index === value.correctAnswerIndices
-                                ? "fw-bold"
-                                : "fw-medium"
-                            } text-black mt-2`}
-                            style={{ marginRight: 0 }}
-                            placeholder={answer}
-                            onChange={handleChange(index, _index)}
-                            value={answer}
-                          />
-                        </div>
-                      );
-                    })}
-                  </Form>
+                      {value?.options?.map((answer: any, index: number) => {
+                        return (
+                          <div
+                            className="d-flex align-items-center"
+                            key={index}
+                          >
+                            <Form.Check
+                              defaultChecked={
+                                index === value.correctAnswerIndices
+                              }
+                              onClick={handleChecked(index, _index)}
+                              inline
+                              name="group1"
+                              type={"radio"}
+                              id={`inline-${"radio"}-${index}`}
+                            />
+                            <Form.Control
+                              as={"textarea"}
+                              id="inputPassword5"
+                              className={`${
+                                index === value.correctAnswerIndices
+                                  ? "fw-bold"
+                                  : "fw-medium"
+                              } text-black mt-2`}
+                              style={{ marginRight: 0 }}
+                              placeholder={answer}
+                              onChange={handleChange(index, _index)}
+                              value={answer}
+                            />
+                          </div>
+                        );
+                      })}
+                    </Form>
+                  );
+                })}
+              </ReactSortable>
+            ) : (
+              array?.map((value: any, index: number) => {
+                return (
+                  <div
+                    className={`p-4 bg-white m-4 ${styles.shadowAnswerBox} rounded-2`}
+                    key={index}
+                  >
+                    <h5 className="mb-4 fw-bold">{value?.question}</h5>
+                    {value?.options?.map((answer: any, index: number) => (
+                      <h6
+                        key={index}
+                        className={`${
+                          index === value.correctAnswerIndices
+                            ? "fw-bold"
+                            : "fw-medium"
+                        } m-2`}
+                        style={{
+                          color:
+                            index === value?.correctAnswerIndices
+                              ? "rgb(22,163,74)"
+                              : "black",
+
+                          fontSize: 16,
+                        }}
+                      >{`-      ${answer}`}</h6>
+                    ))}
+                  </div>
                 );
-              })}
-            </ReactSortable>
-          ) : (
-            array?.map((value: any, index: number) => {
-              return (
-                <div
-                  className={`p-4 bg-white m-4 ${styles.shadowAnswerBox} rounded-2`}
-                  key={index}
-                >
-                  <h5 className="mb-4 fw-bold">{value?.question}</h5>
-                  {value?.options?.map((answer: any, index: number) => (
+              })
+            )}
+          </>
+        );
+      } else if (array[array.length - 1]?.type === "tf") {
+        return (
+          <>
+            {isEdit ? (
+              <ReactSortable list={array} setList={setArray}>
+                {array?.map((value: any, _index: number) => {
+                  return (
+                    <Form
+                      className={`p-4 bg-white m-4 ${styles.shadowAnswerBox} rounded-2`}
+                      key={_index}
+                    >
+                      <Form.Control
+                        as={"textarea"}
+                        id="inputPassword5"
+                        className="fw-bold mb-2"
+                        placeholder={value?.question}
+                        value={value?.question}
+                        style={{ fontSize: 18 }}
+                        onChange={handleQuestion(_index)}
+                      />
+
+                      <div className="d-flex align-items-center">
+                        <Form.Check
+                          defaultChecked={value?.answer === "True"}
+                          onClick={handleChecked(0, _index)}
+                          inline
+                          name="group1"
+                          type={"radio"}
+                          id={`inline-${"radio"}-${0}`}
+                        />
+                        <h5
+                          className={`${
+                            value?.answer === "True" ? "fw-bold" : "fw-medium"
+                          } text-black mt-2`}
+                        >
+                          Đúng
+                        </h5>
+                      </div>
+
+                      <div className="d-flex align-items-center">
+                        <Form.Check
+                          defaultChecked={value?.answer === "False"}
+                          onClick={handleChecked(1, _index)}
+                          inline
+                          name="group1"
+                          type={"radio"}
+                          id={`inline-${"radio"}-${1}`}
+                        />
+                        <h5
+                          className={`${
+                            value?.answer === "False" ? "fw-bold" : "fw-medium"
+                          } text-black mt-2`}
+                        >
+                          Sai
+                        </h5>
+                      </div>
+                    </Form>
+                  );
+                })}
+              </ReactSortable>
+            ) : (
+              array?.map((value: any, index: number) => {
+                return (
+                  <div
+                    className={`p-4 bg-white m-4 ${styles.shadowAnswerBox} rounded-2`}
+                    key={index}
+                  >
+                    <h5 className="mb-4 fw-bold">{value?.question}</h5>
+
                     <h6
-                      key={index}
                       className={`${
-                        index === value.correctAnswerIndices
-                          ? "fw-bold"
-                          : "fw-medium"
+                        value?.answer === "True" ? "fw-bold" : "fw-medium"
                       } m-2`}
                       style={{
                         color:
-                          index === value?.correctAnswerIndices
+                          value?.answer === "True" ? "rgb(22,163,74)" : "black",
+
+                        fontSize: 16,
+                      }}
+                    >{`- Đúng`}</h6>
+                    <h6
+                      className={`${
+                        value?.answer === "False" ? "fw-bold" : "fw-medium"
+                      } m-2`}
+                      style={{
+                        color:
+                          value?.answer === "False"
                             ? "rgb(22,163,74)"
                             : "black",
 
                         fontSize: 16,
                       }}
-                    >{`-      ${answer}`}</h6>
-                  ))}
-                </div>
-              );
-            })
-          )}
-          </>
-        )
-    } else if(array[array.length - 1]?.type === 'tf' ){
-      return (
-        <>
-          {isEdit ? (
-            <ReactSortable list={array} setList={setArray}>
-              {array?.map((value: any, _index: number) => {
-                return (
-                  <Form
-                    className={`p-4 bg-white m-4 ${styles.shadowAnswerBox} rounded-2`}
-                    key={_index}
-                  >
-                    <Form.Control
-                      as={"textarea"}
-                      id="inputPassword5"
-                      className="fw-bold mb-2"
-                      placeholder={value?.question}
-                      value={value?.question}
-                      style={{ fontSize: 18 }}
-                      onChange={handleQuestion(_index)}
-                    />
-
-                    <div className="d-flex align-items-center">
-                      <Form.Check
-                        defaultChecked={value?.answer === "True"}
-                        onClick={handleChecked(0, _index)}
-                        inline
-                        name="group1"
-                        type={"radio"}
-                        id={`inline-${"radio"}-${0}`}
-                      />
-                      <h5
-                        className={`${
-                          value?.answer === "True" ? "fw-bold" : "fw-medium"
-                        } text-black mt-2`}
-                      >
-                        Đúng
-                      </h5>
-                    </div>
-
-                    <div className="d-flex align-items-center">
-                      <Form.Check
-                        defaultChecked={value?.answer === "False"}
-                        onClick={handleChecked(1, _index)}
-                        inline
-                        name="group1"
-                        type={"radio"}
-                        id={`inline-${"radio"}-${1}`}
-                      />
-                      <h5
-                        className={`${
-                          value?.answer === "False" ? "fw-bold" : "fw-medium"
-                        } text-black mt-2`}
-                      >
-                        Sai
-                      </h5>
-                    </div>
-                  </Form>
+                    >{`- Sai`}</h6>
+                  </div>
                 );
-              })}
-            </ReactSortable>
-          ) : (
-            array?.map((value: any, index: number) => {
-              return (
-                <div
-                  className={`p-4 bg-white m-4 ${styles.shadowAnswerBox} rounded-2`}
-                  key={index}
-                >
-                  <h5 className="mb-4 fw-bold">{value?.question}</h5>
-
-                  <h6
-                    className={`${
-                      value?.answer === "True" ? "fw-bold" : "fw-medium"
-                    } m-2`}
-                    style={{
-                      color:
-                        value?.answer === "True" ? "rgb(22,163,74)" : "black",
-
-                      fontSize: 16,
-                    }}
-                  >{`- Đúng`}</h6>
-                  <h6
-                    className={`${
-                      value?.answer === "False" ? "fw-bold" : "fw-medium"
-                    } m-2`}
-                    style={{
-                      color:
-                        value?.answer === "False" ? "rgb(22,163,74)" : "black",
-
-                      fontSize: 16,
-                    }}
-                  >{`- Sai`}</h6>
-                </div>
-              );
-            })
-          )}
-        </>
-      )
+              })
+            )}
+          </>
+        );
+      } else {
+        return <></>;
+      }
     } else {
-      return <></>
+      return <> </>;
     }
-    } else {
-      return <> </>
-    }
-    
-  },[array, handleChange, handleChecked, handleQuestion, isEdit, setArray])
-
+  }, [array, handleChange, handleChecked, handleQuestion, isEdit, setArray]);
 
   return (
     <>
       <h5 className="text-center fw-bold mt-4">
-        Tạo các loại câu hỏi từ file PDF 
+        Tạo các loại câu hỏi từ file PDF
       </h5>
       <Row xxl={2} xl={2} lg={2} md={2} sm={2} xs={1} style={{ width: "100%" }}>
         <Col className="bg-light" style={{ padding: 60 }}>
@@ -293,29 +302,39 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
           </div> */}
 
           <div className="my-4">
-           
             <div className={`${styles.fileupload} mb-2`}>
               <div className="d-flex justify-content-center align-content-center align-items-center">
-             {files.length > 0 ? <h5 className="mt-2 overflow-hidden "  
-            style={{
-              textOverflow: "ellipsis",
-            // width: '100%',
-            // height: '100%',
-              textDecoration: "none",
-              overflowX: "hidden",
-            }}> {files[0].name}</h5>:<><h5 className="mt-2"> {"Bấm để chọn file"}</h5>
-              <VerticalAlignBottomOutlined /></>  }
-             
-                </div>
-           
-              <input type="file" onChange={handleFileChange} accept="application/pdf"/>
+                {files.length > 0 ? (
+                  <h5
+                    className="mt-2 overflow-hidden "
+                    style={{
+                      textOverflow: "ellipsis",
+
+                      textDecoration: "none",
+                      overflowX: "hidden",
+                    }}
+                  >
+                    {" "}
+                    {files[0].name}
+                  </h5>
+                ) : (
+                  <>
+                    <h5 className="mt-2"> {"Bấm để chọn file"}</h5>
+                    <VerticalAlignBottomOutlined />
+                  </>
+                )}
+              </div>
+
+              <input
+                type="file"
+                onChange={handleFileChange}
+                accept="application/pdf"
+              />
             </div>
-            
-              {/* {files.length > 0 && (<Button  style={{ width: "100%" }} 
+
+            {/* {files.length > 0 && (<Button  style={{ width: "100%" }} 
             className=" fw-bold mt-2" onClick={handleUploadClick}>Upload File
             </Button>)} */}
-              
-           
           </div>
 
           <Row
@@ -343,7 +362,6 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
                 <option value="Tiếng Việt">Tiếng Việt</option>
                 <option value="English">Tiếng Anh</option>
               </Form.Select>
-
             </Col>
 
             <Col style={{ paddingRight: 0 }}>
@@ -362,7 +380,7 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
               </Form.Select>
             </Col>
           </Row>
-        
+
           <Row
             xxl={2}
             xl={2}
@@ -381,11 +399,10 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
                 Số lượng
               </h6>
               <Form.Select
-              value={count}
+                value={count}
                 aria-label="Default select example"
                 onChange={(e: any) => setCount(e.currentTarget.value)}
               >
-                
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -404,7 +421,7 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
                 value={level}
                 onChange={(e: any) => setLevel(e.currentTarget.value)}
               >
-                  <option value="0">Dễ</option>
+                <option value="0">Dễ</option>
                 <option value="1">Trung bình</option>
                 <option value="2">Khó</option>
               </Form.Select>
@@ -421,25 +438,39 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
           </Button>
 
           <div>
-{fileList && <Button  style={{ width: "50%" }} className="mt-4 fw-bold" onClick={handleUploadClick}>
-              Xem trước
-            </Button>}
-            {pdfData &&  
-      <div style={{width: 500}}>
-        <div style={{width: 500}} className="mt-4 d-flex justify-content-center align-items-center align-content-center"> 
-         <Pagination defaultCurrent={pageNumber} total={numPages} onChange={handleChangePage}  pageSize={1}/>
-          
-        </div>
-    
-    
-        <Document file={pdfData} className="mt-4" onLoadSuccess={onDocumentLoadSuccess}>
-          <Page pageNumber={pageNumber} width={500} />
-        </Document>
-      </div>}
-  
-      
-    </div>
-    
+            {fileList && (
+              <Button
+                style={{ width: "50%" }}
+                className="mt-4 fw-bold"
+                onClick={handleUploadClick}
+              >
+                Xem trước
+              </Button>
+            )}
+            {pdfData && (
+              <div style={{ width: 500 }}>
+                <div
+                  style={{ width: 500 }}
+                  className="mt-4 d-flex justify-content-center align-items-center align-content-center"
+                >
+                  <Pagination
+                    defaultCurrent={pageNumber}
+                    total={numPages}
+                    onChange={handleChangePage}
+                    pageSize={1}
+                  />
+                </div>
+
+                <Document
+                  file={pdfData}
+                  className="mt-4"
+                  onLoadSuccess={onDocumentLoadSuccess}
+                >
+                  <Page pageNumber={pageNumber} width={500} />
+                </Document>
+              </div>
+            )}
+          </div>
         </Col>
         <Col className=" bg-light">
           {array.length > 0 && (
@@ -449,18 +480,14 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
                 className="px-4 rounded-2 fw-bold"
                 onClick={() => setEdit(!isEdit)}
               >
-                {`${isEdit ? "SAVE" : "EDIT"}`}
+                {`${isEdit ? "Lưu" : "Sửa"}`}
               </Button>
-              <Button className="px-4 rounded-2 fw-bold">EXPORT</Button>
             </div>
           )}
 
-     {AnswerComponent}
-
-
+          {AnswerComponent}
         </Col>
       </Row>
-      
     </>
   );
 };
@@ -489,7 +516,7 @@ export interface QuizDashboardProps {
     type: string,
     level: string,
     count: number,
-    language: string,
+    language: string
   ) => void;
 }
 

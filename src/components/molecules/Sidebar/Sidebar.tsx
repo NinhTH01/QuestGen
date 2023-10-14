@@ -75,13 +75,13 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
                 } `}
                 style={{ fontSize: 14 }}
               >
-                Quiz from Image/Pdf
+                Tạo file PDF từ Image
               </span>
             </Nav.Link>
           </Nav.Item>
         </Form>
 
-        <Nav.Item className="my-2">
+        {/* <Nav.Item className="my-2">
           <Nav.Link className={` ${styles.nav}`} eventKey={"5"}>
             <span
               className={`text-white ${route === 5 ? "fw-bold" : "fw-medium"} `}
@@ -89,7 +89,7 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
               Account
             </span>
           </Nav.Link>
-        </Nav.Item>
+        </Nav.Item> */}
       </Nav>
     </>
   );
