@@ -1,4 +1,4 @@
-import { Button, Col, Row } from "react-bootstrap";
+import {Col, Row } from "react-bootstrap";
 import Sidebar from "../../components/molecules/Sidebar/Sidebar";
 import React from "react";
 import HomeDashboard from "../../components/templates/HomeDashboard/HomeDashboard";
@@ -26,6 +26,7 @@ const DashboardScreen = () => {
     handleChange,
     handleChecked,
     handleChangeQuestion,
+    loading,
   ] = useQuestgen(route);
 
   const handleChangeRoute = React.useCallback((index: number) => {
@@ -45,6 +46,7 @@ const DashboardScreen = () => {
           handleChecked={handleChecked}
           handleQuestion={handleChangeQuestion}
           handleGenQuest={handleGenQuestFromText}
+          loading={loading}
         />
       );
     } else if (route === 1) {
@@ -58,6 +60,7 @@ const DashboardScreen = () => {
           handleChecked={handleChecked}
           handleQuestion={handleChangeQuestion}
           handleGenQuest={handleGenQuestFromText}
+          loading={loading}
         />
       );
     } else if (route === 2) {
@@ -71,6 +74,7 @@ const DashboardScreen = () => {
         handleChecked={handleChecked}
         handleQuestion={handleChangeQuestion}
         handleGenQuest={handleGenQuestFromText}
+        loading={loading}
         />
       );
     } else if (route === 3) {
@@ -84,6 +88,7 @@ const DashboardScreen = () => {
           handleChecked={handleChecked}
           handleQuestion={handleChangeQuestion}
           handleGenQuest={handleGenQuestFromFile}
+          serviceLoading={loading}
         />
       );
     } else if (route === 4) {

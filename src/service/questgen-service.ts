@@ -1,6 +1,6 @@
 import React from "react";
 import { questgenRepository } from "../repository/questgen-repository";
-import { bloomData, data, similiarData } from "../sample/data/sampleGen";
+// import { bloomData, data, similiarData } from "../sample/data/sampleGen";
 
 export function useQuestgen(
   route: number
@@ -27,15 +27,16 @@ export function useQuestgen(
     indexQuestion: number
   ) => (e: any) => void,
   handleChecked: (indexAnswer: number, indexQuestion: number) => () => void,
-  handleChangeQuestion: (indexQuestion: number) => (e: any) => void
+  handleChangeQuestion: (indexQuestion: number) => (e: any) => void,
+  loading: boolean,
 ] {
   const [answer, setAnswer] = React.useState<any>([]);
 
-  const [res, setRes] = React.useState<any>(similiarData);
+  // const [res, setRes] = React.useState<any>(similiarData);
 
-  const [type, setType] = React.useState<any>('');
+  // const [type, setType] = React.useState<any>('');
 
-  // const [loading, setLoading] = React.useState<boolean>(false);
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   const handleFindCorrectIndex = React.useCallback(
     (r: any) => {
@@ -90,7 +91,10 @@ export function useQuestgen(
       count: number,
       language: string,
     ) => {
-      let data: any = [];
+
+      if(loading === false) {
+        setLoading(true);
+        let data: any = [];
 
       if (level === "0") {
         data = {
@@ -123,18 +127,20 @@ export function useQuestgen(
 
       if (context !== "" && !isNaN(Number(level))) {
         try {
-          // const response = questgenRepository.textGen(data);
-          // response.then((r) => {
-          //   // setRes(r);
-          //   handleFindCorrectIndex(r);
-          // });
-          handleFindCorrectIndex(res);
+          const response = questgenRepository.textGen(data);
+          response.then((r) => {
+            // setRes(r);
+            handleFindCorrectIndex(r);
+            setLoading(false);
+          });
+          // handleFindCorrectIndex(res);
         } catch (error: any) {
           console.error(`API Error: ${error?.message}`);
         }
       }
+      }
     },
-    [handleFindCorrectIndex, res]
+    [handleFindCorrectIndex, loading]
   );
 
   const handleGenQuestFromFile = React.useCallback(
@@ -146,46 +152,51 @@ export function useQuestgen(
       language: string,
     ) => {
 
-      const formData = new FormData();
+      if(loading === false) {
+        setLoading(true);
+        const formData = new FormData();
 
-      // if (level === "0") {
-      //   formData.append(`file`, context, context.name);
-      //   formData.append('language', `${language}`);
-      //   formData.append('easy', `${count}`);
-      //   formData.append('medium', '0');
-      //   formData.append('hard', '0');
-      //   formData.append('quest_type', `${questType}`);
-      // } else if (level === "1") {
-      //   formData.append(`file`, context, context.name);
-      //   formData.append('language', `${language}`);
-      //   formData.append('easy', `0`);
-      //   formData.append('medium', `${count}`);
-      //   formData.append('hard', '0');
-      //   formData.append('quest_type', `${questType}`);
-      // } else {
-      //   formData.append(`file`, context, context.name);
-      //   formData.append('language', `${language}`);
-      //   formData.append('easy', `0`);
-      //   formData.append('medium', '0');
-      //   formData.append('hard', `${count}`);
-      //   formData.append('quest_type', `${questType}`);
-      // }
-
-      // console.log(formData)
-
-        try {
-          // const response = questgenRepository.fileGen(formData);
-          // response.then((r) => {
-          //   handleFindCorrectIndex(r);
-          // });   
-          handleFindCorrectIndexFromFile(res, questType);
-          setType(questType)
-        } catch (error: any) {
-          console.error(`API Error: ${error?.message}`);
+        if (level === "0") {
+          formData.append(`file`, context, context.name);
+          formData.append('language', `${language}`);
+          formData.append('easy', `${count}`);
+          formData.append('medium', '0');
+          formData.append('hard', '0');
+          formData.append('quest_type', `${questType}`);
+        } else if (level === "1") {
+          formData.append(`file`, context, context.name);
+          formData.append('language', `${language}`);
+          formData.append('easy', `0`);
+          formData.append('medium', `${count}`);
+          formData.append('hard', '0');
+          formData.append('quest_type', `${questType}`);
+        } else {
+          formData.append(`file`, context, context.name);
+          formData.append('language', `${language}`);
+          formData.append('easy', `0`);
+          formData.append('medium', '0');
+          formData.append('hard', `${count}`);
+          formData.append('quest_type', `${questType}`);
         }
+  
+        // console.log(formData)
+  
+          try {
+            const response = questgenRepository.fileGen(formData);
+            response.then((r) => {
+              handleFindCorrectIndexFromFile(r, questType);
+              setLoading(false);
+            });   
+            // handleFindCorrectIndexFromFile(res, questType);
+          } catch (error: any) {
+            console.error(`API Error: ${error?.message}`);
+          }
+      }
+
+      
       
     },
-    [handleFindCorrectIndex]
+    [handleFindCorrectIndexFromFile, loading]
   );
 
   const handleChange = React.useCallback(
@@ -230,5 +241,6 @@ export function useQuestgen(
     handleChange,
     handleChecked,
     handleChangeQuestion,
+    loading,
   ];
 }

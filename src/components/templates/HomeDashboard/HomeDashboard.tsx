@@ -3,6 +3,8 @@ import styles from "./HomeDashbaord.module.css";
 import { ReactSortable } from "react-sortablejs";
 import React from "react";
 import Editor from "../../organisms/Editor/Editor";
+import { Spin } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
 
 const HomeDashboard: React.FC<HomeDashboardProps> = ({
   isEdit,
@@ -13,6 +15,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
   handleChecked,
   handleQuestion,
   handleGenQuest,
+  loading,
 }) => {
   const DummyText =
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
@@ -116,7 +119,7 @@ const HomeDashboard: React.FC<HomeDashboardProps> = ({
             className="mt-4 fw-bold"
             onClick={() => handleGenQuest(content, "mcq", level, count, language)}
           >
-            Tạo câu hỏi
+            {loading === false ? (`Tạo câu hỏi`): (<Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'white' }} spin />} />)}
           </Button>
         </Col>
         <Col className=" bg-light">
@@ -245,6 +248,8 @@ export interface HomeDashboardProps {
     count: number,
     language: string,
   ) => void;
+
+  loading: boolean;
 }
 
 export default HomeDashboard;

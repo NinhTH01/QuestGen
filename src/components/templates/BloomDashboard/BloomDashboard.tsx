@@ -3,6 +3,8 @@ import styles from "./BloomDashboard.module.css";
 import { ReactSortable } from "react-sortablejs";
 import React from "react";
 import Editor from "../../organisms/Editor/Editor";
+import { Spin } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
 
 const BloomDashboard: React.FC<BloomDashboardProps> = ({
   isEdit,
@@ -13,6 +15,7 @@ const BloomDashboard: React.FC<BloomDashboardProps> = ({
   handleChecked,
   handleQuestion,
   handleGenQuest,
+  loading,
 }) => {
 
   const DummyText =
@@ -120,7 +123,7 @@ const BloomDashboard: React.FC<BloomDashboardProps> = ({
             className="mt-4 fw-bold"
             onClick={() => handleGenQuest(content, "tf", level, count, language)}
           >
-            Tạo câu hỏi
+           {loading === false ? (`Tạo câu hỏi`): (<Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'white' }} spin />} />)}
           </Button>
         </Col>
         <Col className=" bg-light">
@@ -259,6 +262,8 @@ export interface BloomDashboardProps {
     count: number,
     language: string,
   ) => void;
+
+  loading: boolean,
 }
 
 export default BloomDashboard;

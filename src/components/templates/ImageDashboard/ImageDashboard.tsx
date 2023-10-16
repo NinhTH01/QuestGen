@@ -1,22 +1,15 @@
-import { Button, Row, Col, Form } from "react-bootstrap";
+import { Button, Row, Col } from "react-bootstrap";
 import styles from "./ImageDashboard.module.css";
-import { ReactSortable } from "react-sortablejs";
 import React from "react";
 import {
   Document,
   Page,
   PDFViewer,
-  Text,
-  View,
-  Font,
-  StyleSheet,
   Image,
-  usePDF,
-  PDFDownloadLink,
 } from "@react-pdf/renderer";
 import { VerticalAlignBottomOutlined } from "@mui/icons-material";
-// import {Document, Page, pdfjs } from "react-pdf";
-// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from "antd";
 
 const ImageDashboard: React.FC<ImageDashboardProps> = ({
   isEdit,
@@ -28,13 +21,11 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
   handleQuestion,
   handleGenQuest,
 }) => {
-  const [count, setCount] = React.useState(0);
-
-  const [level, setLevel] = React.useState<string>("0");
-
   const [fileList, setFileList] = React.useState<any>("");
 
-  // const [content, setContent] = React.useState<string>("");
+  const [loading, setLoading] = React.useState<boolean>(false);
+
+  const files = fileList ? [...fileList] : [];
 
   const [pdfData, setPdfData] = React.useState<any>([]);
 
@@ -46,32 +37,33 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
     if (!fileList) {
       return;
     }
-
-    const data = new FormData();
-    files.forEach((file, i) => {
-      data.append(`file-${i}`, file, file.name);
-    });
-
-    fetch("https://httpbin.org/post", {
-      method: "POST",
-      body: data,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        let contentArray: any = [];
-
-        files.forEach((file, i) => {
-          contentArray.push(data.files[`file-${i}`]);
-        });
-        setPdfData(contentArray);
+    if(loading === false) {
+      setLoading(true);
+      const data = new FormData();
+      files.forEach((file, i) => {
+        data.append(`file-${i}`, file, file.name);
+      });
+  
+      fetch("https://httpbin.org/post", {
+        method: "POST",
+        body: data,
       })
-      .catch((err) => console.error(err));
+        .then((res) => res.json())
+        .then((data) => {
+        
+          let contentArray: any = [];
+  
+          files.forEach((file, i) => {
+            contentArray.push(data.files[`file-${i}`]);
+          });
+          setPdfData(contentArray);
+          setLoading(false);
+        })
+        .catch((err) => console.error(err));
+    }
   };
 
-  // console.log(pdfData);
-
-  const files = fileList ? [...fileList] : [];
+  console.log(loading);
 
   const MyDocument = () => (
     <Document>
@@ -93,7 +85,7 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
         <Col className="bg-light" style={{ padding: 60 }}>
           <div className="mb-4 ">
             <h6 style={{ fontWeight: 400 }} className="fw-bold">
-              Chọn một hoặc nhiều ảnh để gen file PDF
+              Chọn một hoặc nhiều ảnh rồi bấm tải ảnh lên để tạo file PDF
             </h6>
           </div>
 
@@ -111,8 +103,7 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
                       overflowX: "hidden",
                     }}
                   >
-                    {" "}
-                    {files[0].name}
+                    {`${fileList.length} ảnh đã được chọn`}
                   </h5>
                 ) : (
                   <>
@@ -125,22 +116,39 @@ const ImageDashboard: React.FC<ImageDashboardProps> = ({
               <input
                 type="file"
                 onChange={handleFileChange}
-                // accept="application/pdf"
                 multiple
               />
             </div>
           </div>
 
+          <ul>
+                {files.length >= 0 &&
+                  files.map((file, i) => (
+                    <li key={i}>
+                      <h6  className="mt-2 overflow-hidden "
+                    style={{
+                      textOverflow: "ellipsis",
+                      textDecoration: "none",
+                      overflowX: "hidden",
+                    }}>
+                      {file.name} 
+                      </h6>
+                      
+                    </li>
+                  ))}
+              </ul>
+
           {files.length > 0 && (
-            <>
-              <Button className="mt-4 fw-bold" onClick={handleUploadClick}>
-                Tải ảnh lên
+     
+              <Button className="mt-4 fw-bold" onClick={handleUploadClick} style={{width: '50%'}}>
+                {loading === false ? (`Tải ảnh lên`): (<Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'white' }} spin />} />)}
+                
               </Button>
-            </>
+           
           )}
         </Col>
         <Col className=" bg-light d-flex justify-content-center">
-          <PDFViewer style={{ height: 1200, width: "80%" }}>
+          <PDFViewer style={{ height: '98vh', width: "80%" }}>
             <MyDocument />
           </PDFViewer>
         </Col>

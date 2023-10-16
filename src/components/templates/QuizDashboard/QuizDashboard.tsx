@@ -4,7 +4,8 @@ import { ReactSortable } from "react-sortablejs";
 import React, { ChangeEvent } from "react";
 import { VerticalAlignBottomOutlined } from "@mui/icons-material";
 import { Document, Page, pdfjs } from "react-pdf";
-import { Pagination } from "antd";
+import { Pagination, Spin } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const QuizDashboard: React.FC<QuizDashboardProps> = ({
@@ -16,6 +17,7 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
   handleChecked,
   handleQuestion,
   handleGenQuest,
+  serviceLoading,
 }) => {
   const [count, setCount] = React.useState(1);
 
@@ -33,6 +35,8 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
 
   const [pageNumber, setPageNumber] = React.useState<number>(1);
 
+  const [loading, setLoading] = React.useState<boolean>(false);
+
   const handleFileChange = React.useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       setFileList(e.target.files);
@@ -45,7 +49,6 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
   }, [fileList]);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
-    // console.log(numPages);
     setNumPages(numPages);
   }
 
@@ -57,24 +60,26 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
     if (!fileList) {
       return;
     }
-
-    const data = new FormData();
-    files.forEach((file, i) => {
-      data.append(`file-${i}`, file, file.name);
-    });
-
-    fetch("https://httpbin.org/post", {
-      method: "POST",
-      body: data,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setPdfData(data.files[`file-${0}`]);
+    
+    if(loading === false) {
+      setLoading(true);
+      const data = new FormData();
+      files.forEach((file, i) => {
+        data.append(`file-${i}`, file, file.name);
+      });
+  
+      fetch("https://httpbin.org/post", {
+        method: "POST",
+        body: data,
       })
-      .catch((err) => console.error(err));
+        .then((res) => res.json())
+        .then((data) => {
+          setLoading(false);
+          setPdfData(data.files[`file-${0}`]);
+        })
+        .catch((err) => console.error(err));
+    } 
   };
-
-  console.log(array[array.length - 1]?.type);
 
   const AnswerComponent = React.useMemo(() => {
     if (array.length > 0) {
@@ -434,18 +439,15 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
               handleGenQuest(fileList, type, level, count, language)
             }
           >
-            Tạo câu hỏi
+            {loading === false ? (`Tạo câu hỏi`): (<Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'white' }} spin />} />)}
           </Button>
 
           <div>
             {fileList && (
-              <Button
-                style={{ width: "50%" }}
-                className="mt-4 fw-bold"
-                onClick={handleUploadClick}
-              >
-                Xem trước
-              </Button>
+               <Button className="mt-4 fw-bold" onClick={handleUploadClick} style={{width: '50%'}}>
+               {serviceLoading === false ? (`Tải ảnh lên`): (<Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'white' }} spin />} />)}
+               
+             </Button>
             )}
             {pdfData && (
               <div style={{ width: 500 }}>
@@ -509,7 +511,7 @@ export interface QuizDashboardProps {
 
   handleQuestion: (indexQuestion: number) => (e: any) => void;
 
-  // answer: any;
+  serviceLoading: boolean,
 
   handleGenQuest: (
     content: any,
