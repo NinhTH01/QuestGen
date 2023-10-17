@@ -1,6 +1,6 @@
 import React from "react";
 import { questgenRepository } from "../repository/questgen-repository";
-// import { bloomData, data, similiarData } from "../sample/data/sampleGen";
+import { bloomData, data, similiarData } from "../sample/data/sampleGen";
 
 export function useQuestgen(
   route: number
@@ -32,7 +32,7 @@ export function useQuestgen(
 ] {
   const [answer, setAnswer] = React.useState<any>([]);
 
-  // const [res, setRes] = React.useState<any>(similiarData);
+  const [res, setRes] = React.useState<any>(data);
 
   // const [type, setType] = React.useState<any>('');
 
@@ -93,7 +93,7 @@ export function useQuestgen(
     ) => {
 
       if(loading === false) {
-        setLoading(true);
+        // setLoading(true);
         let data: any = [];
 
       if (level === "0") {
@@ -127,13 +127,13 @@ export function useQuestgen(
 
       if (context !== "" && !isNaN(Number(level))) {
         try {
-          const response = questgenRepository.textGen(data);
-          response.then((r) => {
-            // setRes(r);
-            handleFindCorrectIndex(r);
-            setLoading(false);
-          });
-          // handleFindCorrectIndex(res);
+          // const response = questgenRepository.textGen(data);
+          // response.then((r) => {
+          //   // setRes(r);
+          //   handleFindCorrectIndex(r);
+          //   setLoading(false);
+          // });
+          handleFindCorrectIndex(res);
         } catch (error: any) {
           console.error(`API Error: ${error?.message}`);
         }

@@ -282,6 +282,18 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
     }
   }, [array, handleChange, handleChecked, handleQuestion, isEdit, setArray]);
 
+  const handleDownload = React.useCallback(() => {
+    if(array && array.length> 0) {
+      const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
+        JSON.stringify(array)
+      )}`;
+      const link = document.createElement("a");
+      link.href = jsonString;
+      link.download = "data.json";
+      link.click();
+    }
+  },[array])
+
   return (
     <>
       <h5 className="text-center fw-bold mt-4">
@@ -476,6 +488,7 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
         </Col>
         <Col className=" bg-light">
           {array.length > 0 && (
+         
             <div className=" justify-content-end d-flex p-4">
               <Button
                 style={{ marginRight: 16 }}
@@ -484,7 +497,16 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
               >
                 {`${isEdit ? "Lưu" : "Sửa"}`}
               </Button>
+              <Button
+                style={{ marginRight: 16 }}
+                className="px-4 rounded-2 fw-bold"
+                onClick={handleDownload}
+              >
+                {`Tải về`}
+              </Button>
             </div>
+
+            
           )}
 
           {AnswerComponent}

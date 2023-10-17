@@ -35,6 +35,18 @@ const BloomDashboard: React.FC<BloomDashboardProps> = ({
     setContent(text);
   }, []);
 
+  const handleDownload = React.useCallback(() => {
+    if(array && array.length> 0) {
+      const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
+        JSON.stringify(array)
+      )}`;
+      const link = document.createElement("a");
+      link.href = jsonString;
+      link.download = "data.json";
+      link.click();
+    }
+  },[array])
+
   return (
     <>
       <h5 className="text-center fw-bold mt-4">Tạo các câu hỏi đúng/sai</h5>
@@ -135,6 +147,13 @@ const BloomDashboard: React.FC<BloomDashboardProps> = ({
                 onClick={() => setEdit(!isEdit)}
               >
                 {`${isEdit ? "Lưu" : "Sửa"}`}
+              </Button>
+              <Button
+                style={{ marginRight: 16 }}
+                className="px-4 rounded-2 fw-bold"
+                onClick={handleDownload}
+              >
+                {`Tải về`}
               </Button>
               {/* <Button className="px-4 rounded-2 fw-bold">EXPORT</Button> */}
             </div>
