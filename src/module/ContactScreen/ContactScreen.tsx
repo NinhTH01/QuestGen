@@ -14,7 +14,7 @@ const ContactScreen = () => {
           Happy to answer any queries you may have about Questgen.
         </h5>
         <h6 className="text-center mt-2 fw-light">
-          Feel free to use the form or write to ramsri@questgen.ai
+          Feel free to use the form or write to hninh1710@gmail.com
         </h6>
         <div className="d-flex justify-content-center mt-4">
           <div style={{ width: 600, marginTop: 40, marginBottom: 50 }}>

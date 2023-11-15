@@ -457,7 +457,7 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
           <div>
             {fileList && (
                <Button className="mt-4 fw-bold" onClick={handleUploadClick} style={{width: '50%'}}>
-               {serviceLoading === false ? (`Tải ảnh lên`): (<Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'white' }} spin />} />)}
+               {serviceLoading === false ? (`Bấm để xem trước`): (<Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'white' }} spin />} />)}
                
              </Button>
             )}
