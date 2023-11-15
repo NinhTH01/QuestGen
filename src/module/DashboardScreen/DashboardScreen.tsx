@@ -10,6 +10,7 @@ import { currentWidth } from "../../global/selectors";
 import { useQuestgen } from "../../service/questgen-service";
 import QuizDashboard from "../../components/templates/QuizDashboard/QuizDashboard";
 import ImageDashboard from "../../components/templates/ImageDashboard/ImageDashboard";
+import MobileMenu from "../../components/molecules/MobileMenu/MobileMenu";
 
 const DashboardScreen = () => {
   const width = useSelector(currentWidth);
@@ -107,20 +108,10 @@ const DashboardScreen = () => {
     } else if (route === 5) {
       return <AccountDashboard />;
     }
-  }, [
-    answer,
-    handleChange,
-    handleChangeQuestion,
-    handleChecked,
-    handleGenQuestFromFile,
-    handleGenQuestFromText,
-    isEdit,
-    route,
-    setAnswer,
-  ]);
+  }, [answer, handleChange, handleChangeQuestion, handleChecked, handleGenQuestFromFile, handleGenQuestFromText, isEdit, loading, route, setAnswer]);
 
   return (
-    <div style={{ width: "100%" }} className="bg-light">
+    <div style={{ width: "100vw", height: "150vh" }} className="bg-light">
       <Row
         xxl={2}
         xl={2}
@@ -128,29 +119,29 @@ const DashboardScreen = () => {
         md={2}
         sm={2}
         xs={1}
-        style={{ width: "100%" }}
-        className="bg-light"
+        style={{ width: "100%", height: "150vh" }}
+        className="bg-light" 
       >
-        <Col>
-          {width > 800 && (
+        <Col >
+          {width > 800 ? (
             <div className="" style={{ position: "fixed", top: 0 }}>
               <Sidebar route={route} setRoute={handleChangeRoute} />
             </div>
-          )}
+          ) : (
+          <div className="" style={{ top: 0, zIndex: 10 }}>
+            <MobileMenu  route={route} setRoute={handleChangeRoute} />
+        </div>)}
         </Col>
         <Col
           style={{
-            width: width > 800 ? "calc(100% - 208px)" : "100%",
+            width: width > 800 ? "calc(100% - 300px)" : "100%",
             marginLeft: width > 800 ? 240 : 0,
-            height: "99vh",
+            height: "150vh",
             zIndex: 2,
           }}
         >
-          <div className="p-2">
-            <div className="bg-light" style={{}}>
-              
-              {RouteComponent}
-            </div>
+          <div className="p-2">              
+              {RouteComponent}  
           </div>
         </Col>
       </Row>

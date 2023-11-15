@@ -29,7 +29,7 @@
 
 .nav_tabs .nav-link.active,
 .nav_tabs .nav-item.show .nav-link {
-  color: #ffffff;
+  /* color: #ffffff; */
 
   background-color: #2399fb;
 

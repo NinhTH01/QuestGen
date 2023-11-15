@@ -1,27 +1,18 @@
-import { Form, Nav } from "react-bootstrap";
-import styles from "./Sidebar.module.css";
-import React from "react";
+import { Navbar, Nav, Form } from "react-bootstrap";
+import styles from "./MobileMenu.module.css";
 
-const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
-  return (
-    <>
-      <Nav
-        className={`d-flex flex-column  p-2 ${styles.nav_tabs} justify-content-between`}
-        style={{
-          minHeight: "98vh",
-          background: "rgb(99 102 241)",
-          width: 200,
-          zIndex: 1,
-        }}
-        activeKey="/home"
-        onSelect={(selectedKey) => setRoute(Number(selectedKey))}
-        variant="pills"
-      >
-        <Form>
-          <Nav.Item className="my-1 mt-5">
+const MobileMenu: React.FC<MobileMenuProps> = ({route, setRoute}) => {
+    return (
+      <Navbar expand="lg" className="px-4 " >
+       
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse>
+          <Nav className="me-auto flex-grow-1 justify-content-end bg-light"  onSelect={(selectedKey) => setRoute(Number(selectedKey))}>
+          <Form>
+          <Nav.Item className="my-1">
             <Nav.Link eventKey={"0"} className={` ${styles.nav}`}>
               <span
-                className={`text-white ${
+                className={` ${
                   route === 0 ? "fw-bold" : "fw-medium"
                 }`}
                 style={{ fontSize: 14 }}
@@ -33,7 +24,7 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
           <Nav.Item className="my-2">
             <Nav.Link eventKey={"1"} className={` ${styles.nav}`}>
               <span
-                className={`text-white ${
+                className={` ${
                   route === 1 ? "fw-bold" : "fw-medium"
                 } `}
                 style={{ fontSize: 14 }}
@@ -45,7 +36,7 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
           <Nav.Item className="my-2">
             <Nav.Link className={` ${styles.nav}`} eventKey={"2"}>
               <span
-                className={`text-white ${
+                className={`${
                   route === 2 ? "fw-bold" : "fw-medium"
                 } `}
                 style={{ fontSize: 14 }}
@@ -57,7 +48,7 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
           <Nav.Item className="my-2">
             <Nav.Link className={` ${styles.nav}`} eventKey={"3"}>
               <span
-                className={`text-white ${
+                className={` ${
                   route === 3 ? "fw-bold" : "fw-medium"
                 } `}
                 style={{ fontSize: 14 }}
@@ -70,7 +61,7 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
           <Nav.Item className="my-2">
             <Nav.Link className={` ${styles.nav}`} eventKey={"4"}>
               <span
-                className={`text-white ${
+                className={` ${
                   route === 4 ? "fw-bold" : "fw-medium"
                 } `}
                 style={{ fontSize: 14 }}
@@ -80,15 +71,15 @@ const Sidebar: React.FC<SidebarProps> = ({ route, setRoute }) => {
             </Nav.Link>
           </Nav.Item>
         </Form>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    );
+  };
+export interface MobileMenuProps {
+    route: number;
 
-      </Nav>
-    </>
-  );
-};
-export interface SidebarProps {
-  route: number;
-
-  setRoute: any;
+    setRoute: any;
 }
 
-export default Sidebar;
+export default MobileMenu;

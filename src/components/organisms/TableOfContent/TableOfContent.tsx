@@ -49,7 +49,7 @@ const Headings = ({ headings, activeId, expanded, handleGenQuest }: any) => (
           </div>
 
           <span className={` text-white ${styles.tooltiptext}`}>
-            Click to generate
+            Bấm để tạo câu hỏi
           </span>
         </a>
 
@@ -82,7 +82,7 @@ const Headings = ({ headings, activeId, expanded, handleGenQuest }: any) => (
                   </div>
 
                   <span className={` text-white ${styles.tooltiptext}`}>
-                    Click to generate
+                  Bấm để tạo câu hỏi
                   </span>
                 </a>
               </li>
@@ -236,16 +236,16 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
       heading?.contents?.map((index: any) => {
         return convertedArray.push(heading?.contents[index]?.innerText);
       });
-      handleQuestgen(convertedArray.toString(), type, level, count);
+      handleQuestgen(convertedArray.toString(), type, level, count, language);
     },
-    [handleQuestgen, level, type, count]
+    [handleQuestgen, type, level, count, language]
   );
 
   useIntersectionObserver(setActiveId);
 
   return (
     <>
-      {closed && (
+      {width > 800 && closed && (
         <Button
           style={{
             position: "fixed",

@@ -151,7 +151,7 @@ const Header: React.FC<HeaderProps> = () => {
             className={`px-4 fw-bold ${styles.shadow}`}
             onClick={() => navigate("/dashboard")}
           >
-            Thử miễn phí
+            Tạo câu hỏi
           </Button>
         </Nav>
       </Navbar.Collapse>

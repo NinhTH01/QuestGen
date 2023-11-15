@@ -72,7 +72,7 @@ const Editor: React.FC<EditorProps> = ({
         modules={modules}
         formats={formats}
         defaultValue={defaultValue}
-        style={{ background: "white", width: "100%", minHeight: 400}}
+        style={{ background: "white", height: 400}}
       ></ReactQuill>
       <TableOfContents
         content={html}
