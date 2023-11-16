@@ -29,9 +29,9 @@ const Header: React.FC<HeaderProps> = () => {
           {/* <Nav.Link href="/blog" className="fw-medium mx-2">
             Blog
           </Nav.Link> */}
-          <Nav.Link href="/contact" className="fw-medium mx-2">
+          {/* <Nav.Link href="/contact" className="fw-medium mx-2">
             Liên lạc
-          </Nav.Link>
+          </Nav.Link> */}
           <Dropdown align="end">
             <Dropdown.Toggle
               id="dropdown-basic"

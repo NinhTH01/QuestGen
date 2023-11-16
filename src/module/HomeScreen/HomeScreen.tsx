@@ -337,7 +337,7 @@ const HomeScreen = () => {
         </Row>
       </div>
 
-      <h2 className="text-center fw-bold mb-4">Công nghệ</h2>
+      {/* <h2 className="text-center fw-bold mb-4">Công nghệ</h2>
       <div className="justify-content-center d-flex mb-4 mt-2 ">
         <h6
           className={`text-center ${styles.paragragh} fw-medium px-4 `}
@@ -346,9 +346,9 @@ const HomeScreen = () => {
           Thư viện mã nguồn mở Questgen cũng như bài nói chuyện chi tiết về một
           số thuật toán hỗ trợ Questgen.
         </h6>
-      </div>
+      </div> */}
 
-      <div className={`justify-content-center d-flex ${styles.stepContainer}`}>
+      {/* <div className={`justify-content-center d-flex ${styles.stepContainer}`}>
         <Row
           xxl={1}
           xl={1}
@@ -390,7 +390,7 @@ const HomeScreen = () => {
                 </Button>
               </div>
             </div>
-          </div>
+          </div> */}
           {/* <div className="p-2">
             <div
               style={{ background: "#f0f3f9", height: 600 }}
@@ -418,8 +418,8 @@ const HomeScreen = () => {
               </div>
             </div>
           </div> */}
-        </Row>
-      </div>
+        {/* </Row>
+      </div> */}
       <Footer />
     </>
   );

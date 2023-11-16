@@ -4,9 +4,11 @@ import Header from "../../components/organisms/Header/Header";
 import { useSelector } from "react-redux";
 import { currentWidth } from "../../global/selectors";
 import styles from "./PricingScreen.module.css";
+import { useNavigate } from "react-router-dom";
 
 const PricingScreen = () => {
   const width = useSelector(currentWidth);
+  const navigate = useNavigate();
   return (
     <>
       <Header />
@@ -61,6 +63,7 @@ const PricingScreen = () => {
                   <Button
                     style={{ background: "rgb(94, 93, 240)" }}
                     className={`mt-4 py-2 px-3 rounded-5 ${styles.buttonShadow}`}
+                    onClick={() => navigate("/dashboard")}
                   >
                     Bắt đầu!
                   </Button>
