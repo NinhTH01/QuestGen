@@ -44,6 +44,8 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
     []
   );
 
+  console.log(fileList);
+
   const files = React.useMemo(() => {
     return fileList ? [...fileList] : [];
   }, [fileList]);
@@ -448,7 +450,7 @@ const QuizDashboard: React.FC<QuizDashboardProps> = ({
             style={{ width: "100%" }}
             className="mt-4 fw-bold"
             onClick={() =>
-              handleGenQuest(fileList, type, level, count, language)
+              handleGenQuest(fileList[0], type, level, count, language)
             }
           >
             {loading === false ? (`Tạo câu hỏi`): (<Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'white' }} spin />} />)}

@@ -1,6 +1,6 @@
 import React from "react";
 import { questgenRepository } from "../repository/questgen-repository";
-import { bloomData, data, similiarData } from "../sample/data/sampleGen";
+import { bloomData, data, historyData, literatureData, similiarData } from "../sample/data/sampleGen";
 
 export function useQuestgen(
   route: number
@@ -31,7 +31,7 @@ export function useQuestgen(
 ] {
   const [answer, setAnswer] = React.useState<any>([]);
 
-  const [res, setRes] = React.useState<any>(data);
+  const [res, setRes] = React.useState<any>(bloomData);
 
   const [type, setType] = React.useState<any>("");
 
@@ -91,7 +91,7 @@ export function useQuestgen(
       
       if (context !== "") {
         if(loading === false) {
-        setLoading(true);
+        // setLoading(true);
         
         
         let data: any = [];
@@ -127,13 +127,13 @@ export function useQuestgen(
 
         if (!isNaN(Number(level))) {
           try {
-            const response = questgenRepository.textGen(data);
-            response.then((r) => {
-              // setRes(r);
-              handleFindCorrectIndex(r);
-              setLoading(false);
-            });
-            // handleFindCorrectIndex(res);
+            // const response = questgenRepository.textGen(data);
+            // response.then((r) => {
+            //   // setRes(r);
+            //   handleFindCorrectIndex(r);
+            //   setLoading(false);
+            // });
+            handleFindCorrectIndex(res);
           } catch (error: any) {
             setLoading(false);
             console.error(`API Error: ${error?.message}`);
@@ -185,18 +185,18 @@ export function useQuestgen(
 
         // console.log(formData)
 
-        try {
-          const response = questgenRepository.fileGen(formData);
-          response.then((r) => {
-            handleFindCorrectIndexFromFile(r, questType);
-            setLoading(false);
-          });
-          // handleFindCorrectIndexFromFile(res, questType);
-          // setType(questType);
-        } catch (error: any) {
-          setLoading(false);
-          console.error(`API Error: ${error?.message}`);
-        }
+        // try {
+        //   const response = questgenRepository.fileGen(formData);
+        //   response.then((r) => {
+        //     handleFindCorrectIndexFromFile(r, questType);
+        //     setLoading(false);
+        //   });
+        //   // handleFindCorrectIndexFromFile(res, questType);
+        //   // setType(questType);
+        // } catch (error: any) {
+        //   setLoading(false);
+        //   console.error(`API Error: ${error?.message}`);
+        // }
       } else {
         alert("Chưa chọn file!");
       }
